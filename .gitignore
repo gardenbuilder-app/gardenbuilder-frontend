@@ -26,3 +26,6 @@ yarn-error.log*
 # editor files
 *.swp
 .vscode/
+
+# other
+.eslintcache
