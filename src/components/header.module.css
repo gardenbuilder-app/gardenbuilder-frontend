@@ -1,0 +1,43 @@
+.header {
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    list-style-type: none;
+}
+
+.nav-item {
+    text-decoration: none;
+    opacity: var(--opacity);
+    color: var(--color);
+}
+
+.nav-item:hover {
+    opacity: .7;
+}
+
+.active-nav-item {
+    font-size: 140%;
+    opacity: 1;
+}
+
+.title {
+    color: var(--color);
+    font-family: calistoga;
+    font-size: 3rem;
+    text-decoration: none;
+}
+
+.title:hover {
+    opacity: .7;
+}
+
+@media only screen and (min-width: 500px) {
+    .title {
+        font-size: 6rem;
+    }
+}
