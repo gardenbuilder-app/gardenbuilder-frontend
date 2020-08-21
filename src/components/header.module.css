@@ -3,28 +3,6 @@
     text-align: center;
 }
 
-.nav-list {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    list-style-type: none;
-}
-
-.nav-item {
-    text-decoration: none;
-    opacity: var(--opacity);
-    color: var(--color);
-}
-
-.nav-item:hover {
-    opacity: .7;
-}
-
-.active-nav-item {
-    font-size: 140%;
-    opacity: 1;
-}
-
 .title {
     color: var(--color);
     font-family: calistoga;
