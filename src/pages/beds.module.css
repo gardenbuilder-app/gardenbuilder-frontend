@@ -1,0 +1,9 @@
+.grid {
+    display: grid;
+    direction: row;
+    gap: 2px;
+}
+
+.grid > * {
+    background-color: pink;
+}
