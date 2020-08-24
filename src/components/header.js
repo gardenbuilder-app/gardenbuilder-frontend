@@ -6,16 +6,16 @@ import useWindowSize from '../hooks/useWindowSize'
 import styled from 'styled-components'
 import { colors } from '../styles/global'
 
-const Header = function () {
-  const windowSize = useWindowSize()
-
-  const Header = styled.header`
+const Header = styled.header`
     padding: 1rem 0;
     text-align: center;
     background: ${colors.primary};
     width: 100vw;
     margin-left: -1rem;
   `
+
+const Headers = function () {
+  const windowSize = useWindowSize()
 
   const header = windowSize.width < 600 ? (
     <Header>
@@ -37,4 +37,4 @@ const Header = function () {
   return header
 }
 
-export default Header
+export default Headers
