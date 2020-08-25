@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { colors } from '../styles/global'
 import useWindowSize from '../hooks/useWindowSize'
 import Modal from '../components/modal'
+import PlantSelector from './PlantSelector'
 
 const Grid = styled.div`
     display: grid;
@@ -30,10 +31,6 @@ const GridItem = styled.button`
   `
 function Beds () {
   const [modalActive, setModalActive] = useState(false)
-
-  const plantChoices = [
-    'Arugula', 'Green Beans', 'Spinach', 'Lettuce', ''
-  ]
   const { width } = useWindowSize()
   const rows = 4
   const columns = 5
@@ -62,18 +59,24 @@ function Beds () {
   }
 
   return (
-    modalActive
-      ? <Modal closeModal={(event) => {
-        console.log(event)
-        setModalActive(false)
-      }} />
-      : <Grid
-        columns={columns}
-        rows={rows}
-        itemWidth={gridItemWidth}
-      >
-        {gridItems}
-      </Grid>
+    <Modal closeModal={(event) => {
+      setModalActive(false)
+    }}>
+      <PlantSelector />
+    </Modal>
+    // modalActive
+    //   ? <Modal closeModal={(event) => {
+    //     setModalActive(false)
+    //   }}>
+    //     <PlantSelector />
+    //   </Modal>
+    //   : <Grid
+    //     columns={columns}
+    //     rows={rows}
+    //     itemWidth={gridItemWidth}
+    //   >
+    //     {gridItems}
+    //   </Grid>
   )
 }
 

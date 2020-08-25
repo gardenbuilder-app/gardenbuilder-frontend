@@ -26,9 +26,19 @@ const StyledModal = styled.aside`
 `
 
 export default function Modal ({ children, closeModal }) {
+  const StyledTimes = styled(FaTimes)`
+    position: fixed;
+    font-size: 200%;
+    top: 2rem;
+    right: 2rem;
+    &:hover, :focus {
+      color: ${colors.accent};
+    }
+  `
+
   return (
     <StyledModal>
-      <FaTimes onClick={closeModal} />
+      <StyledTimes onClick={closeModal} />
       { children }
     </StyledModal>
   )
