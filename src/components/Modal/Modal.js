@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { colors } from '../styles/global'
+import { colors } from '../../styles/global'
 import { FaTimes } from 'react-icons/fa'
 
 const showModalAnimation = keyframes`
@@ -25,20 +25,45 @@ const StyledModal = styled.aside`
     z-index: 9999;
 `
 
-export default function Modal ({ children, closeModal }) {
-  const StyledTimes = styled(FaTimes)`
+/**
+ * Include (but visually hide) text for accessibility reasons
+ */
+const HiddenText = styled.div`
+   &:not(:focus):not(:active) {
+     clip: rect(0 0 0 0); 
+     clip-path: inset(100%); 
+     height: 1px; 
+     overflow: hidden; 
+     position: absolute; 
+     white-space: nowrap; 
+     width: 1px; 
+   }
+`
+
+const StyledButton = styled.button`
+    background: none;
+    border: none;
+    color: ${colors.white};
     position: fixed;
-    font-size: 200%;
     top: 2rem;
     right: 2rem;
     &:hover, :focus {
       color: ${colors.accent};
     }
+
+`
+
+export function Modal ({ children, closeModal }) {
+  const StyledTimes = styled(FaTimes)`
+    font-size: 200%;
   `
 
   return (
     <StyledModal>
-      <StyledTimes onClick={closeModal} />
+      <StyledButton>
+        <StyledTimes onClick={closeModal} />
+        <HiddenText>Close Modal</HiddenText>
+      </StyledButton>
       { children }
     </StyledModal>
   )

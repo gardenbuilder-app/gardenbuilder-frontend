@@ -102,28 +102,27 @@ function Input ({ options }) {
   // Event fired when the user presses a key down
   function onKeyDown (event) {
     // Don't let component rerender
-    event.preventDefault()
-
-    // If user pressed enter, update input and close options
+    // User pressed the enter key, update the input and close the
+    // suggestions
     if (event.keyCode === 13) {
+      event.preventDefault()
       setActiveOption(0)
       setShowDropdown(false)
       setUserInput(filteredOptions[activeOption])
     }
-
-    // If user pressed up arrow, decrement the index
+    // User pressed the up arrow, decrement the index
     else if (event.keyCode === 38) {
       if (activeOption === 0) {
         return
       }
       setActiveOption(activeOption - 1)
     }
-
-    // If User pressed down arrow, increment the index
+    // User pressed the down arrow, increment the index
     else if (event.keyCode === 40) {
       if (activeOption - 1 === filteredOptions.length) {
         return
       }
+
       setActiveOption(activeOption + 1)
     }
   }
@@ -143,7 +142,7 @@ function Input ({ options }) {
             */
            if (index === activeOption) {
              const ActiveLi = styled(StyledLi)`
-               color: ${colors.accent};
+               color: pink;
              `
              return (
                <ActiveLi
