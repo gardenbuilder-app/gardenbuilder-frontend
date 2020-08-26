@@ -1,11 +1,11 @@
 import React from 'react'
 import { Layout } from './components'
-import { Beds } from './pages'
+import { Beds, Login } from './pages'
 
 function App () {
   return (
     <Layout>
-      <Beds />
+      <Login />
     </Layout>
   )
 }
