@@ -59,23 +59,23 @@ export function Beds () {
   }
 
   return (
-    <Modal closeModal={(event) => {
-      setModalActive(false)
-    }}>
-      <PlantSelector />
-    </Modal>
-    // modalActive
-    //   ? <Modal closeModal={(event) => {
-    //     setModalActive(false)
-    //   }}>
-    //     <PlantSelector />
-    //   </Modal>
-    //   : <Grid
-    //     columns={columns}
-    //     rows={rows}
-    //     itemWidth={gridItemWidth}
-    //   >
-    //     {gridItems}
-    //   </Grid>
+    // <Modal closeModal={(event) => {
+    //   setModalActive(false)
+    // }}>
+    //   <PlantSelector />
+    // </Modal>
+    modalActive
+      ? <Modal closeModal={(event) => {
+        setModalActive(false)
+      }}>
+        <PlantSelector />
+      </Modal>
+      : <Grid
+        columns={columns}
+        rows={rows}
+        itemWidth={gridItemWidth}
+      >
+        {gridItems}
+      </Grid>
   )
 }
