@@ -35,7 +35,7 @@ const StyledButton = styled.button`
     }
 `
 
-function CloseModalButton () {
+export function CloseModalButton ({ closeModal }) {
   const StyledTimes = styled(FaTimes)`
     font-size: 200%;
   `
@@ -47,5 +47,3 @@ function CloseModalButton () {
     </StyledButton>
   )
 }
-
-export default CloseModalButton
