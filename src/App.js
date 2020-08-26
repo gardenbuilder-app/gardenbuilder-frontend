@@ -5,7 +5,7 @@ import { Beds, Login } from './pages'
 function App () {
   return (
     <Layout>
-      <Login />
+      <Login options={[]}/>
     </Layout>
   )
 }

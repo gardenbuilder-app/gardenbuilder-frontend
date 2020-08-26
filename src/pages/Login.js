@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Input } from '../components'
+import { InputWithOptions } from '../components'
 
 const StyledForm = styled.form`
 
@@ -9,7 +9,7 @@ const StyledForm = styled.form`
 export function Login () {
   return (
     <StyledForm >
-      <Input />
+      <InputWithOptions />
     </StyledForm>
   )
 }

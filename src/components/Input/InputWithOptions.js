@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { colors } from '../styles/global'
+import { colors } from '../../styles/global'
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
 
 const StyledInput = styled.input`
@@ -51,7 +51,7 @@ const InputWrapper = styled.div`
  * Input
  * @param { options } list of items that will auto-populate as suggestions
  */
-export function Input ({ options }) {
+export function InputWithOptions ({ options }) {
   const [userInput, setUserInput] = useState(undefined)
   const [showDropdown, setShowDropdown] = useState(false)
   const [filteredOptions, setFilteredOptions] = useState([])

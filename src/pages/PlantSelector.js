@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Input } from '../components/Input'
+import { InputWithOptions } from '../components/Input/InputWithOptions'
 
 const Form = styled.form`
 
@@ -15,7 +15,7 @@ function PlantSelector () {
     <Form>
       <label>
       Plant Type
-        <Input
+        <InputWithOptions
           options={plantChoices}
         />
       </label>
