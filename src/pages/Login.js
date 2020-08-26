@@ -9,7 +9,6 @@ const StyledForm = styled.form`
 export function Login () {
   return (
     <StyledForm >
-      <div>hi</div>
       <Input />
     </StyledForm>
   )

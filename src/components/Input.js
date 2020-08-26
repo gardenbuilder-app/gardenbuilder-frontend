@@ -7,8 +7,7 @@ const StyledInput = styled.input`
   font-family: inherit;
   font-size: 100%;
   height: 3rem;
-  border: none;
-  border-image-width: 0;
+  border: 1px solid black;
   border-radius: 5px;
   box-shadow: none !important;
   -webkit-box-shadow: none !important;
