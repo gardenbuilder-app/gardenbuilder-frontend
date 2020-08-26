@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from './header'
-import Footer from './footer'
+import { Header } from './Header'
+import { Footer } from './Footer'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -15,7 +15,7 @@ const Main = styled.main`
   flex-grow: 1;
 `
 
-const Layout = function ({ children }) {
+export const Layout = function ({ children }) {
   return (
     <Container>
       <Header/>
@@ -26,5 +26,3 @@ const Layout = function ({ children }) {
     </Container>
   )
 }
-
-export default Layout

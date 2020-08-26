@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { colors } from '../styles/global'
 import useWindowSize from '../hooks/useWindowSize'
-import Modal from '../components/modal'
+import { Modal } from '../components/Modal'
 import PlantSelector from './PlantSelector'
 
 const Grid = styled.div`
@@ -29,7 +29,7 @@ const GridItem = styled.button`
     background: ${colors.accent};
   }
   `
-function Beds () {
+export function Beds () {
   const [modalActive, setModalActive] = useState(false)
   const { width } = useWindowSize()
   const rows = 4
@@ -79,5 +79,3 @@ function Beds () {
     //   </Grid>
   )
 }
-
-export default Beds

@@ -52,7 +52,7 @@ const InputWrapper = styled.div`
  * Input
  * @param { options } list of items that will auto-populate as suggestions
  */
-function Input ({ options }) {
+export function Input ({ options }) {
   const [userInput, setUserInput] = useState(undefined)
   const [showDropdown, setShowDropdown] = useState(false)
   const [filteredOptions, setFilteredOptions] = useState([])
@@ -187,5 +187,3 @@ function Input ({ options }) {
     </InputWrapper>
   )
 }
-
-export default Input

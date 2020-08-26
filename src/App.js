@@ -1,6 +1,6 @@
 import React from 'react'
-import Layout from './components/layout'
-import Beds from './pages/beds'
+import { Layout } from './components'
+import { Beds } from './pages'
 
 function App () {
   return (
