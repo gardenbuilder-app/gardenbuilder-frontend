@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "prettier",
+    "prettier/react",
+    "plugin:react/recommended",
+    "prettier/standard"
+  ],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  },
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  }
+}
