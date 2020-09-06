@@ -1,16 +1,18 @@
 import React, { useState } from "react"
 import styled from "styled-components"
+import { colors } from "../../styles/global"
 
 const StyledButton = styled.button`
-  font-family: inherit;
-  font-size: 100%;
-  height: 3rem;
+  background-color: ${colors.accent};
   border: 1px solid black;
   border-radius: 5px;
   box-shadow: none !important;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
-  padding: 0 0 0 1rem;
+  font-family: inherit;
+  font-size: 100%;
+  height: 3rem;
+  min-width: 100px;
 `
 
 /**
