@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useState } from "react"
+import styled from "styled-components"
 
 const StyledInput = styled.input`
   font-family: inherit;
@@ -16,21 +16,19 @@ const StyledInput = styled.input`
 /**
  * Input
  */
-export function InputWithOptions () {
-  const [userInput, setUserInput] = useState(undefined)
-
-  /**
-   * Event that's fired when input changes
-   */
-  function onChange (event) {
-    setUserInput(event.target.value)
+export function Input({ value, setValue, name }) {
+  function onChange(event) {
+    setValue(event.target.value)
   }
 
   return (
     <StyledInput
-      type='text'
+      data-testid="input"
+      name={name}
       onChange={onChange}
-      value={userInput}
+      tabIndex="0"
+      type="text"
+      value={value}
     />
   )
 }
