@@ -1,15 +1,16 @@
-import React from 'react'
-import styled from 'styled-components'
-import { InputWithOptions } from '../components'
+import React from "react"
+import styled from "styled-components"
+import { Input } from "../components"
 
-const StyledForm = styled.form`
+const StyledForm = styled.form``
 
-`
-
-export function Login () {
+export function Login() {
   return (
-    <StyledForm >
-      <InputWithOptions />
+    <StyledForm>
+      <label htmlFor="email">Email</label>
+      <Input name="email" />
+      <label htmlFor="password">Password</label>
+      <Input name="password" />
     </StyledForm>
   )
 }
