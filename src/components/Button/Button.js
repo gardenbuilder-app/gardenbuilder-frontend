@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import { colors } from "../../styles/global"
 
@@ -18,9 +18,15 @@ const StyledButton = styled.button`
 /**
  * Button
  */
-export function Button({ name, onClick, text }) {
+export function Button({ name, onClick, text, type }) {
   return (
-    <StyledButton data-testid="button" name={name} onClick={onClick} tabIndex="0">
+    <StyledButton
+      data-testid="button"
+      name={name}
+      onClick={onClick}
+      tabIndex="0"
+      type={type}
+    >
       {text}
     </StyledButton>
   )
