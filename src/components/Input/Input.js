@@ -18,6 +18,7 @@ const StyledInput = styled.input`
  */
 export function Input({ value, setValue, name }) {
   function onChange(event) {
+    event.preventDefault()
     setValue(event.target.value)
   }
 
