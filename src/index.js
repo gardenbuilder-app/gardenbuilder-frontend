@@ -4,6 +4,7 @@ import "./index.css"
 import App from "./App"
 import * as serviceWorker from "./serviceWorker"
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client"
+import { BrowserRouter } from "react-router-dom"
 
 const apolloClient = new ApolloClient({
   uri: process.env.REACT_APP_GRAPHQL_SERVER,
@@ -16,11 +17,13 @@ const apolloClient = new ApolloClient({
 })
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ApolloProvider client={apolloClient}>
-      <App />
-    </ApolloProvider>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <React.StrictMode>
+      <ApolloProvider client={apolloClient}>
+        <App />
+      </ApolloProvider>
+    </React.StrictMode>
+  </BrowserRouter>,
   document.getElementById("root")
 )
 
