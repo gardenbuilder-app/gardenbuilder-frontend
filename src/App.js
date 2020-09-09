@@ -1,9 +1,22 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Layout } from "./components"
 import { Login, Beds } from "./pages"
-import { Switch, Route } from "react-router-dom"
+import { Switch, Route, useHistory } from "react-router-dom"
+import { useCookie } from "./hooks"
 
-function App() {
+export function App() {
+  const [cookie, setCookie] = useCookie("gardenbuilder-jwt-token", "")
+  let history = useHistory("")
+
+  useEffect(() => {
+    /**
+     * Reroute from root to beds if logged in
+     */
+    if (cookie) {
+      history.push("/beds")
+    }
+  })
+
   return (
     <Layout>
       <Switch>

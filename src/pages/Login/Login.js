@@ -3,6 +3,8 @@ import styled from "styled-components"
 import { Input, Button } from "../../components"
 import { gql, useMutation } from "@apollo/client"
 import { colors } from "../../styles/global"
+import { useCookie } from "../../hooks"
+import { useHistory } from "react-router-dom"
 
 const StyledForm = styled.form`
   display: flex;
@@ -28,7 +30,7 @@ const ErrorMessage = styled.p`
 
 const LOGIN_MUTATION = gql`
   mutation LoginMutation($email: String!, $password: String!) {
-    createUser(email: $email, password: $password) {
+    tokenAuth(email: $email, password: $password) {
       token
     }
   }
@@ -49,7 +51,7 @@ const SIGNUP_MUTATION = gql`
 /**
  * set up sign up
  * set up sign in
- * on signin, handle cookies
+ * on signin, handle cookiesgg
  * check for cookie on starting app, if cookie exists:
  *   a. set isMember = true
  *   b. skip Login component
@@ -59,23 +61,39 @@ function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isMember, setIsMember] = useState(false)
-  const [login, signinData] = useMutation(LOGIN_MUTATION, {
-    errorPolicy: "all",
-  })
-  const [signup, { data, error }] = useMutation(SIGNUP_MUTATION, {
+  const [cookie, setCookie] = useCookie("gardenbuilder-jwt-token", "")
+  const history = useHistory()
+  const [login, loginResults] = useMutation(LOGIN_MUTATION, {
     onError(err) {
       console.log(err)
+    },
+    onCompleted({ tokenAuth }) {
+      setCookie(tokenAuth.token)
+      history.push("/beds")
+    },
+  })
+  const [signup, signupResults] = useMutation(SIGNUP_MUTATION, {
+    onError(err) {
+      console.log(err)
+    },
+    onCompleted(results) {
+      // console.log("results: ", results)
+      // const [email, password] = results.createUser.user
+      // login({ variables: { email, password } })
     },
   })
 
   useEffect(() => {
-    /**
-     * If login data
-     * set up cookie
-     * move to next view
-     */
-    if (signinData.data) console.log(signinData.data)
-    if (data) console.log("signed up", data)
+    // check signup results
+    // if (signupResults.data) {
+    //   console.log("signupResults.data", signupResults.data)
+    // }
+
+    // check cookie initially to see if there is a jwt token
+    // console.log("cookie: ", cookie)
+    if (cookie) {
+      setIsMember(true)
+    }
   })
 
   function submit(event) {
@@ -94,6 +112,18 @@ function Login() {
   // if (!data) return <div>not found</div>
   const buttonText = isMember ? "Sign In" : "Sign Up"
 
+  let error
+  if (loginResults.error) {
+    console.log("loginResultsError")
+    error = loginResults.error.graphQLErrors[0].message
+  }
+  if (
+    signupResults.error &&
+    signupResults.error.graphQLErrors[0].message.includes("duplicate key value")
+  ) {
+    console.log("signupResults error")
+    error = "This email is already registered"
+  }
   if (error)
     return <ErrorMessage>{JSON.stringify(error, undefined, 2)}</ErrorMessage>
 
