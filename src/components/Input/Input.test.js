@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { render, fireEvent, screen, getByRole } from "@testing-library/react"
+import { render, fireEvent } from "@testing-library/react"
 import { Input } from "./Input"
 
 function InputWrapper() {

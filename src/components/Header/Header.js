@@ -2,7 +2,7 @@ import React from "react"
 import Navbar from "./Navbar"
 import Profile from "../../views/profile"
 import { FaBars } from "react-icons/fa"
-import useWindowSize from "../../hooks/useWindowSize"
+import { useWindowSize } from "../../hooks"
 import styled from "styled-components"
 import { colors } from "../../styles/global"
 
