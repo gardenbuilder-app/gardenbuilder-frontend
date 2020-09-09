@@ -26,7 +26,7 @@ export const getCookie = (name) => {
   }, "")
 }
 
-export default function (key, initialValue) {
+export function useCookie(key, initialValue) {
   const [item, setItem] = useState(() => {
     return getCookie(key) || initialValue
   })
