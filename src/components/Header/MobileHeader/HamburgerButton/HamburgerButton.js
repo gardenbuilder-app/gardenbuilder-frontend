@@ -5,14 +5,14 @@ import styled from "styled-components"
 import { colors } from "../../../../styles/global"
 
 const StyledButton = styled.button`
+  justify-self: center;
   background: none;
   border: none;
-  flex: 1;
 `
 
-export const Hamburger = function () {
+export const HamburgerButton = function ({ toggleMenuVisibility }) {
   return (
-    <StyledButton>
+    <StyledButton onClick={toggleMenuVisibility}>
       <IconContext.Provider value={{ size: "2rem" }}>
         <FaBars
           alt="Show navigation options"
