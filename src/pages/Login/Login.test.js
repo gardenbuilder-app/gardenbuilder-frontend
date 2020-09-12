@@ -15,7 +15,7 @@ describe("<Login /> view", () => {
     request: {
       query: SIGNUP_MUTATION,
       variables: {
-        email: "test9@test.com",
+        email: "test19@test.com",
         password: "Testing123!",
       },
     },
@@ -32,6 +32,15 @@ describe("<Login /> view", () => {
       },
     },
   }
+
+  it("renders without error", async () => {
+    render(
+      <MockedProvider mocks={[signupMock]} addTypename={false}>
+        <Login />
+      </MockedProvider>
+    )
+  })
+
   it("shows Sign Up interface on login", () => {
     render(
       <MockedProvider mocks={[signupMock]} addTypename={false}>
@@ -41,24 +50,22 @@ describe("<Login /> view", () => {
     expect(screen.getByRole("button").textContent).toBe("Sign Up")
   })
 
-  // it("changes to login UI after createUser", async () => {
-  //   render(
-  //     <MockedProvider mocks={[signupMock]} addTypename={false}>
-  //       <Login />
-  //     </MockedProvider>
-  //   )
+  it.skip("changes to login UI after createUser", async () => {
+    const component = render(
+      <MockedProvider mocks={[signupMock]} addTypename={false}>
+        <Login />
+      </MockedProvider>
+    )
 
-  //   // Initially sign up
-  //   // expect(button.textContent).toBe("Sign Up")
-
-  //   // click
-  //   fireEvent.click(screen.getByRole("button"))
-
-  //   await waitFor(() => screen.getByRole("button"))
-
-  //   // should sign in
-  //   expect(button.textContent).toBe("Log In")
-  // })
+    // click
+    const button = screen.getByRole("button")
+    console.log(Object.keys(button))
+    button.root.props.onClick()
+    // screen.debug()
+    // const tree = screen.toJSON()
+    // expect(tree.children).toContain("Loading")
+    expect(component).toBe(true)
+  })
 
   // it.only("should include options to log in or sign up", () => {
   //   expect(getByText("Sign Up")).toBeInTheDocument

@@ -1,12 +1,11 @@
 import React from "react"
-import Navbar from "./Navbar"
-import Profile from "../../views/profile"
-import { FaBars } from "react-icons/fa"
+import { MobileHeader } from "./MobileHeader"
+import { DesktopHeader } from "./DesktopHeader"
 import { useWindowSize } from "../../hooks"
 import styled from "styled-components"
 import { colors } from "../../styles/global"
 
-const StyledHeader = styled.header`
+const HeaderStyleProvider = styled.header`
   padding: 1rem 0;
   text-align: center;
   background: ${colors.primary};
@@ -17,19 +16,7 @@ const StyledHeader = styled.header`
 export const Header = function () {
   const windowSize = useWindowSize()
 
-  const header =
-    windowSize.width < 600 ? (
-      <StyledHeader>
-        <FaBars />
-        <h1>GardenBuilder</h1>
-      </StyledHeader>
-    ) : (
-      <StyledHeader>
-        <h1>GardenBuilder</h1>
-        <Profile />
-        <Navbar />
-      </StyledHeader>
-    )
+  const header = windowSize.width < 600 ? <MobileHeader /> : <DesktopHeader />
 
-  return header
+  return <HeaderStyleProvider>{header}</HeaderStyleProvider>
 }

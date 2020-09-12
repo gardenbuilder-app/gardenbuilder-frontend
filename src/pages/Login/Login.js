@@ -107,9 +107,6 @@ function Login() {
     }
   }
 
-  // if (loading) return <div>loading</div>
-  // if (error) return <div>error {error.message}</div>
-  // if (!data) return <div>not found</div>
   const buttonText = isMember ? "Sign In" : "Sign Up"
 
   let error
@@ -118,8 +115,9 @@ function Login() {
     error = loginResults.error.graphQLErrors[0].message
   }
   if (
-    signupResults.error &&
-    signupResults.error.graphQLErrors[0].message.includes("duplicate key value")
+    signupResults.error
+    // &&
+    // signupResults.error.graphQLErrors[0].message.includes("duplicate key value")
   ) {
     console.log("signupResults error")
     error = "This email is already registered"
