@@ -5,6 +5,7 @@ import { gql, useApolloClient, useMutation } from "@apollo/client"
 import { colors } from "../../styles/global"
 import { useCookie } from "../../hooks"
 import { useHistory } from "react-router-dom"
+import { LOGIN_MUTATION, SIGNUP_MUTATION } from "../../mutations/mutations"
 
 const StyledForm = styled.form`
   display: flex;
@@ -26,26 +27,6 @@ const InputSection = styled.div`
 
 const ErrorMessage = styled.p`
   color: ${colors.error};
-`
-
-const LOGIN_MUTATION = gql`
-  mutation LoginMutation($email: String!, $password: String!) {
-    tokenAuth(email: $email, password: $password) {
-      token
-    }
-  }
-`
-
-const SIGNUP_MUTATION = gql`
-  mutation CreateUser($email: String!, $password: String!) {
-    createUser(email: $email, password: $password) {
-      user {
-        id
-        email
-        password
-      }
-    }
-  }
 `
 
 function Login() {
