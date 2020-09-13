@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Input, Button } from "../../components"
-import { gql, useMutation } from "@apollo/client"
+import { gql, useApolloClient, useMutation } from "@apollo/client"
 import { colors } from "../../styles/global"
 import { useCookie } from "../../hooks"
 import { useHistory } from "react-router-dom"
@@ -48,17 +48,10 @@ const SIGNUP_MUTATION = gql`
   }
 `
 
-/**
- * set up sign up
- * set up sign in
- * on signin, handle cookiesgg
- * check for cookie on starting app, if cookie exists:
- *   a. set isMember = true
- *   b. skip Login component
- */
-
 function Login() {
+  const client = useApolloClient()
   const [email, setEmail] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
   const [password, setPassword] = useState("")
   const [isMember, setIsMember] = useState(false)
   const [cookie, setCookie] = useCookie("gardenbuilder-jwt-token", "")
@@ -69,7 +62,9 @@ function Login() {
     },
     onCompleted({ tokenAuth }) {
       setCookie(tokenAuth.token)
-      history.push("/beds")
+      client.writeData({ data: { email, isLoggedIn: true, password } })
+      history.push("/gardens")
+      setIsMember(true)
     },
   })
   const [signup, signupResults] = useMutation(SIGNUP_MUTATION, {
@@ -77,53 +72,28 @@ function Login() {
       console.log(err)
     },
     onCompleted(results) {
-      // console.log("results: ", results)
-      // const [email, password] = results.createUser.user
-      // login({ variables: { email, password } })
+      login({ variables: { email, password } })
     },
-  })
-
-  useEffect(() => {
-    // check signup results
-    // if (signupResults.data) {
-    //   console.log("signupResults.data", signupResults.data)
-    // }
-
-    // check cookie initially to see if there is a jwt token
-    // console.log("cookie: ", cookie)
-    if (cookie) {
-      setIsMember(true)
-    }
   })
 
   function submit(event) {
     event.preventDefault()
     if (isMember) {
-      console.log("logging in")
       login({ variables: { email, password } })
     } else {
-      console.log("signing up")
       signup({ variables: { email, password } })
     }
   }
 
   const buttonText = isMember ? "Sign In" : "Sign Up"
 
-  let error
   if (loginResults.error) {
-    console.log("loginResultsError")
-    error = loginResults.error.graphQLErrors[0].message
+    setErrorMessage(loginResults.error.graphQLErrors[0].message)
   }
-  if (
-    signupResults.error
-    // &&
-    // signupResults.error.graphQLErrors[0].message.includes("duplicate key value")
-  ) {
-    console.log("signupResults error")
-    error = "This email is already registered"
+  if (signupResults.error) {
+    setErrorMessage("This email is already registered")
   }
-  if (error)
-    return <ErrorMessage>{JSON.stringify(error, undefined, 2)}</ErrorMessage>
+  if (errorMessage) return <ErrorMessage>{errorMessage}</ErrorMessage>
 
   return (
     <StyledForm onSubmit={submit}>

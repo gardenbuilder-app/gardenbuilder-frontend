@@ -1,3 +1,4 @@
 export * from "./Beds"
-export * from "./PlantSelector"
+export * from "./Gardens"
 export * from "./Login"
+export * from "./PlantSelector"
