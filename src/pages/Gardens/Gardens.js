@@ -1,6 +1,6 @@
 import React from "react"
 import { gql, useQuery } from "@apollo/client"
-import { GET_USER_GARDENS } from "./../../mutations"
+import { GET_USER_GARDENS } from "../../queries/queries"
 
 export function Gardens() {
   const { data, loading, error } = useQuery(GET_USER_GARDENS, {
@@ -9,10 +9,16 @@ export function Gardens() {
     },
   })
 
+  const gardenNames = data
+    ? data.userGardens.map((garden, index) => (
+        <div key={index}>{garden.gardenName}</div>
+      ))
+    : null
+
   return (
     <>
       <div>Gardens</div>
-      {JSON.stringify(data, undefined, 2)}
+      {gardenNames}
     </>
   )
 }
