@@ -11,6 +11,9 @@ import {
 } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
 import { BrowserRouter } from "react-router-dom"
+import { Layout } from "./components"
+import { Switch, Route } from "react-router-dom"
+import { Beds, Gardens, Login } from "./pages"
 
 /* Get token if it exists, add to header, return header */
 const authLink = setContext((_, { headers }) => {
@@ -43,7 +46,14 @@ ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
       <ApolloProvider client={apolloClient}>
-        <App />
+        <Layout>
+          <Switch>
+            <Route exact path="/" component={App} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/beds" component={Beds} />
+            <Route exact path="/gardens" component={Gardens} />
+          </Switch>
+        </Layout>
       </ApolloProvider>
     </React.StrictMode>
   </BrowserRouter>,
