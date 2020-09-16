@@ -10,22 +10,21 @@ import {
   InMemoryCache,
 } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
-import { BrowserRouter } from "react-router-dom"
+import { BrowserRouter, Redirect } from "react-router-dom"
 import { Layout } from "./components"
 import { Switch, Route } from "react-router-dom"
 import { Beds, Gardens, Login } from "./pages"
+import { getToken } from "./libs"
 
-/* Get token if it exists, add to header, return header */
+/**
+ *  Update token before query/mutation
+ *  and send token with header
+ */
 const authLink = setContext((_, { headers }) => {
-  const token = document.cookie
-    .split("; ")
-    .find((key) => key.startsWith("gardenbuilder-jwt-token"))
-    ?.split("=")[1]
-
   return {
     headers: {
       ...headers,
-      authorization: `JWT ${token}`,
+      authorization: `JWT ${getToken()}`,
     },
   }
 })
@@ -48,7 +47,17 @@ ReactDOM.render(
       <ApolloProvider client={apolloClient}>
         <Layout>
           <Switch>
-            <Route exact path="/" component={App} />
+            <Route
+              exact
+              path="/"
+              render={() => {
+                return getToken() ? (
+                  <Redirect to="/gardens" />
+                ) : (
+                  <Redirect to="/login" />
+                )
+              }}
+            />
             <Route exact path="/login" component={Login} />
             <Route exact path="/beds" component={Beds} />
             <Route exact path="/gardens" component={Gardens} />
