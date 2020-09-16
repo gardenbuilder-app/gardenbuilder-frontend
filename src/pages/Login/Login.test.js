@@ -6,16 +6,19 @@ import {
   getByRole,
   getByTestId,
   waitFor,
+  waitForElementToBeRemoved,
 } from "@testing-library/react"
 import { MockedProvider } from "@apollo/client/testing"
-import { Login, LOGIN_MUTATION, SIGNUP_MUTATION } from "./Login"
+import { Login } from "./Login"
+import { SIGNUP_MUTATION, SIGNIN_MUTATION } from "./../../mutations/mutations"
 
 describe("<Login /> view", () => {
+  // mock signup mutation results
   const signupMock = {
     request: {
       query: SIGNUP_MUTATION,
       variables: {
-        email: "test19@test.com",
+        email: "test20@test.com",
         password: "Testing123!",
       },
     },
@@ -33,49 +36,114 @@ describe("<Login /> view", () => {
     },
   }
 
-  it("renders without error", async () => {
-    render(
+  // setup before each test
+  let container, emailInput, passwordInput
+  beforeEach(() => {
+    container = render(
       <MockedProvider mocks={[signupMock]} addTypename={false}>
         <Login />
       </MockedProvider>
     )
+    ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
+      return container.getAllByRole("textbox", { name: name })[0]
+    })
   })
 
-  it("shows Sign Up interface on login", () => {
-    render(
-      <MockedProvider mocks={[signupMock]} addTypename={false}>
+  it("should include sign in and sign up text on initial screen", () => {
+    ;["Sign Up", "Sign In"].forEach((text) => {
+      expect(container.getAllByText(text).length).toBeGreaterThan(0)
+    })
+  })
+
+  it("should be able to update email and password input fields", () => {
+    ;[emailInput, passwordInput].forEach((input) => {
+      fireEvent.change(input, { target: { value: "testvalue" } })
+      expect(input.value).toBe("testvalue")
+    })
+  })
+
+  it("changes to sign in UI after clicking on sign in link", async () => {
+    const link = container.getByText("Sign In")
+    fireEvent.click(link)
+    await waitFor(() =>
+      expect(container.getByRole("heading", { name: "Sign In" })).toBeInTheDocument()
+    )
+  })
+
+  it.skip("calls SIGNUP_MUTATION without error", async () => {
+    // update email and password
+    fireEvent.change(emailInput, { target: { value: "test@test.com" } })
+    fireEvent.change(passwordInput, { target: { value: "testing123!" } })
+
+    // fire button click
+    const button = container.getByRole("button", { name: "Sign Up" })
+    fireEvent.click(button)
+
+    // wait for ui change
+    await waitForElementToBeRemoved(() => button)
+    await waitFor(() =>
+      expect(container.getByRole("button", { name: "Sign In" })).toBeInTheDocument()
+    )
+
+    // expect(container.children).toContain("Loading...")
+  })
+
+  it.skip("reroutes to gardens page after signing up", async () => {
+    // initialize gql mock
+    const signinMock = {
+      request: {
+        query: SIGNIN_MUTATION,
+        variables: {
+          email: "test@test.com",
+          password: "Testing123!",
+        },
+      },
+      result: {
+        data: {
+          tokenAuth: {
+            token: "sometoken123",
+            // __typename: "ObtainJSONWebToken",
+          },
+        },
+      },
+    }
+    // set up container with signinMock
+    container = render(
+      <MockedProvider
+        mocks={[signinMock, signinMock, signinMock]}
+        addTypename={false}
+      >
         <Login />
       </MockedProvider>
     )
-    expect(screen.getByRole("button").textContent).toBe("Sign Up")
-  })
+    ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
+      return container.getAllByRole("textbox", { name: name })[0]
+    })
 
-  it.skip("changes to login UI after createUser", async () => {
-    const component = render(
-      <MockedProvider mocks={[signupMock]} addTypename={false}>
-        <Login />
-      </MockedProvider>
+    // toggle sign in ui
+    const link = container.getAllByText("Sign In")[0]
+    fireEvent.click(link)
+
+    // wait for ui change
+    await waitFor(() =>
+      expect(container.getByRole("heading", { name: "Sign In" })).toBeInTheDocument()
     )
 
-    // click
-    const button = screen.getByRole("button")
-    console.log(Object.keys(button))
-    button.root.props.onClick()
-    // screen.debug()
-    // const tree = screen.toJSON()
-    // expect(tree.children).toContain("Loading")
-    expect(component).toBe(true)
+    // update email and password
+    fireEvent.change(emailInput, { target: { value: "test@test.com" } })
+    fireEvent.change(passwordInput, { target: { value: "testing123!" } })
+
+    // click button
+    const button = container.getByRole("button", { name: "Sign In" })
+    fireEvent.click(button)
+
+    // wait for ui change
+    await waitFor(
+      () =>
+        expect(
+          container.getByRole("heading", { name: "Sign In" })
+        ).toBeInTheDocument()
+      // expect(container.getByRole("heading", { name: "Gardens" })).toBeInTheDocument()
+    )
   })
-
-  // it.only("should include options to log in or sign up", () => {
-  //   expect(getByText("Sign Up")).toBeInTheDocument
-  //   // const { input } = setup()
-  //   // expect(input.value).toBe("")
-  // })
-
-  // it("should switch to sign up view on click", () => {
-  //   // const { input } = setup()
-  //   // fireEvent.change(input, { target: { value: "test" } })
-  //   // expect(input.value).toBe("test")
-  // })
 })

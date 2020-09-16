@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Input, Button } from "../../components"
-import { gql, useApolloClient, useMutation } from "@apollo/client"
+import { useApolloClient, useMutation, gql } from "@apollo/client"
 import { colors } from "../../styles/global"
 import { useCookie } from "../../hooks"
 import { useHistory } from "react-router-dom"
-import { LOGIN_MUTATION, SIGNUP_MUTATION } from "../../mutations/mutations"
+import { SIGNIN_MUTATION, SIGNUP_MUTATION } from "../../mutations/mutations"
 
 const StyledForm = styled.form`
   display: flex;
@@ -18,44 +18,67 @@ const StyledSpan = styled.span`
   cursor: pointer;
 `
 const InputSection = styled.div`
-  align-items: center;
+  align-items: flex-start;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin: 0 auto 1rem;
   width: 100%;
 `
 
 const ErrorMessage = styled.p`
   color: ${colors.error};
+  display: inline;
 `
 
-function Login() {
+export function Login() {
   const client = useApolloClient()
   const [email, setEmail] = useState("")
-  const [errorMessage, setErrorMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState("error")
   const [password, setPassword] = useState("")
   const [isMember, setIsMember] = useState(false)
   const [cookie, setCookie] = useCookie("gardenbuilder-jwt-token", "")
   const history = useHistory()
-  const [login, loginResults] = useMutation(LOGIN_MUTATION, {
+  const [login, loginResults] = useMutation(SIGNIN_MUTATION, {
     onError(err) {
+      console.log("an error ocurred on login")
       console.log(err)
     },
     onCompleted({ tokenAuth }) {
       setCookie(tokenAuth.token)
-      client.writeData({ data: { email, isLoggedIn: true, password } })
+      client.writeQuery({
+        query: gql`
+          query GetUserCredentials {
+            email
+            password
+            signedIn
+          }
+        `,
+        data: {
+          email,
+          password,
+          signedIn: true,
+        },
+      })
       history.push("/gardens")
       setIsMember(true)
     },
   })
   const [signup, signupResults] = useMutation(SIGNUP_MUTATION, {
     onError(err) {
-      console.log(err)
-    },
-    onCompleted(results) {
-      login({ variables: { email, password } })
+      // console.log(err)
     },
   })
+
+  useEffect(() => {
+    if (loginResults.error) {
+      console.log(loginResults.error.message)
+      setErrorMessage("Unable to sign in")
+    }
+    if (signupResults.error) {
+      ;/already exists/.test(signupResults.error.message) &&
+        setErrorMessage("This user already exists! Please sign in instead")
+    }
+  }, [loginResults.error, signupResults.error])
 
   function submit(event) {
     event.preventDefault()
@@ -68,17 +91,10 @@ function Login() {
 
   const buttonText = isMember ? "Sign In" : "Sign Up"
 
-  if (loginResults.error) {
-    setErrorMessage(loginResults.error.graphQLErrors[0].message)
-  }
-  if (signupResults.error) {
-    setErrorMessage("This email is already registered")
-  }
-  if (errorMessage) return <ErrorMessage>{errorMessage}</ErrorMessage>
-
   return (
     <StyledForm onSubmit={submit}>
       <h2>{buttonText}</h2>
+      {errorMessage ? <ErrorMessage>{errorMessage}</ErrorMessage> : null}
       <InputSection>
         <label htmlFor="email">Email</label>
         <Input name="email" value={email} setValue={setEmail} />
@@ -102,5 +118,3 @@ function Login() {
     </StyledForm>
   )
 }
-
-export { Login, LOGIN_MUTATION, SIGNUP_MUTATION }
