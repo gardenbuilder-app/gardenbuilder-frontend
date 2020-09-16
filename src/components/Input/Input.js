@@ -24,6 +24,7 @@ export function Input({ value, setValue, name }) {
 
   return (
     <StyledInput
+      aria-label={name}
       data-testid="input"
       name={name}
       onChange={onChange}

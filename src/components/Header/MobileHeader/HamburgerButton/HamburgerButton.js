@@ -2,7 +2,6 @@ import React from "react"
 import { FaBars } from "react-icons/fa"
 import { IconContext } from "react-icons"
 import styled from "styled-components"
-import { colors } from "../../../../styles/global"
 
 const StyledButton = styled.button`
   justify-self: center;

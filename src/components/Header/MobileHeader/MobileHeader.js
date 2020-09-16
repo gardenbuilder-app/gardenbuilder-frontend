@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { HamburgerButton } from "./HamburgerButton"
 import styled from "styled-components"
-import { colors } from "../../../styles/global"
 
 const MobileHeaderStyle = styled.div`
   align-content: center;
