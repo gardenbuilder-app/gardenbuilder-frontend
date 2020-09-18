@@ -10,30 +10,46 @@ const GardensWrapper = styled.div`
 `
 
 const GardenDetail = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
   background: pink;
-  width: max-content;
   margin: 0 auto;
 `
 
-const Garden = styled.a`
-  margin-bottom: 1rem;
-`
+const Garden = styled.a``
 
 export function Gardens() {
   const { data } = useQuery(GET_USER_GARDENS)
 
-  const gardenNames = data
-    ? data.userGardens.map((garden, index) => (
-        <Garden key={index} href="">
-          {garden.gardenName}
-        </Garden>
-      ))
-    : null
+  function getGardenElements(data) {
+    return data.userGardens.map((garden, index) => {
+      const gardenName = garden.gardenName
+      const bedText =
+        garden.beds.length !== 1
+          ? garden.beds.length + " beds"
+          : garden.beds.length + " bed"
+      const isActive = garden.beds.isActive ? "Active" : "Inactive"
+
+      return (
+        <>
+          <Garden key={index} href={`/garden?${garden.id}`}>
+            {gardenName}
+          </Garden>
+          <div>{bedText}</div>
+          <div>{isActive}</div>
+        </>
+      )
+    })
+  }
+
+  const gardens = data ? getGardenElements(data) : null
 
   return (
     <GardensWrapper>
       <h2>Gardens</h2>
-      <GardenDetail>{gardenNames}</GardenDetail>
+      <GardenDetail>{gardens}</GardenDetail>
     </GardensWrapper>
   )
 }
