@@ -12,7 +12,7 @@ import { setContext } from "@apollo/client/link/context"
 import { BrowserRouter, Redirect } from "react-router-dom"
 import { Layout } from "./components"
 import { Switch, Route } from "react-router-dom"
-import { Beds, Gardens, Login } from "./pages"
+import { Beds, Garden, Gardens, Login } from "./pages"
 import { getToken } from "./libs"
 
 /**
@@ -60,6 +60,7 @@ ReactDOM.render(
             <Route exact path="/login" component={Login} />
             <Route exact path="/beds" component={Beds} />
             <Route exact path="/gardens" component={Gardens} />
+            <Route path="/garden" component={Garden} />
           </Switch>
         </Layout>
       </ApolloProvider>
