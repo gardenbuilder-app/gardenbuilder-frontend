@@ -12,7 +12,7 @@ const StyledButton = styled.button`
 export const HamburgerButton = function ({ toggleMenuVisibility }) {
   return (
     <StyledButton onClick={toggleMenuVisibility}>
-      <IconContext.Provider value={{ size: "2rem" }}>
+      <IconContext.Provider value={{ size: "1.75rem" }}>
         <FaBars
           alt="Show navigation options"
           aria-label="hamburger menu"

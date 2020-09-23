@@ -7,7 +7,6 @@ const MobileHeaderStyle = styled.div`
   display: grid;
   grid-template-columns: repeat(2, auto);
   margin: 0 1rem;
-  width: calc(100%-2rem);
 `
 
 const Menu = styled.ul`
@@ -20,6 +19,7 @@ const Menu = styled.ul`
 
 const Title = styled.h1`
   margin: 0;
+  font-size: 1.75rem;
 `
 
 export const MobileHeader = function () {
