@@ -15,10 +15,6 @@ This app will allow users to:
 
 ## Getting started
 
-### API
-
-This app runs on a GraphQL API that is currently available only as a repo to run locally! To set it up, please follow the instructions [here](https://github.com/capndave/gardenbuilder-api).
-
 ### Starting this project
 
 ```bash
