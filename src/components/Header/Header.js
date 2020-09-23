@@ -6,11 +6,9 @@ import styled from "styled-components"
 import { colors } from "../../styles/global"
 
 const HeaderStyleProvider = styled.header`
-  padding: 1rem 0;
+  padding: 1rem;
   text-align: center;
   background: ${colors.primary};
-  width: 100vw;
-  margin-left: -1rem;
 `
 
 export const Header = function () {
