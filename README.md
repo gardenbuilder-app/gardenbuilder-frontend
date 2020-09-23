@@ -25,7 +25,7 @@ npm start
 
 ### Default (Public) API
 
-The quickest way to get up and running is to start the project as above. Any data called by the app will be from the public-facing [GraphQL API](https://gardenbuilder-backend.uc.r.appspot.com/graphql/).
+The quickest way to get up and running is to start the project as above. Any data called by the app will be from the public-facing [GraphQL API](https://gardenbuilder-backend.uc.r.appspot.com/graphql/). You can explore the queries and mutations available through the API by clicking the `Docs` button on the top right corner of that page.
 
 ### Local API
 
