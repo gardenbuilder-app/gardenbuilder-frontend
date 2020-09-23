@@ -28,7 +28,11 @@ const authLink = setContext((_, { headers }) => {
   }
 })
 
-const httpLink = createHttpLink({ uri: process.env.REACT_APP_GRAPHQL_SERVER })
+const httpLink = createHttpLink({
+  uri:
+    process.env.REACT_APP_GRAPHQL_SERVER ||
+    "https://gardenbuilder-backend.uc.r.appspot.com/graphql/",
+})
 
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
