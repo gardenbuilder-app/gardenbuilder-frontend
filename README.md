@@ -2,6 +2,17 @@
 
 A tool to design and plan a vegetable garden
 
+## Basic Features
+
+This app will allow users to:
+
+- Document, manage, and retrieve data about on or more gardens.
+- Document, manage, and retrieve data about beds in each garden.
+- Enter dimensions of each bed.
+- Beds are envisioned as a grid, with plants or a plant in each section of the grid.
+- Manage and document what plant is planted in each section.
+- Retrieve data in aggregate and individually for current and future sections, beds, gardens, and users.
+
 ## Getting started
 
 ### API
@@ -16,22 +27,19 @@ cd gardenbuilder-frontend
 npm start
 ```
 
-You'll also need to make a `.env` file in the `gardenbuilder-frontend` directory and type the following in it(assuming you're running the `gardenbuilder-api` locally):
+### Default (Public) API
+
+The quickest way to get up and running is to start the project as above. Any data called by the app will be from the public-facing [GraphQL API](https://gardenbuilder-backend.uc.r.appspot.com/graphql/).
+
+### Local API
+
+It's also possible to run a copy of the API locally, following instructions at [gardenbuilder-backend](https://github.com/capndave/gardenbuilder-backend). If you do so, you'll also need to make a `.env` file in the `gardenbuilder-frontend` directory and type the following in it(assuming you're running the `gardenbuilder-api` locally):
 
 ```javascript
 REACT_APP_GRAPHQL_SERVER="http://localhost:8000/graphql/
 ```
 
-## Basic Features
-
-This app will allow users to:
-
-- Document, manage, and retrieve data about on or more gardens.
-- Document, manage, and retrieve data about beds in each garden.
-- Enter dimensions of each bed.
-- Beds are envisioned as a grid, with plants or a plant in each section of the grid.
-- Manage and document what plant is planted in each section.
-- Retrieve data in aggregate and individually for current and future sections, beds, gardens, and users.
+We welcome changes to the (local) API, which you can then submit pull requests for.
 
 ## Contributing
 
