@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { render, fireEvent, screen, getByRole, within } from "@testing-library/react"
 import { MobileHeader } from "./MobileHeader"
 
-describe.only("<MobileHeader /> component", () => {
+describe("<MobileHeader /> component", () => {
   const { getByText, getByRole } = render(<MobileHeader />)
   const button = getByRole("button", { name: /menu/gi })
   fireEvent.click(button)
