@@ -28,7 +28,7 @@ export const MobileHeader = function () {
 
   const menuItems = [
     ...["Profile", "Gardens"].map((option, index) => <li key={index}>{option}</li>),
-    <Logout />,
+    <Logout key="2" />,
   ]
 
   const menu = <Menu>{menuItems}</Menu>
