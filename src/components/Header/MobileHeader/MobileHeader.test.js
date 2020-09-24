@@ -7,8 +7,8 @@ describe("<MobileHeader /> component", () => {
   const button = getByRole("button", { name: /menu/gi })
   fireEvent.click(button)
 
-  it("should show Profile, Gardens, and Logout in the menu after clicking the hamburger button", async () => {
-    const menuItems = ["Profile", "Gardens", "Logout"]
+  it("should show Profile, Gardens, and Log Out in the menu after clicking the hamburger button", async () => {
+    const menuItems = ["Profile", "Gardens", "Log Out"]
     for (const menuItem of menuItems) {
       const renderedItem = await getByText(menuItem)
       expect(renderedItem).toBeInTheDocument()
