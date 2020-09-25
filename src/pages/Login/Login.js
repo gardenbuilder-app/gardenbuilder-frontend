@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Input, Button } from "../../components"
 import { useApolloClient, useMutation, gql } from "@apollo/client"
 import { colors } from "../../styles/global"
-import { useCookie } from "../../hooks"
+import { setToken } from "../../libs"
 import { useHistory } from "react-router-dom"
 import { SIGNIN_MUTATION, SIGNUP_MUTATION } from "../../mutations/mutations"
 
@@ -36,7 +36,6 @@ export function Login() {
   const [errorMessage, setErrorMessage] = useState("error")
   const [password, setPassword] = useState("")
   const [isMember, setIsMember] = useState(false)
-  const [cookie, setCookie] = useCookie("gardenbuilder-jwt-token", "")
   const history = useHistory()
   const [login, loginResults] = useMutation(SIGNIN_MUTATION, {
     onError(err) {
@@ -44,7 +43,7 @@ export function Login() {
       console.log(err)
     },
     onCompleted({ tokenAuth }) {
-      setCookie(tokenAuth.token)
+      setToken(tokenAuth.token)
       client.writeQuery({
         query: gql`
           query GetUserCredentials {
