@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import styled from "styled-components"
 import { cache, useApolloClient, useMutation, gql } from "@apollo/client"
 import { FaPlusCircle } from "react-icons/fa"
@@ -14,6 +14,7 @@ const ButtonContainer = styled.div`
 
 export function AddGarden() {
   const client = useApolloClient()
+  const textInput = useRef(null)
   const [formVisible, setFormVisible] = useState(true)
   const [gardenName, setGardenName] = useState("")
   const [createGarden, createGardenResults] = useMutation(CREATE_GARDEN_MUTATION, {
@@ -40,11 +41,18 @@ export function AddGarden() {
     },
   })
 
+  /* Add focus to the text input */
+  useEffect(() => {
+    textInput.current.focus()
+  })
+
   function onSubmit(event) {
     event.preventDefault()
     createGarden({
       variables: { gardenName },
     })
+    setGardenName("")
+    textInput.current.focus()
   }
 
   return (
@@ -59,8 +67,9 @@ export function AddGarden() {
         <Form onSubmit={onSubmit}>
           <InputSection
             name="Garden Name"
-            value={gardenName}
+            ref={textInput}
             setValue={setGardenName}
+            value={gardenName}
           />
           <Button name="submit" text="Submit" type="submit" />
         </Form>
