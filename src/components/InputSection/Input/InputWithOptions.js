@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { colors } from '../../styles/global'
-import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
+import React, { useState } from "react"
+import styled from "styled-components"
+import { colors } from "../../../styles/global"
+import { FaAngleDown, FaAngleUp } from "react-icons/fa"
 
 const StyledInput = styled.input`
   font-family: inherit;
@@ -22,53 +22,51 @@ const StyledUl = styled.ul`
   margin-top: 0;
   max-height: 250px;
   overflow-y: auto;
-  padding: .5rem 1rem 1rem;
+  padding: 0.5rem 1rem 1rem;
   transform: translate(-2px);
   margin-right: -1rem;
 `
 
 const StyledLi = styled.li`
-  padding-top: .5rem;
+  padding-top: 0.5rem;
 `
 
 const StyledArrowIconDown = styled(FaAngleDown)`
-    color: ${colors.black};
-    font-size: 120%;
-    margin-left: -2rem;
-    margin-bottom: -.25rem;
-  `
-const StyledArrowIconUp = styled(FaAngleUp)`
-    color: ${colors.black};
-    font-size: 120%;
-    margin-left: -2rem;
-    margin-bottom: -.25rem;
-  `
-
-const InputWrapper = styled.div`
+  color: ${colors.black};
+  font-size: 120%;
+  margin-left: -2rem;
+  margin-bottom: -0.25rem;
 `
+const StyledArrowIconUp = styled(FaAngleUp)`
+  color: ${colors.black};
+  font-size: 120%;
+  margin-left: -2rem;
+  margin-bottom: -0.25rem;
+`
+
+const InputWrapper = styled.div``
 
 /**
  * Input
  * @param { options } list of items that will auto-populate as suggestions
  */
-export function InputWithOptions ({ options }) {
+export function InputWithOptions({ options }) {
   const [userInput, setUserInput] = useState(undefined)
   const [showDropdown, setShowDropdown] = useState(false)
   const [filteredOptions, setFilteredOptions] = useState([])
   const [activeOption, setActiveOption] = useState(0)
-  const [arrowIconDirection, setArrowIconDirection] = useState('down')
+  const [arrowIconDirection, setArrowIconDirection] = useState("down")
 
   /**
    * Event that's fired when input changes
    */
-  function onChange (event) {
+  function onChange(event) {
     const userInput = event.target.value
     setShowDropdown(true)
 
     // filter out suggestions that don't contain input
     const filteredOptions = options.filter(
-      option =>
-        option.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+      (option) => option.toLowerCase().indexOf(userInput.toLowerCase()) > -1
     )
     setFilteredOptions(filteredOptions)
     setUserInput(userInput)
@@ -77,7 +75,7 @@ export function InputWithOptions ({ options }) {
   /**
    *  Event fired when the user clicks on a suggestion
    */
-  function onClick (event) {
+  function onClick(event) {
     setActiveOption(0)
     setFilteredOptions([])
     setUserInput(event.target.innerText)
@@ -87,19 +85,19 @@ export function InputWithOptions ({ options }) {
   /**
    * Event fired when user clicks on input
    */
-  function onArrowClick (event) {
+  function onArrowClick(event) {
     if (userInput === undefined || userInput.length === 0) {
-      setUserInput('')
+      setUserInput("")
     }
     if (filteredOptions.length === 0) {
       setFilteredOptions(options)
     }
     setShowDropdown(!showDropdown)
-    setArrowIconDirection(arrowIconDirection === 'up' ? 'down' : 'up')
+    setArrowIconDirection(arrowIconDirection === "up" ? "down" : "up")
   }
 
   // Event fired when the user presses a key down
-  function onKeyDown (event) {
+  function onKeyDown(event) {
     // Don't let component rerender
     // User pressed the enter key, update the input and close the
     // suggestions
@@ -133,50 +131,47 @@ export function InputWithOptions ({ options }) {
 
   if (userInput !== undefined && showDropdown) {
     // define element
-    dropdown =
-       <StyledUl>
-         {filteredOptions.map((option, index) => {
-           /**
-            * Conditionally add style to element
-            */
-           if (index === activeOption) {
-             const ActiveLi = styled(StyledLi)`
-               color: pink;
-             `
-             return (
-               <ActiveLi
-                 key={option}
-                 onClick={onClick}
-               >
-                 {option}
-               </ActiveLi>
-
-             )
-           } else {
-             return (
-               <StyledLi
-                 key={option}
-                 onClick={onClick}
-               >
-                 {option}
-               </StyledLi>
-             )
-           }
-         })}
-       </StyledUl>
+    dropdown = (
+      <StyledUl>
+        {filteredOptions.map((option, index) => {
+          /**
+           * Conditionally add style to element
+           */
+          if (index === activeOption) {
+            const ActiveLi = styled(StyledLi)`
+              color: pink;
+            `
+            return (
+              <ActiveLi key={option} onClick={onClick}>
+                {option}
+              </ActiveLi>
+            )
+          } else {
+            return (
+              <StyledLi key={option} onClick={onClick}>
+                {option}
+              </StyledLi>
+            )
+          }
+        })}
+      </StyledUl>
+    )
   }
 
   /**
    * Get icon which is appropriately up or down
    */
-  const arrowIcon = arrowIconDirection === 'down'
-    ? <StyledArrowIconDown onClick={onArrowClick}/>
-    : <StyledArrowIconUp onClick={onArrowClick}/>
+  const arrowIcon =
+    arrowIconDirection === "down" ? (
+      <StyledArrowIconDown onClick={onArrowClick} />
+    ) : (
+      <StyledArrowIconUp onClick={onArrowClick} />
+    )
 
   return (
     <InputWrapper>
       <StyledInput
-        type='text'
+        type="text"
         onChange={onChange}
         onKeyDown={onKeyDown}
         value={userInput}

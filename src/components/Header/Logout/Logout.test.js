@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { render, fireEvent, waitFor, screen } from "@testing-library/react"
 import { Logout } from "./Logout"
 import { MemoryRouter } from "react-router-dom"
-import { getCookie } from "../../../hooks/useCookie"
 
 describe.only("<MobileHeader /> component", () => {
   let container
@@ -23,9 +22,12 @@ describe.only("<MobileHeader /> component", () => {
     // set token
     document.cookie =
       "gardenbuilder-jwt-token=abc123; expires=Thu, 18 Dec 2040 12:00:00 UTC"
+    console.log(document.cookie)
     const logoutElement = container.getByText("Log Out")
     fireEvent.click(logoutElement)
+    console.log(document.cookie)
     // await waitFor(() => expect(getCookie("gardenbuilder-jwt-token")).toBe(undefined))
-    expect(getCookie("gardenbuilder-jwt-token")).toBe(undefined))
+    expect(document.cookie).toBe(true)
+    // expect(getCookie("gardenbuilder-jwt-token")).toBe(undefined))
   })
 })

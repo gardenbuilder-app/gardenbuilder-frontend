@@ -19,3 +19,12 @@ export const SIGNUP_MUTATION = gql`
     }
   }
 `
+
+export const CREATE_GARDEN_MUTATION = gql`
+  mutation CreateGarden($gardenName: String!) {
+    createGarden(gardenName: $gardenName) {
+      id
+      gardenName
+    }
+  }
+`
