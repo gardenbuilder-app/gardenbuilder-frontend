@@ -16,7 +16,7 @@ const StyledInput = styled.input`
 /**
  * Input
  */
-export function Input({ value, setValue, name }) {
+export const Input = React.forwardRef(({ value, setValue, name }, ref) => {
   function onChange(event) {
     event.preventDefault()
     setValue(event.target.value)
@@ -28,9 +28,10 @@ export function Input({ value, setValue, name }) {
       data-testid="input"
       name={name}
       onChange={onChange}
+      ref={ref}
       tabIndex="0"
       type="text"
       value={value}
     />
   )
-}
+})
