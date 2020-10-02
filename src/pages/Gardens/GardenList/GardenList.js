@@ -26,7 +26,7 @@ export function GardenList() {
 
       return (
         <React.Fragment key={index}>
-          <a href={`/garden?${garden.id}`}>{gardenName}</a>
+          <a href={`/garden?id=${garden.id}`}>{gardenName}</a>
           <div>{bedText}</div>
           <div>{isActive}</div>
         </React.Fragment>
