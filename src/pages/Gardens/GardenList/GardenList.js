@@ -17,7 +17,6 @@ export function GardenList() {
 
   function getGardenElements(data) {
     return data.userGardens.map((garden, index) => {
-      const gardenName = garden.gardenName
       const bedText =
         garden.beds.length !== 1
           ? garden.beds.length + " beds"
@@ -26,7 +25,9 @@ export function GardenList() {
 
       return (
         <React.Fragment key={index}>
-          <a href={`/garden?id=${garden.id}`}>{gardenName}</a>
+          <a href={`/garden?id=${garden.id}&name=${garden.gardenName}`}>
+            {garden.gardenName}
+          </a>
           <div>{bedText}</div>
           <div>{isActive}</div>
         </React.Fragment>
