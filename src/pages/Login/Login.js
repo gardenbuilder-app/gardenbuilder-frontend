@@ -20,7 +20,7 @@ const ErrorMessage = styled.p`
 export function Login() {
   const client = useApolloClient()
   const [email, setEmail] = useState("")
-  const [errorMessage, setErrorMessage] = useState("error")
+  const [errorMessage, setErrorMessage] = useState("")
   const [password, setPassword] = useState("")
   const [isMember, setIsMember] = useState(false)
   const history = useHistory()
