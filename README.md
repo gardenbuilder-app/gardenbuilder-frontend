@@ -41,6 +41,10 @@ We welcome changes to the (local) API, which you can then submit pull requests f
 
 We would love some help, especially for [Hacktoberfest](https://hacktoberfest.digitalocean.com/)!
 
+### Design Help
+
+We would love help coming up with wireframes and designs for the pages in this app. If interested, please reach out to Dave at [`capndavet@gmail.com`](mailto:capndavet@gmail.com)
+
 ### General Code Contributions
 
 There are a number of [issues](https://github.com/capndave/gardenbuilder-frontend/issues) that we would love your help with. Many of them are fairly easy and are tagged as ` good first issue`. Most are things that I (capndave), just haven't gotten around to yet. Feel free to fork, work on, and submit a pull request for anything you see an issue for.
