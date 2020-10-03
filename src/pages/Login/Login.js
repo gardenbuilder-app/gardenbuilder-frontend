@@ -20,7 +20,7 @@ const ErrorMessage = styled.p`
 export function Login() {
   const client = useApolloClient()
   const [email, setEmail] = useState("")
-  const [errorMessage, setErrorMessage] = useState("error")
+  const [errorMessage, setErrorMessage] = useState("")
   const [password, setPassword] = useState("")
   const [isMember, setIsMember] = useState(false)
   const history = useHistory()
@@ -93,12 +93,16 @@ export function Login() {
       {isMember ? (
         <p>
           Not a member?{" "}
-          <StyledSpan role='button' onClick={() => setIsMember(!isMember)}>Sign Up</StyledSpan>
+          <StyledSpan role="button" onClick={() => setIsMember(!isMember)}>
+            Sign Up
+          </StyledSpan>
         </p>
       ) : (
         <p>
           Already a member?{" "}
-          <StyledSpan role='button' onClick={() => setIsMember(!isMember)}>Sign In</StyledSpan>
+          <StyledSpan role="button" onClick={() => setIsMember(!isMember)}>
+            Sign In
+          </StyledSpan>
         </p>
       )}
     </Form>
