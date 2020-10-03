@@ -52,7 +52,7 @@ export function Login() {
   })
   const [signup, signupResults] = useMutation(SIGNUP_MUTATION, {
     onError(err) {
-      // console.log(err)
+      console.log(err)
     },
   })
 
