@@ -20,7 +20,7 @@ const ErrorMessage = styled.p`
 export function Login() {
   const client = useApolloClient()
   const [email, setEmail] = useState("")
-  const [errorMessage, setErrorMessage] = useState("error")
+  const [errorMessage, setErrorMessage] = useState("")
   const [password, setPassword] = useState("")
   const [isMember, setIsMember] = useState(false)
   const history = useHistory()
@@ -30,36 +30,37 @@ export function Login() {
       console.log(err)
     },
     onCompleted({ tokenAuth }) {
-      setToken(tokenAuth.token)
-      // write to graphql instance
-      client.writeQuery({
-        query: gql`
-          query GetUserCredentials {
-            email
-            password
-            signedIn
-          }
-        `,
-        data: {
-          email,
-          password,
-          signedIn: true,
-        },
-      })
-      history.push("/gardens")
-      setIsMember(true)
+      if(tokenAuth) {
+          setToken(tokenAuth.token)
+          // write to graphql instance
+          client.writeQuery({
+            query: gql`
+            query GetUserCredentials {
+              email
+              password
+              signedIn
+            }
+            `,
+            data: {
+              email,
+              password,
+              signedIn: true,
+            },
+          })
+          history.push("/gardens")
+          setIsMember(true)
+      }
     },
   })
   const [signup, signupResults] = useMutation(SIGNUP_MUTATION, {
     onError(err) {
-      // console.log(err)
+      console.log(err)
     },
   })
 
   useEffect(() => {
     if (loginResults.error) {
-      console.log(loginResults.error.message)
-      setErrorMessage("Unable to sign in")
+      setErrorMessage(loginResults.error.message)
     }
     if (signupResults.error) {
       ;/already exists/.test(signupResults.error.message) &&
@@ -93,12 +94,12 @@ export function Login() {
       {isMember ? (
         <p>
           Not a member?{" "}
-          <StyledSpan onClick={() => setIsMember(!isMember)}>Sign Up</StyledSpan>
+          <StyledSpan role='button' onClick={() => setIsMember(!isMember)}>Sign Up</StyledSpan>
         </p>
       ) : (
         <p>
           Already a member?{" "}
-          <StyledSpan onClick={() => setIsMember(!isMember)}>Sign In</StyledSpan>
+          <StyledSpan role='button' onClick={() => setIsMember(!isMember)}>Sign In</StyledSpan>
         </p>
       )}
     </Form>
