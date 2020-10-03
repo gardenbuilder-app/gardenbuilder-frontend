@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { AddGarden } from "./AddGarden"
 import { GardenList } from "."
@@ -10,6 +10,8 @@ const GardensWrapper = styled.div`
 `
 
 export function Gardens() {
+  const [addGardenInputVisible, setAddGardenInputVisible] = useState(false)
+
   return (
     <GardensWrapper>
       <h2>Gardens</h2>
