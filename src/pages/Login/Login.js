@@ -82,8 +82,13 @@ export function Login() {
     <Form onSubmit={submit}>
       <h2>{buttonText}</h2>
       {errorMessage ? <ErrorMessage>{errorMessage}</ErrorMessage> : null}
-      <InputSection name="email" value={email} setValue={setEmail} />
-      <InputSection name="password" value={password} setValue={setPassword} />
+      <InputSection name="email" value={email} setValue={setEmail} type="email" />
+      <InputSection
+        name="password"
+        value={password}
+        setValue={setPassword}
+        type="password"
+      />
       <Button name="submit" text={buttonText} type="submit" />
       {isMember ? (
         <p>
