@@ -133,8 +133,8 @@ describe("<Login /> view", () => {
     fireEvent.change(passwordInput, { target: { value: "testing123!" } })
 
     // click button
-    const button = container.getByRole("button", { name: "Sign In" })
-    fireEvent.click(button)
+    const button = container.getAllByRole("button", { name: "Sign In" })
+    fireEvent.click(button[0])
 
     // wait for ui change
     await waitFor(
