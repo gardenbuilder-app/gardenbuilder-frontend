@@ -53,6 +53,9 @@ export function Login() {
     onError(err) {
       console.log(err)
     },
+    onCompleted() {
+      login({ variables: { email, password } })
+    },
   })
 
   useEffect(() => {
