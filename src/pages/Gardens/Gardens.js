@@ -10,8 +10,6 @@ const GardensWrapper = styled.div`
 `
 
 export function Gardens() {
-  const [addGardenInputVisible, setAddGardenInputVisible] = useState(false)
-
   return (
     <GardensWrapper>
       <h2>Gardens</h2>
