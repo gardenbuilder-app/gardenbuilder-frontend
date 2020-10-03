@@ -28,6 +28,7 @@ export const Input = React.forwardRef(({ value, setValue, name, type }, ref) => 
       data-testid="input"
       name={name}
       onChange={onChange}
+      role="textbox"
       ref={ref}
       tabIndex="0"
       type={type ? type : "text"}
