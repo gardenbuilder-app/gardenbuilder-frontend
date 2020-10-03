@@ -44,9 +44,6 @@ describe("<Login /> view", () => {
         <Login />
       </MockedProvider>
     )
-    ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
-      return container.getAllByRole("textbox", { name: name })[0]
-    })
   })
 
   it("should include sign in and sign up text on initial screen", () => {
@@ -56,6 +53,9 @@ describe("<Login /> view", () => {
   })
 
   it("should be able to update email and password input fields", () => {
+    ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
+      return container.getAllByRole("textbox", { name: name })[0]
+    })
     ;[emailInput, passwordInput].forEach((input) => {
       fireEvent.change(input, { target: { value: "testvalue" } })
       expect(input.value).toBe("testvalue")
