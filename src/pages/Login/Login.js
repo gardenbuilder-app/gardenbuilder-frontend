@@ -30,24 +30,26 @@ export function Login() {
       console.log(err)
     },
     onCompleted({ tokenAuth }) {
-      setToken(tokenAuth.token)
-      // write to graphql instance
-      client.writeQuery({
-        query: gql`
-          query GetUserCredentials {
-            email
-            password
-            signedIn
-          }
-        `,
-        data: {
-          email,
-          password,
-          signedIn: true,
-        },
-      })
-      history.push("/gardens")
-      setIsMember(true)
+      if(tokenAuth) {
+          setToken(tokenAuth.token)
+          // write to graphql instance
+          client.writeQuery({
+            query: gql`
+            query GetUserCredentials {
+              email
+              password
+              signedIn
+            }
+            `,
+            data: {
+              email,
+              password,
+              signedIn: true,
+            },
+          })
+          history.push("/gardens")
+          setIsMember(true)
+      }
     },
   })
   const [signup, signupResults] = useMutation(SIGNUP_MUTATION, {
@@ -58,8 +60,7 @@ export function Login() {
 
   useEffect(() => {
     if (loginResults.error) {
-      console.log(loginResults.error.message)
-      setErrorMessage("Unable to sign in")
+      setErrorMessage(loginResults.error.message)
     }
     if (signupResults.error) {
       ;/already exists/.test(signupResults.error.message) &&
