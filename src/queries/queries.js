@@ -21,3 +21,11 @@ export const GET_USER_GARDENS = gql`
     }
   }
 `
+
+export const CURRENT_USER_QUERY = gql`
+  query {
+    currentUser {
+      id
+    }
+  }
+`;
