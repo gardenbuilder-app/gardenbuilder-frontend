@@ -70,7 +70,7 @@ describe("<Login /> view", () => {
     )
   })
 
-  it.only("calls SIGNUP_MUTATION without error", async () => {
+  it.skip("calls SIGNUP_MUTATION without error", async () => {
     // update email and password
     fireEvent.change(emailInput, { target: { value: "test@test.com" } })
     fireEvent.change(passwordInput, { target: { value: "testing123!" } })
