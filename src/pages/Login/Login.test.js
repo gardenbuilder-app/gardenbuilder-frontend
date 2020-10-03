@@ -70,7 +70,7 @@ describe("<Login /> view", () => {
     )
   })
 
-  it.skip("calls SIGNUP_MUTATION without error", async () => {
+  it.only("calls SIGNUP_MUTATION without error", async () => {
     // update email and password
     fireEvent.change(emailInput, { target: { value: "test@test.com" } })
     fireEvent.change(passwordInput, { target: { value: "testing123!" } })
@@ -80,7 +80,6 @@ describe("<Login /> view", () => {
     fireEvent.click(button)
 
     // wait for ui change
-    await waitForElementToBeRemoved(() => button)
     await waitFor(() =>
       expect(container.getByRole("button", { name: "Sign In" })).toBeInTheDocument()
     )

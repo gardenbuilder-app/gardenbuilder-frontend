@@ -88,12 +88,12 @@ export function Login() {
       {isMember ? (
         <p>
           Not a member?{" "}
-          <StyledSpan onClick={() => setIsMember(!isMember)}>Sign Up</StyledSpan>
+          <StyledSpan role='button' onClick={() => setIsMember(!isMember)}>Sign Up</StyledSpan>
         </p>
       ) : (
         <p>
           Already a member?{" "}
-          <StyledSpan onClick={() => setIsMember(!isMember)}>Sign In</StyledSpan>
+          <StyledSpan role='button' onClick={() => setIsMember(!isMember)}>Sign In</StyledSpan>
         </p>
       )}
     </Form>
