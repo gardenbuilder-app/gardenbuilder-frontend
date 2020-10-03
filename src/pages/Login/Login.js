@@ -26,8 +26,7 @@ export function Login() {
   const history = useHistory()
   const [login, loginResults] = useMutation(SIGNIN_MUTATION, {
     onError(err) {
-      console.log("an error ocurred on login")
-      console.log(err)
+      console.log(`Error logging in: ${err}`)
     },
     onCompleted({ tokenAuth }) {
       setToken(tokenAuth.token)
