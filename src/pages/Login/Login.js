@@ -20,7 +20,7 @@ const ErrorMessage = styled.p`
 export function Login() {
   const client = useApolloClient()
   const [email, setEmail] = useState("")
-  const [errorMessage, setErrorMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState("error")
   const [password, setPassword] = useState("")
   const [isMember, setIsMember] = useState(false)
   const history = useHistory()
@@ -30,26 +30,24 @@ export function Login() {
       console.log(err)
     },
     onCompleted({ tokenAuth }) {
-      if(tokenAuth) {
-          setToken(tokenAuth.token)
-          // write to graphql instance
-          client.writeQuery({
-            query: gql`
-            query GetUserCredentials {
-              email
-              password
-              signedIn
-            }
-            `,
-            data: {
-              email,
-              password,
-              signedIn: true,
-            },
-          })
-          history.push("/gardens")
-          setIsMember(true)
-      }
+      setToken(tokenAuth.token)
+      // write to graphql instance
+      client.writeQuery({
+        query: gql`
+          query GetUserCredentials {
+            email
+            password
+            signedIn
+          }
+        `,
+        data: {
+          email,
+          password,
+          signedIn: true,
+        },
+      })
+      history.push("/gardens")
+      setIsMember(true)
     },
   })
   const [signup, signupResults] = useMutation(SIGNUP_MUTATION, {
@@ -60,7 +58,8 @@ export function Login() {
 
   useEffect(() => {
     if (loginResults.error) {
-      setErrorMessage(loginResults.error.message)
+      console.log(loginResults.error.message)
+      setErrorMessage("Unable to sign in")
     }
     if (signupResults.error) {
       ;/already exists/.test(signupResults.error.message) &&
