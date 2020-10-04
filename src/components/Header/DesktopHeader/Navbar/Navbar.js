@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { Logout } from "../../Logout"
 
 const Nav = styled.nav`
   display: flex;
@@ -30,6 +31,9 @@ export function Navbar() {
       <NavItem to="/beds">Beds</NavItem>
       <NavItem to="/sections">Sections</NavItem>
       <NavItem to="/plants">Plants</NavItem>
+      <NavItem>
+        <Logout />
+      </NavItem>
     </Nav>
   )
 }
