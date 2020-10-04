@@ -39,6 +39,9 @@ export function AddGarden() {
     onError(err) {
       console.log(err)
     },
+    onCompleted(data) {
+      console.log(data)
+    },
   })
 
   /* Add focus to the text input */
@@ -49,7 +52,7 @@ export function AddGarden() {
   function onSubmit(event) {
     event.preventDefault()
     createGarden({
-      variables: { gardenName },
+      variables: { name: gardenName },
     })
     setGardenName("")
     textInput.current.focus()
