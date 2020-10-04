@@ -37,7 +37,9 @@ export function Navbar() {
       <NavItem to="/sections">Sections</NavItem>
       <NavItem to="/plants">Plants</NavItem>
       {showLogout ?
-        <Logout />
+        <NavItem>
+          <Logout />
+        </NavItem>
         :
         ""
       }
