@@ -1,7 +1,5 @@
 ## Type
-  - [ ] bug report
-  - [ ] feature request
-  - [ ] support request
+Bug report, feature request, or support request
 
 ## Problem or To-Do
 What needs to be done, or what is the problematic behavior?
