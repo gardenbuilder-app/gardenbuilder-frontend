@@ -26,7 +26,6 @@ describe('<MockComponent/>', () => {
   it('retrieves and renders data', async () => {
     waitForElementToBeRemoved(() => screen.findByText(/Loading.../i))
     expect(await screen.findByRole('heading', {name: /abc123/i})).toBeInTheDocument();
-    screen.debug();
   })
   it('calls MOCK_MUTATION on button click', async () => {
     const makeThingMock = jest.spyOn(client, 'mutate')

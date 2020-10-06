@@ -10,7 +10,7 @@ import { gql } from "@apollo/client"
 // `
 
 export const GET_USER_GARDENS = gql`
-  query {
+  query GET_USER_GARDENS {
     userGardens {
       id
       gardenName
@@ -23,7 +23,7 @@ export const GET_USER_GARDENS = gql`
 `
 
 export const CURRENT_USER_QUERY = gql`
-  query {
+  query CURRENT_USER_QUERY {
     currentUser {
       id
     }
