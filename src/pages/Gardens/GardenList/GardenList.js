@@ -13,7 +13,9 @@ const GardenListWrapper = styled.div`
 `
 
 export function GardenList() {
-  const { data, updateQuery } = useQuery(GET_USER_GARDENS)
+  const { data, error } = useQuery(GET_USER_GARDENS)
+
+  console.log(error);
 
   function getGardenElements(data) {
     return data.userGardens.map((garden, index) => {
@@ -25,8 +27,8 @@ export function GardenList() {
 
       return (
         <React.Fragment key={index}>
-          <a href={`/garden?id=${garden.id}&name=${garden.gardenName}`}>
-            {garden.gardenName}
+          <a href={`/garden?id=${garden.id}&name=${garden.name}`}>
+            {garden.name}
           </a>
           <div>{bedText}</div>
           <div>{isActive}</div>
