@@ -20,14 +20,13 @@ const ErrorMessage = styled.p`
 export function Login() {
   const client = useApolloClient()
   const [email, setEmail] = useState("")
-  const [errorMessage, setErrorMessage] = useState("error")
+  const [errorMessage, setErrorMessage] = useState("")
   const [password, setPassword] = useState("")
   const [isMember, setIsMember] = useState(false)
   const history = useHistory()
   const [login, loginResults] = useMutation(SIGNIN_MUTATION, {
     onError(err) {
-      console.log("an error ocurred on login")
-      console.log(err)
+      console.log(`Error logging in: ${err}`)
     },
     onCompleted({ tokenAuth }) {
       setToken(tokenAuth.token)
@@ -53,6 +52,9 @@ export function Login() {
   const [signup, signupResults] = useMutation(SIGNUP_MUTATION, {
     onError(err) {
       console.log(err)
+    },
+    onCompleted() {
+      login({ variables: { email, password } })
     },
   })
 
@@ -82,18 +84,27 @@ export function Login() {
     <Form onSubmit={submit}>
       <h2>{buttonText}</h2>
       {errorMessage ? <ErrorMessage>{errorMessage}</ErrorMessage> : null}
-      <InputSection name="email" value={email} setValue={setEmail} />
-      <InputSection name="password" value={password} setValue={setPassword} />
+      <InputSection name="email" value={email} setValue={setEmail} type="email" />
+      <InputSection
+        name="password"
+        value={password}
+        setValue={setPassword}
+        type="password"
+      />
       <Button name="submit" text={buttonText} type="submit" />
       {isMember ? (
         <p>
           Not a member?{" "}
-          <StyledSpan role='button' onClick={() => setIsMember(!isMember)}>Sign Up</StyledSpan>
+          <StyledSpan role="button" onClick={() => setIsMember(!isMember)}>
+            Sign Up
+          </StyledSpan>
         </p>
       ) : (
         <p>
           Already a member?{" "}
-          <StyledSpan role='button' onClick={() => setIsMember(!isMember)}>Sign In</StyledSpan>
+          <StyledSpan role="button" onClick={() => setIsMember(!isMember)}>
+            Sign In
+          </StyledSpan>
         </p>
       )}
     </Form>

@@ -9,5 +9,5 @@ export function Logout() {
     eraseToken() // expire cookie for jwt token
     history.push("/login")
   }
-  return <li onClick={handleLogOut}>Log Out</li>
+  return <div onClick={handleLogOut}>Log Out</div>
 }

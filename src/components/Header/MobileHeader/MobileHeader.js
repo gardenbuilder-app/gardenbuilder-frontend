@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { HamburgerButton } from "./HamburgerButton"
 import { Logout } from "../Logout"
 import styled from "styled-components"
+import { useLocation } from "react-router-dom"
 
 const MobileHeaderStyle = styled.div`
   align-content: center;
@@ -24,11 +25,14 @@ const Title = styled.h1`
 `
 
 export const MobileHeader = function () {
+
+  const location = useLocation()
+  const showLogout = location.pathname != "/login"
   let [menuVisible, setMenuVisible] = useState(false)
 
   const menuItems = [
     ...["Profile", "Gardens"].map((option, index) => <li key={index}>{option}</li>),
-    <Logout key="2" />,
+    showLogout && <li key="logout"><Logout /></li>,
   ]
 
   const menu = <Menu>{menuItems}</Menu>

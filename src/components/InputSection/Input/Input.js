@@ -11,12 +11,13 @@ const StyledInput = styled.input`
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   padding: 0 0 0 1rem;
+  width: 244px;
 `
 
 /**
  * Input
  */
-export const Input = React.forwardRef(({ value, setValue, name }, ref) => {
+export const Input = React.forwardRef(({ value, setValue, name, type }, ref) => {
   function onChange(event) {
     event.preventDefault()
     setValue(event.target.value)
@@ -28,9 +29,10 @@ export const Input = React.forwardRef(({ value, setValue, name }, ref) => {
       data-testid="input"
       name={name}
       onChange={onChange}
+      role="textbox"
       ref={ref}
       tabIndex="0"
-      type="text"
+      type={type ? type : "text"}
       value={value}
     />
   )

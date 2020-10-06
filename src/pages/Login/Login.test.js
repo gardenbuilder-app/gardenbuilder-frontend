@@ -44,9 +44,6 @@ describe("<Login /> view", () => {
         <Login />
       </MockedProvider>
     )
-    ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
-      return container.getAllByRole("textbox", { name: name })[0]
-    })
   })
 
   it("should include sign in and sign up text on initial screen", () => {
@@ -56,6 +53,9 @@ describe("<Login /> view", () => {
   })
 
   it("should be able to update email and password input fields", () => {
+    ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
+      return container.getAllByRole("textbox", { name: name })[0]
+    })
     ;[emailInput, passwordInput].forEach((input) => {
       fireEvent.change(input, { target: { value: "testvalue" } })
       expect(input.value).toBe("testvalue")
@@ -70,7 +70,7 @@ describe("<Login /> view", () => {
     )
   })
 
-  it.only("calls SIGNUP_MUTATION without error", async () => {
+  it("calls SIGNUP_MUTATION without error", async () => {
     // update email and password
     fireEvent.change(emailInput, { target: { value: "test@test.com" } })
     fireEvent.change(passwordInput, { target: { value: "testing123!" } })
@@ -87,7 +87,7 @@ describe("<Login /> view", () => {
     // expect(container.children).toContain("Loading...")
   })
 
-  it.skip("reroutes to gardens page after signing up", async () => {
+  it("reroutes to gardens page after signing up", async () => {
     // initialize gql mock
     const signinMock = {
       request: {
@@ -133,8 +133,8 @@ describe("<Login /> view", () => {
     fireEvent.change(passwordInput, { target: { value: "testing123!" } })
 
     // click button
-    const button = container.getByRole("button", { name: "Sign In" })
-    fireEvent.click(button)
+    const button = container.getAllByRole("button", { name: "Sign In" })
+    fireEvent.click(button[0])
 
     // wait for ui change
     await waitFor(
