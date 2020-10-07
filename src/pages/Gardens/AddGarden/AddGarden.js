@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react"
 import styled from "styled-components"
-import { cache, useApolloClient, useMutation, gql } from "@apollo/client"
+import { useMutation, gql } from "@apollo/client"
 import { FaPlusCircle, FaChevronDown, FaChevronUp } from "react-icons/fa"
 import { IconContext } from "react-icons"
-import { Button, Form, Input, InputSection } from "../../../components"
+import { Form, InputSection } from "../../../components"
 import { CREATE_GARDEN_MUTATION } from "../../../mutations/mutations"
 import AddGardenStyles from "./AddGardenStyles"
 
@@ -14,9 +14,8 @@ const ButtonContainer = styled.div`
 `
 
 export function AddGarden() {
-  const client = useApolloClient()
   const textInput = useRef(null)
-  const [formVisible, setFormVisible] = useState(true)
+  const [formVisible, setFormVisible] = useState(false)
   const [gardenName, setGardenName] = useState("")
   const [createGarden, createGardenResults] = useMutation(CREATE_GARDEN_MUTATION, {
     update(cache, { data: { createGarden } }) {
@@ -56,7 +55,7 @@ export function AddGarden() {
       variables: { name: gardenName },
     })
     setGardenName("")
-    // textInput.current.focus()
+    textInput.current.focus()
   }
 
   return (

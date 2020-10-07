@@ -1,6 +1,7 @@
 import React from "react"
 import { render, screen, waitFor } from "@testing-library/react"
-import { MockedProvider } from "@apollo/client/testing"
+import { ApolloProvider } from "@apollo/client"
+import client from '../../ApolloClient';
 import { Gardens } from "./Gardens"
 import { GET_USER_GARDENS } from "../../queries/queries"
 
@@ -29,19 +30,16 @@ describe("<Gardens /> view", () => {
    *  Set up conditions for each test.
    *  We must rerender before each new assertion
    */
-  let getByText, getAllByText
   beforeEach(() => {
-    const tools = render(
-      <MockedProvider mocks={[mockQuery]} addTypename={false}>
+    render(
+      <ApolloProvider client={client} addTypename={false}>
         <Gardens />
-      </MockedProvider>
+      </ApolloProvider>
     )
-    getByText = tools.getByText
-    getAllByText = tools.getAllByText
   })
 
   it("renders its title", async () => {
-    expect(getByText("Gardens")).toBeInTheDocument()
+    expect(await screen.findByText("Gardens")).toBeInTheDocument()
   })
 
   // it.only("renders garden names from graphql query", async () => {
