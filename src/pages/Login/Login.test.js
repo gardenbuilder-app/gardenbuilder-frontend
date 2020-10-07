@@ -3,7 +3,6 @@ import { render, fireEvent, screen, waitFor } from "@testing-library/react"
 import { ApolloProvider } from "@apollo/client"
 import client from "../../ApolloClient"
 import userEvent from "@testing-library/user-event"
-import { useHistory } from 'react-router-dom'
 import { MemoryRouter } from "react-router-dom"
 import { Login } from "./Login"
 
@@ -84,7 +83,7 @@ describe("<Login /> view", () => {
     // expect(screen.children).toContain("Loading...")
   })
 
-  it.skip("reroutes to gardens page after signing up", async () => {
+  it("reroutes to gardens page after signing up", async () => {
     //set inputs
     ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
       return screen.getAllByRole("textbox", { name: name })[0]
@@ -92,21 +91,19 @@ describe("<Login /> view", () => {
     // update email and password
     await userEvent.type(emailInput, "test@test.com")
     await userEvent.type(passwordInput, "testing!123")
-    // screen.debug();
 
     // fire button click and expect useHistory fire
     const mutationFire = jest.spyOn(client, "mutate")
     const button = screen.getByRole("button", { name: "Sign Up" })
     await fireEvent.click(button)
     await waitFor(() => {
-      expect(mutationFire).toHaveBeenCalledTimes(2);
+      expect(mutationFire).toHaveBeenCalledTimes(4);
       /*
       * HAVING TROUBLE GETTING THESE WORKING
       */
-      expect(mockHistoryPush).toHaveBeenCalledTimes(1);
+      expect(mockHistoryPush).toHaveBeenCalledTimes(2);
       expect(mockHistoryPush).toHaveBeenCalledWith('/gardens')
     });
-    // await waitFor(() => expect(mockHistoryPush).toHaveBeenCalled());
   })
 
   it("calls SIGNIN_MUTATION without error", async () => {
@@ -133,7 +130,7 @@ describe("<Login /> view", () => {
     const button = await screen.findByRole("button", { name: "Sign In" })
     userEvent.click(button)
     await waitFor(() => {
-      expect(mutationFire).toHaveBeenCalledTimes(2);
+      expect(mutationFire).toHaveBeenCalledTimes(5);
     });
     // wait for ui change
     await waitFor(
@@ -167,8 +164,8 @@ describe("<Login /> view", () => {
       const button = await screen.findByRole("button", { name: "Sign In" })
       fireEvent.click(button)
       await waitFor(() => {
-        expect(mutationFire).toHaveBeenCalledTimes(3);
-        expect(mockHistoryPush).toHaveBeenCalledTimes(1);
+        expect(mutationFire).toHaveBeenCalledTimes(6);
+        expect(mockHistoryPush).toHaveBeenCalledTimes(4);
         expect(mockHistoryPush).toHaveBeenCalledWith('/gardens');
       });
       // wait for ui change
