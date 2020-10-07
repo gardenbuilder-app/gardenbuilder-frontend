@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import styled from "styled-components"
 import { useMutation, gql } from "@apollo/client"
-import { FaPlusCircle, FaChevronDown, FaChevronUp } from "react-icons/fa"
+import { FaPlusCircle, FaChevronDown, FaChevronRight } from "react-icons/fa"
 import { IconContext } from "react-icons"
 import { Form, InputSection } from "../../../components"
 import { CREATE_GARDEN_MUTATION } from "../../../mutations/mutations"
@@ -63,7 +63,7 @@ export function AddGarden() {
       <AddGardenStyles>
         <ButtonContainer id="visible-toggler" onClick={() => setFormVisible(!formVisible)}>
           {!formVisible && <FaChevronDown alt="Add Garden" aria-label="Add Garden" role="img" />}
-          {formVisible && <FaChevronUp alt="Add Garden" aria-label="Add Garden" role="img" />}
+          {formVisible && <FaChevronRight alt="Add Garden" aria-label="Add Garden" role="img" />}
           &nbsp;Add Garden
         </ButtonContainer>
         {formVisible && (
