@@ -1,11 +1,6 @@
-import {
-  ApolloClient,
-  createHttpLink,
-  InMemoryCache,
-} from "@apollo/client"
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
 import { getToken } from "./libs"
-
 
 /**
  *  Update token before query/mutation
@@ -20,33 +15,34 @@ const authLink = setContext((_, { headers }) => {
   }
 })
 
-const devEndpoint = process.env.REACT_APP_GRAPHQL_SERVER || "https://gardenbuilder-backend.uc.r.appspot.com/graphql/"
+const devEndpoint =
+  process.env.REACT_APP_GRAPHQL_SERVER ||
+  "https://gardenbuilder-backend.uc.r.appspot.com/graphql/"
 
 function determineEndpoint(env) {
-  if (env === 'development') return devEndpoint;
-  if (env === 'test') return 'http://localhost:3000/grapql'
+  if (env === "development") return devEndpoint
+  if (env === "test") return "http://localhost:3000/grapql"
 }
 
 const httpLink = createHttpLink({
-  uri: determineEndpoint(process.env.NODE_ENV)
+  uri: determineEndpoint(process.env.NODE_ENV),
 })
 
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
+  fetch: (...args) => fetch(...args),
   defaultOptions: {
     mutate: {
       errorPolicy: "all",
     },
     watchQuery: {
-      fetchPolicy:
-        process.env.NODE_ENV === 'test' ? 'no-cache' : 'cache-first',
+      fetchPolicy: process.env.NODE_ENV === "test" ? "no-cache" : "cache-first",
     },
     query: {
-      fetchPolicy:
-        process.env.NODE_ENV === 'test' ? 'no-cache' : 'cache-first',
-    }
+      fetchPolicy: process.env.NODE_ENV === "test" ? "no-cache" : "cache-first",
+    },
   },
   link: authLink.concat(httpLink),
 })
 
-export default apolloClient;
+export default apolloClient

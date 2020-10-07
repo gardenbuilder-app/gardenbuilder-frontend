@@ -26,7 +26,8 @@ export function Login() {
   const history = useHistory()
   const [login, loginResults] = useMutation(SIGNIN_MUTATION, {
     onError(err) {
-      console.log(`Error logging in: ${err}`)
+      console.log("an error ocurred on login")
+      console.log(err)
     },
     onCompleted({ tokenAuth }) {
       setToken(tokenAuth.token)
@@ -51,10 +52,7 @@ export function Login() {
   })
   const [signup, signupResults] = useMutation(SIGNUP_MUTATION, {
     onError(err) {
-      console.log(err)
-    },
-    onCompleted() {
-      login({ variables: { email, password } })
+      // console.log(err)
     },
   })
 
@@ -84,27 +82,18 @@ export function Login() {
     <Form onSubmit={submit}>
       <h2>{buttonText}</h2>
       {errorMessage ? <ErrorMessage>{errorMessage}</ErrorMessage> : null}
-      <InputSection name="email" value={email} setValue={setEmail} type="email" />
-      <InputSection
-        name="password"
-        value={password}
-        setValue={setPassword}
-        type="password"
-      />
+      <InputSection name="email" value={email} setValue={setEmail} />
+      <InputSection name="password" value={password} setValue={setPassword} />
       <Button name="submit" text={buttonText} type="submit" />
       {isMember ? (
         <p>
           Not a member?{" "}
-          <StyledSpan role="button" onClick={() => setIsMember(!isMember)}>
-            Sign Up
-          </StyledSpan>
+          <StyledSpan onClick={() => setIsMember(!isMember)}>Sign Up</StyledSpan>
         </p>
       ) : (
         <p>
           Already a member?{" "}
-          <StyledSpan role="button" onClick={() => setIsMember(!isMember)}>
-            Sign In
-          </StyledSpan>
+          <StyledSpan onClick={() => setIsMember(!isMember)}>Sign In</StyledSpan>
         </p>
       )}
     </Form>

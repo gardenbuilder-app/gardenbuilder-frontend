@@ -65,13 +65,22 @@ export const handlers = [
 
   graphql.mutation("SIGNIN_MUTATION", (req, res, ctx) => {
     const { email, password } = req.variables;
-    if (email === 'test@test.com' && password === 'testing123!') {
+    if (email === "test@test.com" && password === "testing!123") {
       return res(
         ctx.data({
           tokenAuth: {
-            token: 'abc123'
+            token: 'sometoken123'
           }
         })
+      )
+    } else {
+      return res(
+        ctx.errors([
+          {
+            status:400,
+            message: 'whoops'
+          }
+        ])
       )
     }
   }),

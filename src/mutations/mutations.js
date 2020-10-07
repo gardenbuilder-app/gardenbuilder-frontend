@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client"
 
 export const SIGNIN_MUTATION = gql`
-  mutation SIGN_IN_MUTATION($email: String!, $password: String!) {
+  mutation SIGNIN_MUTATION($email: String!, $password: String!) {
     tokenAuth(email: $email, password: $password) {
       token
     }
