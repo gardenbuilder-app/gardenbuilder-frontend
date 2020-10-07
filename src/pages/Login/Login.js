@@ -26,40 +26,43 @@ export function Login() {
   const history = useHistory()
   const [login, loginResults] = useMutation(SIGNIN_MUTATION, {
     onError(err) {
-      console.log("an error ocurred on login")
-      console.log(err)
+      console.log(`Error logging in: ${err}`)
     },
     onCompleted({ tokenAuth }) {
-      setToken(tokenAuth.token)
-      // write to graphql instance
-      client.writeQuery({
-        query: gql`
+      if(tokenAuth){
+        setToken(tokenAuth.token)
+        // write to graphql instance
+        client.writeQuery({
+          query: gql`
           query GetUserCredentials {
             email
             password
             signedIn
           }
-        `,
-        data: {
-          email,
-          password,
-          signedIn: true,
-        },
-      })
-      history.push("/gardens")
-      setIsMember(true)
+          `,
+          data: {
+            email,
+            password,
+            signedIn: true,
+          },
+        })
+        history.push("/gardens")
+        setIsMember(true)
+      }
     },
   })
   const [signup, signupResults] = useMutation(SIGNUP_MUTATION, {
     onError(err) {
-      // console.log(err)
+      console.log(err)
+    },
+    onCompleted() {
+      login({ variables: { email, password } })
     },
   })
 
   useEffect(() => {
     if (loginResults.error) {
-      console.log(loginResults.error.message)
-      setErrorMessage("Unable to sign in")
+      setErrorMessage(loginResults.error.message)
     }
     if (signupResults.error) {
       ;/already exists/.test(signupResults.error.message) &&
@@ -82,18 +85,27 @@ export function Login() {
     <Form onSubmit={submit}>
       <h2>{buttonText}</h2>
       {errorMessage ? <ErrorMessage>{errorMessage}</ErrorMessage> : null}
-      <InputSection name="email" value={email} setValue={setEmail} />
-      <InputSection name="password" value={password} setValue={setPassword} />
+      <InputSection name="email" value={email} setValue={setEmail} type="email" />
+      <InputSection
+        name="password"
+        value={password}
+        setValue={setPassword}
+        type="password"
+      />
       <Button name="submit" text={buttonText} type="submit" />
       {isMember ? (
         <p>
           Not a member?{" "}
-          <StyledSpan onClick={() => setIsMember(!isMember)}>Sign Up</StyledSpan>
+          <StyledSpan role="button" onClick={() => setIsMember(!isMember)}>
+            Sign Up
+          </StyledSpan>
         </p>
       ) : (
         <p>
           Already a member?{" "}
-          <StyledSpan onClick={() => setIsMember(!isMember)}>Sign In</StyledSpan>
+          <StyledSpan role="button" onClick={() => setIsMember(!isMember)}>
+            Sign In
+          </StyledSpan>
         </p>
       )}
     </Form>
