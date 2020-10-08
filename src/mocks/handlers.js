@@ -44,6 +44,16 @@ export const handlers = [
     )
   }),
 
+  graphql.query("CURRENT_USER_QUERY", (req, res, ctx) => {
+    return res(
+      ctx.data({
+        currentUser: {
+          id: 'abc123'
+        }
+      })
+    )
+  }),
+
   /*************************
       MUTATION MOCKS
   ***************************/

@@ -36,12 +36,10 @@ export function Navbar() {
       <NavItem to="/beds">Beds</NavItem>
       <NavItem to="/sections">Sections</NavItem>
       <NavItem to="/plants">Plants</NavItem>
-      {showLogout ?
+      {showLogout &&
         <NavItem>
           <Logout />
         </NavItem>
-        :
-        ""
       }
     </Nav>
   )
