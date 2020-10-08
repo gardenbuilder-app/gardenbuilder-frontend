@@ -13,9 +13,7 @@ const GardenListWrapper = styled.div`
 `
 
 export function GardenList() {
-  const { data, error } = useQuery(GET_USER_GARDENS)
-
-  console.log(error);
+  const { data } = useQuery(GET_USER_GARDENS)
 
   function getGardenElements(data) {
     return data.userGardens.map((garden, index) => {
