@@ -16,6 +16,7 @@ export const SIGNUP_MUTATION = gql`
         email
         password
       }
+      token
     }
   }
 `

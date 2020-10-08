@@ -29,34 +29,29 @@ export function Login() {
       console.log(`Error logging in: ${err}`)
     },
     onCompleted({ tokenAuth }) {
-      if(tokenAuth){
+      if (tokenAuth) {
         setToken(tokenAuth.token)
-        // write to graphql instance
-        client.writeQuery({
-          query: gql`
-          query GetUserCredentials {
-            email
-            password
-            signedIn
-          }
-          `,
-          data: {
-            email,
-            password,
-            signedIn: true,
-          },
-        })
+        saveCredentialsInCache(email, password)
         history.push("/gardens")
         setIsMember(true)
       }
     },
   })
+
   const [signup, signupResults] = useMutation(SIGNUP_MUTATION, {
     onError(err) {
       console.log(err)
     },
-    onCompleted() {
-      login({ variables: { email, password } })
+    onCompleted({ createUser }) {
+      const token = createUser?.token
+      if (token) {
+        setToken(token)
+        saveCredentialsInCache(email, password)
+        history.push("/gardens")
+        setIsMember(true)
+      } else {
+        console.log("Token not returned from createUser mutation")
+      }
     },
   })
 
@@ -69,6 +64,28 @@ export function Login() {
         setErrorMessage("This user already exists! Please sign in instead")
     }
   }, [loginResults.error, signupResults.error])
+
+  /**
+   * Save email and password in Apollo cache
+   * @param {string} email
+   * @param {string} password
+   */
+  function saveCredentialsInCache(email, password) {
+    client.writeQuery({
+      query: gql`
+        query GetUserCredentials {
+          email
+          password
+          signedIn
+        }
+      `,
+      data: {
+        email,
+        password,
+        signedIn: true,
+      },
+    })
+  }
 
   function submit(event) {
     event.preventDefault()
