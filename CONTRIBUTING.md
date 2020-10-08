@@ -25,20 +25,45 @@ For all other changes, please submit an issue before submitting a pull request! 
 
 We're working toward implementing user-centric testing as embodied in the [Testing Library Guiding Principles](https://testing-library.com/docs/guiding-principles). This avoids major test breakages from minor changes in implementation details, while ensuring that the end user experience remains stable.
 
-Our Apollo Client instance is configured to use a [Mock Service Worker](https://mwsjs.io) server to mock all of our GraphQL API calls during testing. The setup looks like this:
+Our Apollo Client instance is configured to use a [Mock Service Worker](https://mwsjs.io) server to mock all of our GraphQL API calls during testing. Making this work in your tests easy! See here:
 
-    import client from 'src/ApolloClient'
-    import Apollo Provider from '@apollo/client
+```javascript
+import client from 'src/ApolloClient'
+import Apollo Provider from '@apollo/client
 
-    describe('<Component />, () => {
-      beforeEach(() =>
-        render(
-          <ApolloProvider client={client} addTypename={false}>
-            <Component />
-          </ApolloProvider>
-        )
-      )
-    })
+describe('<Component />, () => {
+  beforeEach(() =>
+    render(
+      <ApolloProvider client={client} addTypename={false}>
+        <Component />
+      </ApolloProvider>
+    )
+  );
+});
+```
+
+If you modify an existing query or mutation, or create a new one, please mock it in './handlers' representing the most reusable use-case. 
+
+You can run one-off instances for edge cases by importing this server and wrapping the desired mock in 'server.use()' and appending 'res()' to 'res.once()', like so:
+
+```javascript
+import { server } from 'src/mocks/server';
+
+server.use(
+  graphql.query('MOCK_QUERY', (req, res, ctx) => {
+    return res.once(
+      ctx.data({
+        ...data
+      })
+    )
+  })
+)
+```
+
+For any other questions regarding MSW setup, please check out their [documentation](https://mswjs.io/docs). 
+
+Using this methodology gives us convenient, standardized mocking while retaining options for granular
+control. It also avoids oft-dreaded opaque <MockProvider /> errors!
 
 ### Further Involvement
 
