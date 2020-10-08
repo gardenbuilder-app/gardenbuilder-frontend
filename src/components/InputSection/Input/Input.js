@@ -11,7 +11,7 @@ const StyledInput = styled.input`
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   padding: 0 0 0 1rem;
-  width: 244px;
+  width: 100%;
 `
 
 /**

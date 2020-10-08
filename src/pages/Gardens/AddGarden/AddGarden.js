@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from "react"
 import styled from "styled-components"
-import { cache, useApolloClient, useMutation, gql } from "@apollo/client"
-import { FaPlusCircle } from "react-icons/fa"
+import { useMutation, gql } from "@apollo/client"
+import { FaPlusCircle, FaChevronDown, FaChevronRight } from "react-icons/fa"
 import { IconContext } from "react-icons"
-import { Button, Form, Input, InputSection } from "../../../components"
+import { Form, InputSection } from "../../../components"
 import { CREATE_GARDEN_MUTATION } from "../../../mutations/mutations"
+import AddGardenStyles from "./AddGardenStyles"
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -13,9 +14,8 @@ const ButtonContainer = styled.div`
 `
 
 export function AddGarden() {
-  const client = useApolloClient()
   const textInput = useRef(null)
-  const [formVisible, setFormVisible] = useState(true)
+  const [formVisible, setFormVisible] = useState(false)
   const [gardenName, setGardenName] = useState("")
   const [createGarden, createGardenResults] = useMutation(CREATE_GARDEN_MUTATION, {
     update(cache, { data: { createGarden } }) {
@@ -46,7 +46,7 @@ export function AddGarden() {
 
   /* Add focus to the text input */
   useEffect(() => {
-    textInput.current.focus()
+    // textInput.current.focus()
   })
 
   function onSubmit(event) {
@@ -59,24 +59,31 @@ export function AddGarden() {
   }
 
   return (
-    <div>
-      <ButtonContainer onClick={() => setFormVisible(!formVisible)}>
-        <IconContext.Provider value={{ size: "1.5rem" }}>
-          <FaPlusCircle alt="Add Garden" aria-label="Add Garden" role="img" />
-        </IconContext.Provider>
-        &nbsp;Add
-      </ButtonContainer>
-      {formVisible && (
-        <Form onSubmit={onSubmit}>
-          <InputSection
-            name="Garden Name"
-            ref={textInput}
-            setValue={setGardenName}
-            value={gardenName}
-          />
-          <Button name="submit" text="Submit" type="submit" />
-        </Form>
-      )}
-    </div>
+    <IconContext.Provider value={{ size: "1.5rem" }}>
+      <AddGardenStyles>
+        <ButtonContainer id="visible-toggler" onClick={() => setFormVisible(!formVisible)}>
+          {!formVisible && <FaChevronDown alt="Add Garden" aria-label="Add Garden" role="img" />}
+          {formVisible && <FaChevronRight alt="Add Garden" aria-label="Add Garden" role="img" />}
+          &nbsp;Add Garden
+        </ButtonContainer>
+        {formVisible && (
+          <Form className="add-form" onSubmit={onSubmit}>
+            <InputSection
+              name="Garden Name"
+              id="name-input"
+              ref={textInput}
+              setValue={setGardenName}
+              value={gardenName}
+            />
+            <button id="desktop-submit" name="submit" type="submit">
+              Add
+            </button>
+            <button id="mobile-submit" name="submit" type="submit">
+              <FaPlusCircle alt="Add Garden" aria-label="Add Garden" role="img" />
+            </button>
+          </Form>
+        )}
+      </AddGardenStyles>
+    </IconContext.Provider>
   )
 }
