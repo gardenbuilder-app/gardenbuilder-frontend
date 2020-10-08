@@ -6,17 +6,14 @@ import userEvent from "@testing-library/user-event"
 import { MemoryRouter } from "react-router-dom"
 import { Login } from "./Login"
 
-const mockHistoryPush = jest.fn();
-
+const mockHistoryPush = jest.fn()
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useHistory: () => ({
-    push: mockHistoryPush
-  })
+    push: mockHistoryPush,
+  }),
 }))
-
-
 
 describe("<Login /> view", () => {
   // setup before each test
@@ -97,13 +94,13 @@ describe("<Login /> view", () => {
     const button = screen.getByRole("button", { name: "Sign Up" })
     await fireEvent.click(button)
     await waitFor(() => {
-      expect(mutationFire).toHaveBeenCalledTimes(4);
+      expect(mutationFire).toHaveBeenCalledTimes(4)
       /*
-      * HAVING TROUBLE GETTING THESE WORKING
-      */
-      expect(mockHistoryPush).toHaveBeenCalledTimes(2);
-      expect(mockHistoryPush).toHaveBeenCalledWith('/gardens')
-    });
+       * HAVING TROUBLE GETTING THESE WORKING
+       */
+      expect(mockHistoryPush).toHaveBeenCalledTimes(2)
+      expect(mockHistoryPush).toHaveBeenCalledWith("/gardens")
+    })
   })
 
   it("calls SIGNIN_MUTATION without error", async () => {
@@ -130,8 +127,8 @@ describe("<Login /> view", () => {
     const button = await screen.findByRole("button", { name: "Sign In" })
     userEvent.click(button)
     await waitFor(() => {
-      expect(mutationFire).toHaveBeenCalledTimes(5);
-    });
+      expect(mutationFire).toHaveBeenCalledTimes(5)
+    })
     // wait for ui change
     await waitFor(
       () =>
@@ -140,39 +137,39 @@ describe("<Login /> view", () => {
     )
   })
 
-  it("redirects to the gardens page after signin", async() => {
-      // toggle sign in ui
-      const link = screen.getAllByText("Sign In")[0]
-      fireEvent.click(link)
-  
-      // wait for ui change
-      await waitFor(() =>
+  it("redirects to the gardens page after signin", async () => {
+    // toggle sign in ui
+    const link = screen.getAllByText("Sign In")[0]
+    fireEvent.click(link)
+
+    // wait for ui change
+    await waitFor(() =>
+      expect(screen.getByRole("heading", { name: "Sign In" })).toBeInTheDocument()
+    )
+
+    //set inputs
+    ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
+      return screen.getAllByRole("textbox", { name: name })[0]
+    })
+
+    // update email and password
+    userEvent.type(emailInput, "test@test.com")
+    userEvent.type(passwordInput, "testing!123")
+
+    // click button
+    const mutationFire = jest.spyOn(client, "mutate")
+    const button = await screen.findByRole("button", { name: "Sign In" })
+    fireEvent.click(button)
+    await waitFor(() => {
+      expect(mutationFire).toHaveBeenCalledTimes(6)
+      expect(mockHistoryPush).toHaveBeenCalledTimes(4)
+      expect(mockHistoryPush).toHaveBeenCalledWith("/gardens")
+    })
+    // wait for ui change
+    await waitFor(
+      () =>
         expect(screen.getByRole("heading", { name: "Sign In" })).toBeInTheDocument()
-      )
-  
-      //set inputs
-      ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
-        return screen.getAllByRole("textbox", { name: name })[0]
-      })
-  
-      // update email and password
-      userEvent.type(emailInput, "test@test.com")
-      userEvent.type(passwordInput, "testing!123")
-  
-      // click button
-      const mutationFire = jest.spyOn(client, "mutate")
-      const button = await screen.findByRole("button", { name: "Sign In" })
-      fireEvent.click(button)
-      await waitFor(() => {
-        expect(mutationFire).toHaveBeenCalledTimes(6);
-        expect(mockHistoryPush).toHaveBeenCalledTimes(4);
-        expect(mockHistoryPush).toHaveBeenCalledWith('/gardens');
-      });
-      // wait for ui change
-      await waitFor(
-        () =>
-          expect(screen.getByRole("heading", { name: "Sign In" })).toBeInTheDocument()
-        // expect(screen.getByRole("heading", { name: "Gardens" })).toBeInTheDocument()
-      )
+      // expect(screen.getByRole("heading", { name: "Gardens" })).toBeInTheDocument()
+    )
   })
 })
