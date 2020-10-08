@@ -16,8 +16,8 @@ export const GET_USER_GARDENS = gql`
       name
       beds {
         id
-        isActive
       }
+      isActive
     }
   }
 `
