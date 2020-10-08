@@ -8,6 +8,14 @@ export const SIGNIN_MUTATION = gql`
   }
 `
 
+export const SIGNOUT_MUTATION = gql`
+  mutation SIGNOUT_MUTATION {
+    deleteToken {
+      deleted
+    }
+  }
+`
+
 export const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION($email: String!, $password: String!) {
     createUser(email: $email, password: $password) {
