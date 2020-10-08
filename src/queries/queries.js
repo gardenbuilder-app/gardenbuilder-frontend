@@ -13,7 +13,7 @@ export const GET_USER_GARDENS = gql`
   query GET_USER_GARDENS {
     userGardens {
       id
-      gardenName
+      name
       beds {
         id
       }

@@ -3,27 +3,6 @@ import { render, screen, waitFor } from "@testing-library/react"
 import { ApolloProvider } from "@apollo/client"
 import client from '../../ApolloClient';
 import { Gardens } from "./Gardens"
-import { GET_USER_GARDENS } from "../../queries/queries"
-
-const mockQuery = {
-  request: {
-    query: GET_USER_GARDENS,
-  },
-  result: {
-    data: {
-      userGardens: [
-        {
-          id: "1",
-          gardenName: "Garden One",
-        },
-        {
-          id: "2",
-          gardenName: "Garden Two",
-        },
-      ],
-    },
-  },
-}
 
 describe("<Gardens /> view", () => {
   /**

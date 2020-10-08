@@ -1,13 +1,14 @@
 import React from "react"
 import { render } from "@testing-library/react"
 import { GardenList } from "./GardenList"
-import { MockedProvider } from "@apollo/client/testing"
+import { ApolloProvider } from "@apollo/client/testing"
+import client from '../../../ApolloClient'
 
-describe("<GardenList /> component", () => {
-  const container = render(
-    <MockedProvider mocks={[]} addTypename={false}>
+describe.skip("<GardenList /> component", () => {
+  render(
+    <ApolloProvider client={client} addTypename={false}>
       <GardenList />
-    </MockedProvider>
+    </ApolloProvider>
   )
 
   it("has no tests yet", () => {

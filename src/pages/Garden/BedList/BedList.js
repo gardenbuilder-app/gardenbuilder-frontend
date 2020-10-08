@@ -1,12 +1,13 @@
 import React from "react"
 import styled from "styled-components"
 
-export function BedList() {
-  // TODO: Graphql call to get list of beds
+const BedListWrapper = styled.ul`
+  background-color: pink;
+`
 
-  const BedListWrapper = styled.ul`
-    background-color: pink;
-  `
+export function BedList() {
+  
+  // TODO: Graphql call to get list of beds
 
   return (
     <BedListWrapper>

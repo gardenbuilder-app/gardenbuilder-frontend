@@ -24,14 +24,15 @@ describe("<MockComponent/>", () => {
     expect(screen.getByText(/Loading/i)).toBeInTheDocument()
   })
   it("retrieves and renders data", async () => {
-    waitForElementToBeRemoved(() => screen.findByText(/Loading.../i))
+    await waitForElementToBeRemoved(() => screen.getByText(/Loading.../i))
     expect(
       await screen.findByRole("heading", { name: /abc123/i })
     ).toBeInTheDocument()
   })
   it("calls MOCK_MUTATION on button click", async () => {
     const makeThingMock = jest.spyOn(client, "mutate")
-    await userEvent.click(await screen.findByRole("button", { name: /Sup/i }))
+    const supButton = await screen.findByRole("button", { name: /Sup/i })
+    await userEvent.click(supButton)
     expect(makeThingMock).toHaveBeenCalled()
   })
 })
