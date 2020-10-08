@@ -10,3 +10,32 @@ body {
 h2 {
   text-align: center;
 }
+
+/*
+  BED COMPONENT CSS
+*/
+#bed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding-bottom: 17px;
+}
+#bed-measure {
+  display:flex;
+  margin-bottom: 7px;
+}
+#bed-grid {
+  display: grid;
+  background-color: #71b48d;
+  grid-area: 1 / 2 / 2 / span 2;
+  gap: 2px;
+  padding: 2px;
+}
+.grid-cell {
+  background-color: #e3a671;
+}
+.grid-cell:nth-child(6) {
+  grid-area: 1 / 2;
+}

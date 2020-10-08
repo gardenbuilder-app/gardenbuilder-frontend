@@ -12,10 +12,10 @@ const SectionWrapper = styled.div`
 `
 
 export const InputSection = React.forwardRef(
-  ({ autofocus, name, value, setValue }, ref) => (
+  ({ autofocus, name, value, setValue, type }, ref) => (
     <SectionWrapper>
       <label htmlFor={name}>{sentenceCase(name)}</label>
-      <Input ref={ref} name={name} value={value} setValue={setValue} />
+      <Input ref={ref} name={name} value={value} setValue={setValue} type={type} />
     </SectionWrapper>
   )
 )
