@@ -34,10 +34,17 @@ export const handlers = [
           {
             id: "1",
             name: "Garden One",
+            beds: [],
+            isActive: false,
           },
           {
             id: "2",
             name: "Garden Two",
+            beds: [
+              {id: 1},
+              {id: 2}
+            ],
+            isActive: true,
           }
         ]
       })
