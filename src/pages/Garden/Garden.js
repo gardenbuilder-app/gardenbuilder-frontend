@@ -10,7 +10,6 @@ export function Garden() {
   return (
     <div>
       <h2>Garden</h2>
-      <h2>You have {data.userGardens.length} gardens</h2>
       <BedList />
     </div>
   )

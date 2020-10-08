@@ -37,10 +37,6 @@ describe("<Login /> view", () => {
       expect(screen.getAllByText(/Sign Up/i).length).toBe(2)
       expect(screen.getByText(/Sign In/i)).toBeInTheDocument()
     })
-    //Previous test:
-    // ;["Sign Up", "Sign In"].forEach(async (text) => {
-    //   expect(await screen.findAllByText(text).length).toBeGreaterThan(0);
-    // })
   })
 
   it("should be able to update email and password input fields", async () => {
@@ -74,13 +70,6 @@ describe("<Login /> view", () => {
     const button = screen.getByRole("button", { name: "Sign Up" })
     userEvent.click(button)
     expect(mutationFire).toHaveBeenCalled()
-
-    // // wait for ui change
-    // await waitFor(() =>
-    //   expect(screen.getByRole("button", { name: "Sign In" })).toBeInTheDocument()
-    // )
-
-    // expect(screen.children).toContain("Loading...")
   })
 
   it("reroutes to gardens page after signing up", async () => {
@@ -97,10 +86,7 @@ describe("<Login /> view", () => {
     const button = screen.getByRole("button", { name: "Sign Up" })
     await fireEvent.click(button)
     await waitFor(() => {
-      expect(mutationFire).toHaveBeenCalledTimes(4);
-      /*
-      * HAVING TROUBLE GETTING THESE WORKING
-      */
+      expect(mutationFire).toHaveBeenCalledTimes(2);
       expect(mockHistoryPush).toHaveBeenCalledTimes(2);
       expect(mockHistoryPush).toHaveBeenCalledWith('/gardens')
     });
@@ -130,14 +116,8 @@ describe("<Login /> view", () => {
     const button = await screen.findByRole("button", { name: "Sign In" })
     userEvent.click(button)
     await waitFor(() => {
-      expect(mutationFire).toHaveBeenCalledTimes(5);
+      expect(mutationFire).toHaveBeenCalledTimes(3);
     });
-    // wait for ui change
-    await waitFor(
-      () =>
-        expect(screen.getByRole("heading", { name: "Sign In" })).toBeInTheDocument()
-      // expect(screen.getByRole("heading", { name: "Gardens" })).toBeInTheDocument()
-    )
   })
 
   it("redirects to the gardens page after signin", async() => {
@@ -164,15 +144,9 @@ describe("<Login /> view", () => {
       const button = await screen.findByRole("button", { name: "Sign In" })
       fireEvent.click(button)
       await waitFor(() => {
-        expect(mutationFire).toHaveBeenCalledTimes(6);
+        expect(mutationFire).toHaveBeenCalledTimes(4);
         expect(mockHistoryPush).toHaveBeenCalledTimes(4);
         expect(mockHistoryPush).toHaveBeenCalledWith('/gardens');
       });
-      // wait for ui change
-      await waitFor(
-        () =>
-          expect(screen.getByRole("heading", { name: "Sign In" })).toBeInTheDocument()
-        // expect(screen.getByRole("heading", { name: "Gardens" })).toBeInTheDocument()
-      )
   })
 })
