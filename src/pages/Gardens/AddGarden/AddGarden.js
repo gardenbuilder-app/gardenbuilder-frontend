@@ -17,7 +17,7 @@ export function AddGarden() {
   const textInput = useRef(null)
   const [formVisible, setFormVisible] = useState(false)
   const [gardenName, setGardenName] = useState("")
-  const [createGarden, createGardenResults] = useMutation(CREATE_GARDEN_MUTATION, {
+  const [createGarden] = useMutation(CREATE_GARDEN_MUTATION, {
     update(cache, { data: { createGarden } }) {
       cache.modify({
         fields: {

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 
 /**
  * Update state by making a dummy state variable and updating it
