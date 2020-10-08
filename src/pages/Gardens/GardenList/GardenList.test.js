@@ -11,8 +11,7 @@ describe.skip("<GardenList /> component", () => {
     </ApolloProvider>
   )
 
-  it("has no tests yet", () => {
-    console.warn("FAKE TEST WARNING: There are no tests here yet")
-    expect("No tests yet").toBe("No tests yet")
+  it("renders a list of gardens", async () => {
+    expect(await screen.findByText(/Garden One/i)).toBeInTheDocument();
   })
 })

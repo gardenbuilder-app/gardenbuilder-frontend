@@ -23,7 +23,7 @@ export function GardenList() {
           : garden.beds.length + " bed"
       const isActive = garden.beds.isActive ? "Active" : "Inactive"
 
-      return (
+      return ( 
         <React.Fragment key={index}>
           <a href={`/garden?id=${garden.id}&name=${garden.gardenName}`}>
             {garden.name}

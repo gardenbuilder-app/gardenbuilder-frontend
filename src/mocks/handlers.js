@@ -33,11 +33,11 @@ export const handlers = [
         userGardens: [
           {
             id: "1",
-            gardenName: "Garden One",
+            name: "Garden One",
           },
           {
             id: "2",
-            gardenName: "Garden Two",
+            name: "Garden Two",
           }
         ]
       })
