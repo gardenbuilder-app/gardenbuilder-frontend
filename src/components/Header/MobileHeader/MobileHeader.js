@@ -29,8 +29,6 @@ export const MobileHeader = function () {
   const me = useUser()
   let [menuVisible, setMenuVisible] = useState(false)
 
-  const menu = <Menu>{menuItems}</Menu>
-
   function toggleMenuVisibility() {
     setMenuVisible(!menuVisible)
   }
