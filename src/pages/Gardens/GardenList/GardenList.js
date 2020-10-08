@@ -16,7 +16,7 @@ export function GardenList() {
   const { data, loading, error, updateQuery } = useQuery(GET_USER_GARDENS)
 
   function getGardenElements(data) {
-    data.userGardens.map((garden, index) => {
+    return data.userGardens.map((garden, index) => {
       const bedText =
         garden.beds.length !== 1
           ? garden.beds.length + " beds"

@@ -5,7 +5,7 @@ import { eraseToken } from "../../../libs"
 export function Logout() {
   const history = useHistory()
 
-  async function handleLogOut() {
+  function handleLogOut() {
     eraseToken() // expire cookie for jwt token
     history.push("/login")
     window.location.reload();
