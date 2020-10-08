@@ -21,7 +21,7 @@ export function GardenList() {
         garden.beds.length !== 1
           ? garden.beds.length + " beds"
           : garden.beds.length + " bed"
-      const isActive = garden.beds.isActive ? "Active" : "Inactive"
+      const isActive = garden.isActive ? "Active" : "Inactive"
 
       return (
         <React.Fragment key={index}>
