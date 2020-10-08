@@ -21,6 +21,25 @@ If the issue you want to work on is a spelling or grammar mistake, or a document
 
 For all other changes, please submit an issue before submitting a pull request! Please reference a given issue in cases where a related pull request is made.
 
+### Testing Guidelines
+
+We're working toward implementing user-centric testing as embodied in the [Testing Library Guiding Principles](https://testing-library.com/docs/guiding-principles). This avoids major test breakages from minor changes in implementation details, while ensuring that the end user experience remains stable.
+
+Our Apollo Client instance is configured to use a [Mock Service Worker](https://mwsjs.io) server to mock all of our GraphQL API calls during testing. The setup looks like this:
+
+    import client from 'src/ApolloClient'
+    import Apollo Provider from '@apollo/client
+
+    describe('<Component />, () => {
+      beforeEach(() =>
+        render(
+          <ApolloProvider client={client} addTypename={false}>
+            <Component />
+          </ApolloProvider>
+        )
+      )
+    })
+
 ### Further Involvement
 
 If you are interested in ok-ing pull requests, co-managing this repo or anything else beyond occasional contributions, please email me at capndavet@gmail.com. I'd love your help!
