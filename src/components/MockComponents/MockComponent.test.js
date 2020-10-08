@@ -1,35 +1,37 @@
-import React from 'react';
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
-import { ApolloProvider } from '@apollo/client'
-import client from '../../ApolloClient';
-import userEvent from '@testing-library/user-event';
-import MockComponent from './mockComponent'
-import {server} from '../../mocks/server';
+import React from "react"
+import { render, screen, waitForElementToBeRemoved } from "@testing-library/react"
+import { ApolloProvider } from "@apollo/client"
+import client from "../../ApolloClient"
+import userEvent from "@testing-library/user-event"
+import MockComponent from "./MockComponent"
+import { server } from "../../mocks/server"
 
 beforeEach(() => server.listen())
-afterAll(() => server.close());
+afterAll(() => server.close())
 
-describe('<MockComponent/>', () => {
+describe("<MockComponent/>", () => {
   beforeEach(() => {
     render(
-    <ApolloProvider client={client}>
-      <MockComponent/>
-    </ApolloProvider>
+      <ApolloProvider client={client}>
+        <MockComponent />
+      </ApolloProvider>
     )
   })
-  it('renders properly', async () => {
-    expect(await screen.findByRole('button', {name: /Sup/i})).toBeInTheDocument();
-  });
-  it('renders a loader while loading', () => {
-    expect(screen.getByText(/Loading/i)).toBeInTheDocument();
+  it("renders properly", async () => {
+    expect(await screen.findByRole("button", { name: /Sup/i })).toBeInTheDocument()
   })
-  it('retrieves and renders data', async () => {
+  it("renders a loader while loading", () => {
+    expect(screen.getByText(/Loading/i)).toBeInTheDocument()
+  })
+  it("retrieves and renders data", async () => {
     waitForElementToBeRemoved(() => screen.findByText(/Loading.../i))
-    expect(await screen.findByRole('heading', {name: /abc123/i})).toBeInTheDocument();
+    expect(
+      await screen.findByRole("heading", { name: /abc123/i })
+    ).toBeInTheDocument()
   })
-  it('calls MOCK_MUTATION on button click', async () => {
-    const makeThingMock = jest.spyOn(client, 'mutate')
-    await userEvent.click(await screen.findByRole('button', {name: /Sup/i}));
-    expect(makeThingMock).toHaveBeenCalled();
+  it("calls MOCK_MUTATION on button click", async () => {
+    const makeThingMock = jest.spyOn(client, "mutate")
+    await userEvent.click(await screen.findByRole("button", { name: /Sup/i }))
+    expect(makeThingMock).toHaveBeenCalled()
   })
-});
+})
