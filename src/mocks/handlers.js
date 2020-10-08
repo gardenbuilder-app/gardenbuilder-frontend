@@ -67,7 +67,8 @@ export const handlers = [
             id: '1',
             email,
             password,
-          }
+          },
+          token: 'sometoken123'
         }
       })
     )

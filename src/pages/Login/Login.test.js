@@ -86,7 +86,7 @@ describe("<Login /> view", () => {
     const button = screen.getByRole("button", { name: "Sign Up" })
     await fireEvent.click(button)
     await waitFor(() => {
-      expect(mutationFire).toHaveBeenCalledTimes(4);
+      expect(mutationFire).toHaveBeenCalledTimes(2);
       expect(mockHistoryPush).toHaveBeenCalledTimes(2);
       expect(mockHistoryPush).toHaveBeenCalledWith('/gardens')
     });
@@ -116,7 +116,7 @@ describe("<Login /> view", () => {
     const button = await screen.findByRole("button", { name: "Sign In" })
     userEvent.click(button)
     await waitFor(() => {
-      expect(mutationFire).toHaveBeenCalledTimes(5);
+      expect(mutationFire).toHaveBeenCalledTimes(3);
     });
   })
 
@@ -144,7 +144,7 @@ describe("<Login /> view", () => {
       const button = await screen.findByRole("button", { name: "Sign In" })
       fireEvent.click(button)
       await waitFor(() => {
-        expect(mutationFire).toHaveBeenCalledTimes(6);
+        expect(mutationFire).toHaveBeenCalledTimes(4);
         expect(mockHistoryPush).toHaveBeenCalledTimes(4);
         expect(mockHistoryPush).toHaveBeenCalledWith('/gardens');
       });
