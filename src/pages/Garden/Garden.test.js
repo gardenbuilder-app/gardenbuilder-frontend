@@ -18,7 +18,7 @@ describe("<Garden /> view", () => {
   })
 
   it("renders its title", async () => {
-    expect(await screen.findByText(/You have 2 gardens/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Garden/i)).toBeInTheDocument();
   })
   // it("returns data after graphql query", async () => {})
 })

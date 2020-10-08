@@ -33,7 +33,6 @@ export function Login() {
         setToken(tokenAuth.token)
         saveCredentialsInCache(email, password)
         history.push("/gardens")
-        setIsMember(true)
       }
     },
   })
@@ -48,7 +47,6 @@ export function Login() {
         setToken(token)
         saveCredentialsInCache(email, password)
         history.push("/gardens")
-        setIsMember(true)
       } else {
         console.log("Token not returned from createUser mutation")
       }
