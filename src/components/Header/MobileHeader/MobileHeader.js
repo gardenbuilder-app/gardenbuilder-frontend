@@ -27,7 +27,7 @@ const Title = styled.h1`
 export const MobileHeader = function () {
 
   const location = useLocation()
-  const showLogout = location.pathname != "/login"
+  const showLogout = location.pathname !== "/login"
   let [menuVisible, setMenuVisible] = useState(false)
 
   const menuItems = [

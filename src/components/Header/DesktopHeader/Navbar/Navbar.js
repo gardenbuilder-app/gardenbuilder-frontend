@@ -29,7 +29,7 @@ text-decoration: none;
 export function Navbar() {
 
   const location = useLocation()
-  const showLogout = location.pathname != "/login"
+  const showLogout = location.pathname !== "/login"
 
   return (
     <Nav>
