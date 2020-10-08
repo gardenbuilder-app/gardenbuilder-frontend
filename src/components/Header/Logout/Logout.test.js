@@ -2,8 +2,19 @@ import React, { useState } from "react"
 import { render, fireEvent, waitFor, screen } from "@testing-library/react"
 import { Logout } from "./Logout"
 import { MemoryRouter } from "react-router-dom"
+import userEvent from "@testing-library/user-event"
 
-describe.only("<MobileHeader /> component", () => {
+const mockHistoryPush = jest.fn();
+
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useHistory: () => ({
+    push: mockHistoryPush,
+  })
+}))
+
+describe.only("<Logout /> component", () => {
   let container
   beforeEach(() => {
     container = render(
@@ -13,21 +24,24 @@ describe.only("<MobileHeader /> component", () => {
     )
   })
 
-  it("should render the words Log Out on the screen", () => {
+  it("should render properly", () => {
     const logoutText = container.getByText("Log Out")
     expect(logoutText).toBeInTheDocument()
   })
 
-  it("should erase the gardenbuilder-jwt-cookie on click", async () => {
-    // set token
-    document.cookie =
-      "gardenbuilder-jwt-token=abc123; expires=Thu, 18 Dec 2040 12:00:00 UTC"
-    console.log(document.cookie)
-    const logoutElement = container.getByText("Log Out")
-    fireEvent.click(logoutElement)
-    console.log(document.cookie)
-    // await waitFor(() => expect(getCookie("gardenbuilder-jwt-token")).toBe(undefined))
-    expect(document.cookie).toBe(true)
-    // expect(getCookie("gardenbuilder-jwt-token")).toBe(undefined))
-  })
+  it("navigates to login page", async () => {
+    await userEvent.click(await screen.findByText(/Log Out/i));
+    await waitFor(() => {
+      expect(mockHistoryPush).toHaveBeenCalled();
+    })
+  });
+
+  // it('clears user session', async () => {
+  //   const eraseToken = jest.fn();
+  //   const logout = await screen.findByText(/Log Out/i)
+  //   await fireEvent.click(logout);
+  //   await waitFor(() => {
+  //     expect(eraseToken).toHaveBeenCalled();
+  //   })
+  // })
 })

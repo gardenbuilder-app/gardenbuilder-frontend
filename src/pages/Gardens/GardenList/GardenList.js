@@ -13,7 +13,7 @@ const GardenListWrapper = styled.div`
 `
 
 export function GardenList() {
-  const { data } = useQuery(GET_USER_GARDENS)
+  const { data, loading, error } = useQuery(GET_USER_GARDENS)
 
   function getGardenElements(data) {
     return data.userGardens.map((garden, index) => {
@@ -36,6 +36,10 @@ export function GardenList() {
   }
 
   const gardens = data ? getGardenElements(data) : null
-
-  return <GardenListWrapper>{gardens}</GardenListWrapper>
+  if (loading) return <p>Loading...</p>
+  if (error) {
+    console.log(error)
+    return <p>{error.message}</p>
+  }
+  if (!loading && !error && data) return <GardenListWrapper>{gardens}</GardenListWrapper>
 }

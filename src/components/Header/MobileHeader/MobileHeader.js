@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { HamburgerButton } from "./HamburgerButton"
+import useUser from '../../../hooks/useUser';
 import { Logout } from "../Logout"
 import styled from "styled-components"
 
@@ -24,14 +25,9 @@ const Title = styled.h1`
 `
 
 export const MobileHeader = function () {
+
+  const me = useUser()
   let [menuVisible, setMenuVisible] = useState(false)
-
-  const menuItems = [
-    ...["Profile", "Gardens"].map((option, index) => <li key={index}>{option}</li>),
-    <Logout key="2" />,
-  ]
-
-  const menu = <Menu>{menuItems}</Menu>
 
   function toggleMenuVisibility() {
     setMenuVisible(!menuVisible)
@@ -41,8 +37,13 @@ export const MobileHeader = function () {
     <>
       <MobileHeaderStyle>
         <Title>GardenBuilder</Title>
-        <HamburgerButton toggleMenuVisibility={toggleMenuVisibility} />
-        {menuVisible && menu}
+        {me && <HamburgerButton toggleMenuVisibility={toggleMenuVisibility} />}
+        {menuVisible && (
+          <Menu>
+          <button>Profile</button>
+          <button>Gardens</button>
+          <Logout/>
+          </Menu>)}
       </MobileHeaderStyle>
     </>
   )

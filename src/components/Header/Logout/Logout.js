@@ -8,6 +8,8 @@ export function Logout() {
   function handleLogOut() {
     eraseToken() // expire cookie for jwt token
     history.push("/login")
+    window.location.reload();
   }
-  return <li onClick={handleLogOut}>Log Out</li>
+
+  return <div onClick={handleLogOut}>Log Out</div>
 }
