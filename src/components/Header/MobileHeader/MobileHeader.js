@@ -1,8 +1,10 @@
 import React, { useState } from "react"
+import { Link, useRouteMatch } from "react-router-dom"
+import useUser from "../../../hooks/useUser"
+import styled from "styled-components"
 import { HamburgerButton } from "./HamburgerButton"
 import useUser from 'hooks/useUser';
 import { Logout } from "../Logout"
-import styled from "styled-components"
 
 const MobileHeaderStyle = styled.div`
   align-content: center;
@@ -24,8 +26,12 @@ const Title = styled.h1`
   font-size: 1.75rem;
 `
 
-export const MobileHeader = function () {
+const StyledLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+`
 
+export const MobileHeader = function () {
   const me = useUser()
   let [menuVisible, setMenuVisible] = useState(false)
 
@@ -40,10 +46,17 @@ export const MobileHeader = function () {
         {me && <HamburgerButton toggleMenuVisibility={toggleMenuVisibility} />}
         {menuVisible && (
           <Menu>
-          <button>Profile</button>
-          <button>Gardens</button>
-          <Logout/>
-          </Menu>)}
+            <li>
+              <StyledLink to="/profile">Profile</StyledLink>
+            </li>
+            <li>
+              <StyledLink to="/gardens">Gardens</StyledLink>
+            </li>
+            <li>
+              <Logout />
+            </li>
+          </Menu>
+        )}
       </MobileHeaderStyle>
     </>
   )

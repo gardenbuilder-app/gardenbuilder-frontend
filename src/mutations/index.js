@@ -13,6 +13,9 @@ export const SIGNOUT_MUTATION = gql`
     deleteToken {
       deleted
     }
+    deleteRefreshToken {
+      deleted
+    }
   }
 `
 
