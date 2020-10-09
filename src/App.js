@@ -5,7 +5,7 @@ import apolloClient from "./ApolloClient"
 import { BrowserRouter, Redirect } from "react-router-dom"
 import { Layout } from "./components"
 import { Switch, Route } from "react-router-dom"
-import { Beds, Garden, Gardens, Login } from "./pages"
+import { Beds, Garden, Gardens, Login, Profile } from "./pages"
 import { getToken } from "./libs"
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/beds" component={Beds} />
               <Route exact path="/gardens" component={Gardens} />
+              <Route exact path="/profile" component={Profile} />
               <Route path="/garden" component={Garden} />
             </Switch>
           </Layout>
