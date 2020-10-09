@@ -1,10 +1,11 @@
 import React from "react"
-import { render, waitFor, screen } from "@testing-library/react"
+import { render, waitFor, screen, fireEvent } from "@testing-library/react"
 import { MemoryRouter } from "react-router-dom"
 import { ApolloProvider } from "@apollo/client"
 import client from 'ApolloClient'
 import userEvent from "@testing-library/user-event"
 import { Logout } from "./Logout"
+import * as libs from 'libs'
 
 const mockHistoryPush = jest.fn()
 
@@ -14,6 +15,11 @@ jest.mock("react-router-dom", () => ({
     push: mockHistoryPush,
   }),
 }))
+
+jest.mock('libs', () => ({
+  eraseToken: jest.fn()
+}))
+
 
 describe.only("<Logout /> component", () => {
   let container
@@ -49,12 +55,12 @@ describe.only("<Logout /> component", () => {
     }
   })
 
-  // it('clears user session', async () => {
-  //   const eraseToken = jest.fn();
-  //   const logout = await screen.findByText(/Log Out/i)
-  //   await fireEvent.click(logout);
-  //   await waitFor(() => {
-  //     expect(eraseToken).toHaveBeenCalled();
-  //   })
-  // })
+  it('clears user session', async () => {
+    const mockEraseToken = libs.eraseToken
+    const logout = await screen.findByText(/Log Out/i)
+    await fireEvent.click(logout);
+    await waitFor(() => {
+      expect(mockEraseToken).toHaveBeenCalled();
+    })
+  })
 })
