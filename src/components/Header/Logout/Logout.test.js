@@ -4,14 +4,13 @@ import { Logout } from "./Logout"
 import { MemoryRouter } from "react-router-dom"
 import userEvent from "@testing-library/user-event"
 
-const mockHistoryPush = jest.fn();
-
+const mockHistoryPush = jest.fn()
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useHistory: () => ({
     push: mockHistoryPush,
-  })
+  }),
 }))
 
 describe.only("<Logout /> component", () => {
@@ -30,11 +29,21 @@ describe.only("<Logout /> component", () => {
   })
 
   it("navigates to login page", async () => {
-    await userEvent.click(await screen.findByText(/Log Out/i));
+    suppressJSDomNavigateWarning()
+    await userEvent.click(await screen.findByText(/Log Out/i))
     await waitFor(() => {
-      expect(mockHistoryPush).toHaveBeenCalled();
+      expect(mockHistoryPush).toHaveBeenCalled()
     })
-  });
+
+    /**
+     * Suppresses error warning that JSDom doesn't
+     * include the react-router navigate method
+     */
+    function suppressJSDomNavigateWarning() {
+      delete window.location
+      window.location = { reload: mockHistoryPush }
+    }
+  })
 
   // it('clears user session', async () => {
   //   const eraseToken = jest.fn();

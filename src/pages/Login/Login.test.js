@@ -113,19 +113,8 @@ describe("<Login /> view", () => {
     const button = await screen.findByRole("button", { name: "Sign In" })
     userEvent.click(button)
     await waitFor(() => {
-<<<<<<< HEAD
-      expect(mutationFire).toHaveBeenCalledTimes(5)
+       expect(mutationFire).toHaveBeenCalledTimes(3);
     })
-    // wait for ui change
-    await waitFor(
-      () =>
-        expect(screen.getByRole("heading", { name: "Sign In" })).toBeInTheDocument()
-      // expect(screen.getByRole("heading", { name: "Gardens" })).toBeInTheDocument()
-    )
-=======
-      expect(mutationFire).toHaveBeenCalledTimes(3);
-    });
->>>>>>> c552a0f71f102a277e558b9c3734fe21bbcc67a6
   })
 
   it("redirects to the gardens page after signin", async () => {
@@ -160,10 +149,6 @@ describe("<Login /> view", () => {
     await waitFor(
       () =>
         expect(screen.getByRole("heading", { name: "Sign In" })).toBeInTheDocument()
-<<<<<<< HEAD
-      // expect(screen.getByRole("heading", { name: "Gardens" })).toBeInTheDocument()
-    )
-=======
       )
   
       //set inputs
@@ -184,6 +169,5 @@ describe("<Login /> view", () => {
         expect(mockHistoryPush).toHaveBeenCalledTimes(4);
         expect(mockHistoryPush).toHaveBeenCalledWith('/gardens');
       });
->>>>>>> c552a0f71f102a277e558b9c3734fe21bbcc67a6
   })
 })
