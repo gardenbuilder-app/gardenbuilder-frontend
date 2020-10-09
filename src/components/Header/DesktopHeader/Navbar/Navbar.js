@@ -29,15 +29,14 @@ const NavItem = styled(Link)`
 `
 
 export function Navbar() {
-  const location = useLocation()
-
   return (
     <Nav>
+      <NavItem to="/gardens">Gardens</NavItem>
       <NavItem to="/beds">Beds</NavItem>
       <NavItem to="/sections">Sections</NavItem>
       <NavItem to="/plants">Plants</NavItem>
       <NavItem to="/profile">Profile</NavItem>
-      <NavItem>
+      <NavItem to="/login">
         <Logout />
       </NavItem>
     </Nav>
