@@ -1,14 +1,22 @@
 import React from "react"
 import styled from "styled-components"
+import useUser from "../../../hooks/useUser"
 
 const ProfileIconWrapper = styled.div`
-  height: 50px;
-  width: 50px;
-  background-color: #bbb;
+  align-items: center;
+  background-color: white;
   border-radius: 50%;
-  display: inline-block;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  width: 50px;
 `
 
 export const ProfileIcon = () => {
-  return <ProfileIconWrapper>DT</ProfileIconWrapper>
+  const loggedInUser = useUser()
+  return (
+    <ProfileIconWrapper>
+      {loggedInUser.email.substring(0, 1).toUpperCase()}
+    </ProfileIconWrapper>
+  )
 }
