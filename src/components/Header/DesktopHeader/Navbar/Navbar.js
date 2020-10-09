@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 import { Logout } from "../../Logout"
 import { useLocation } from "react-router-dom"
 
@@ -15,8 +16,9 @@ const Nav = styled.nav`
  * lower opacity if hover
  * increase font size if active
  */
-const NavItem = styled.li`
+const NavItem = styled(Link)`
   cursor: pointer;
+  color: black;
   text-decoration: none;
   &:hover {
     opacity: 0.7;
