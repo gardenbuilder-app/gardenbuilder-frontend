@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { BrowserRouter, Link, useRouteMatch } from "react-router-dom"
+import { BrowserRouter, Link } from "react-router-dom"
 import styled from "styled-components"
 import { HamburgerButton } from "./HamburgerButton"
 import useUser from 'hooks/useUser';
@@ -42,7 +42,7 @@ export const MobileHeader = function () {
     <>
       <MobileHeaderStyle>
         <Title>GardenBuilder</Title>
-        <HamburgerButton toggleMenuVisibility={toggleMenuVisibility} />
+        {me && <HamburgerButton toggleMenuVisibility={toggleMenuVisibility} />}
         {menuVisible && (
           <Menu>
             <BrowserRouter>
