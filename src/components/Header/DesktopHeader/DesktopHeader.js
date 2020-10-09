@@ -5,12 +5,12 @@ import useUser from "../../../hooks/useUser"
 
 const Title = styled.h1``
 
-const ProfileIconWrapper = styled.span`
-  display: inline-block;
-  position: absolute;
-  right: 2rem;
-  top: 30px;
-`
+// const ProfileIconWrapper = styled.span`
+//   display: inline-block;
+//   position: absolute;
+//   right: 2rem;
+//   top: 30px;
+// `
 
 export const DesktopHeader = function () {
   const loggedInUser = useUser()
