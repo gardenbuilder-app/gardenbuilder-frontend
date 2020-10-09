@@ -160,10 +160,6 @@ describe("<Login /> view", () => {
     await waitFor(
       () =>
         expect(screen.getByRole("heading", { name: "Sign In" })).toBeInTheDocument()
-<<<<<<< HEAD
-      // expect(screen.getByRole("heading", { name: "Gardens" })).toBeInTheDocument()
-    )
-=======
       )
   
       //set inputs
@@ -184,6 +180,5 @@ describe("<Login /> view", () => {
         expect(mockHistoryPush).toHaveBeenCalledTimes(4);
         expect(mockHistoryPush).toHaveBeenCalledWith('/gardens');
       });
->>>>>>> c552a0f71f102a277e558b9c3734fe21bbcc67a6
   })
 })
