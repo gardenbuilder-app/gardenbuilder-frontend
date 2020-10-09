@@ -1,15 +1,24 @@
 import React from "react"
+import styled from "styled-components"
 import { Navbar } from "./Navbar"
-import Profile from "./Profile"
-import useUser from 'hooks/useUser';
+import useUser from "../../../hooks/useUser"
+
+const Title = styled.h1``
+
+const ProfileIconWrapper = styled.span`
+  display: inline-block;
+  position: absolute;
+  right: 2rem;
+  top: 30px;
+`
 
 export const DesktopHeader = function () {
-  const me = useUser()
+  const loggedInUser = useUser()
+
   return (
     <>
-      <h1>GardenBuilder</h1>
-      {me && <Profile />}
-      {me && <Navbar />}
+      <Title>GardenBuilder</Title>
+      {loggedInUser && <Navbar />}
     </>
   )
 }

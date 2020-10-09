@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 import { Logout } from "../../Logout"
 
 const Nav = styled.nav`
@@ -14,8 +15,9 @@ const Nav = styled.nav`
  * lower opacity if hover
  * increase font size if active
  */
-const NavItem = styled.li`
+const NavItem = styled(Link)`
   cursor: pointer;
+  color: black;
   text-decoration: none;
   &:hover {
     opacity: 0.7;
@@ -28,10 +30,12 @@ const NavItem = styled.li`
 export function Navbar() {
   return (
     <Nav>
+      <NavItem to="/gardens">Gardens</NavItem>
       <NavItem to="/beds">Beds</NavItem>
       <NavItem to="/sections">Sections</NavItem>
       <NavItem to="/plants">Plants</NavItem>
-      <NavItem>
+      <NavItem to="/profile">Profile</NavItem>
+      <NavItem to="/login">
         <Logout />
       </NavItem>
     </Nav>
