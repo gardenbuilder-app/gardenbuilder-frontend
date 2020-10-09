@@ -1,7 +1,7 @@
 import React from "react"
 import { render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
 import { ApolloProvider } from "@apollo/client"
-import client from '../../ApolloClient';
+import client from 'ApolloClient';
 import { Gardens } from "./Gardens"
 
 describe("<Gardens /> view", () => {

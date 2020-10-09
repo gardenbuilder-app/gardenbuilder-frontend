@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { colors } from '../../styles/global'
+import { colors } from 'styles/global'
 import { CloseModalButton } from './CloseModalButton'
 
 const showModalAnimation = keyframes`

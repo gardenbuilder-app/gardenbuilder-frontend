@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { colors } from '../../styles/global'
+import { colors } from 'styles/global'
 import { FaTimes } from 'react-icons/fa'
 
 /**

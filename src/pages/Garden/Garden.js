@@ -1,6 +1,6 @@
 import React from "react"
 import { useQuery } from '@apollo/client';
-import { GET_USER_GARDENS} from '../../queries/queries'
+import { GET_USER_GARDENS} from 'queries'
 import { BedList } from "./BedList"
 
 export function Garden() {

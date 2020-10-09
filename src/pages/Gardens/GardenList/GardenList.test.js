@@ -2,7 +2,7 @@ import React from "react"
 import { render, screen } from "@testing-library/react"
 import { GardenList } from "./GardenList"
 import { ApolloProvider } from "@apollo/client"
-import client from '../../../ApolloClient'
+import client from 'ApolloClient'
 
 describe("<GardenList /> component", () => {
   beforeEach(() => 

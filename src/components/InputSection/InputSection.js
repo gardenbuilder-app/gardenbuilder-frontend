@@ -1,7 +1,7 @@
 import React from "react"
 import { Input } from "./Input/Input"
 import styled from "styled-components"
-import { sentenceCase } from "../../libs"
+import { sentenceCase } from "libs"
 
 const SectionWrapper = styled.div`
   align-items: flex-start;

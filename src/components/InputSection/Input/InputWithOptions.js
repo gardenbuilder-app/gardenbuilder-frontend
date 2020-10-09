@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { colors } from "../../../styles/global"
+import { colors } from "styles/global"
 import { FaAngleDown, FaAngleUp } from "react-icons/fa"
 
 const StyledInput = styled.input`

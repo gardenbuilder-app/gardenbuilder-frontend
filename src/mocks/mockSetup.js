@@ -1,4 +1,4 @@
-import apolloClient from '../index';
+import apolloClient from 'ApolloClient';
 import { ApolloProvider } from '@apollo/client';
 import { render } from '@testing-library/react';
 

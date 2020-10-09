@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { HamburgerButton } from "./HamburgerButton"
-import useUser from '../../../hooks/useUser';
+import useUser from 'hooks/useUser';
 import { Logout } from "../Logout"
 import styled from "styled-components"
 

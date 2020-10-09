@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { render, fireEvent, waitFor, screen } from "@testing-library/react"
+import React from "react"
+import { render, waitFor, screen } from "@testing-library/react"
 import { Logout } from "./Logout"
 import { MemoryRouter } from "react-router-dom"
 import userEvent from "@testing-library/user-event"
