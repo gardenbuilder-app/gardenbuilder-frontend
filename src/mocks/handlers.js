@@ -33,11 +33,18 @@ export const handlers = [
         userGardens: [
           {
             id: "1",
-            gardenName: "Garden One",
+            name: "Garden One",
+            beds: [],
+            isActive: false,
           },
           {
             id: "2",
-            gardenName: "Garden Two",
+            name: "Garden Two",
+            beds: [
+              {id: 1},
+              {id: 2}
+            ],
+            isActive: true,
           }
         ]
       })

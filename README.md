@@ -49,9 +49,11 @@ We would love help coming up with wireframes and designs for the pages in this a
 
 There are a number of [issues](https://github.com/capndave/gardenbuilder-frontend/issues) that we would love your help with. Many of them are fairly easy and are tagged as `good first issue`. Most are things that I (capndave), just haven't gotten around to yet. Feel free to fork, work on, and submit a pull request for anything you see an issue for.
 
-If the issue you want to work on is a spelling or grammar mistake, or a documentation issue, feel free to make a pull request with your changes (without submitting an issue first)
+For more detail, please see our [contribution guidelines](https://github.com/capndave/gardenbuilder-frontend/blob/master/CONTRIBUTING.md).
 
-For all other changes, please submit an issue before submitting a pull request! Please reference a given issue in cases where a related pull request is made.
+### Code of Conduct
+
+Please remember to read and adhere our [code of conduct](https://github.com/capndave/gardenbuilder-frontend/blob/master/CODE_OF_CONDUCT.md) - we think it's very important to foster open, respectful community amongst developers!
 
 ### Further Involvement
 
