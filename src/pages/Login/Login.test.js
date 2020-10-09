@@ -31,8 +31,8 @@ describe("<Login /> view", () => {
 
   it("should include sign in and sign up text on initial screen", async () => {
     await waitFor(() => {
-      expect(screen.getAllByText(/Sign Up/i).length).toBe(2)
-      expect(screen.getByText(/Sign In/i)).toBeInTheDocument()
+      expect(screen.getAllByText(/Sign In/i).length).toBe(2)
+      expect(screen.getByText(/Sign Up/i)).toBeInTheDocument()
     })
   })
 
@@ -46,15 +46,15 @@ describe("<Login /> view", () => {
     })
   })
 
-  it("changes to sign in UI after clicking on sign in link", async () => {
-    const link = screen.getByText("Sign In")
+  it("changes to sign up UI after clicking on sign in link", async () => {
+    const link = screen.getByText("Sign Up")
     userEvent.click(link)
     expect(
-      await screen.findByRole("heading", { name: "Sign In" })
+      await screen.findByRole("heading", { name: "Sign Up" })
     ).toBeInTheDocument()
   })
 
-  it("calls SIGNUP_MUTATION without error", async () => {
+  it("calls SIGNIN_MUTATION without error", async () => {
     ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
       return screen.getAllByRole("textbox", { name: name })[0]
     })
@@ -64,12 +64,12 @@ describe("<Login /> view", () => {
 
     // fire button click and expect mutation fire on client
     const mutationFire = jest.spyOn(client, "mutate")
-    const button = screen.getByRole("button", { name: "Sign Up" })
+    const button = screen.getByRole("button", { name: "Sign In" })
     userEvent.click(button)
     expect(mutationFire).toHaveBeenCalled()
   })
 
-  it("reroutes to gardens page after signing up", async () => {
+  it("reroutes to gardens page after signing in", async () => {
     //set inputs
     ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
       return screen.getAllByRole("textbox", { name: name })[0]
@@ -80,7 +80,7 @@ describe("<Login /> view", () => {
 
     // fire button click and expect useHistory fire
     const mutationFire = jest.spyOn(client, "mutate")
-    const button = screen.getByRole("button", { name: "Sign Up" })
+    const button = screen.getByRole("button", { name: "Sign In" })
     await fireEvent.click(button)
     await waitFor(() => {
       expect(mutationFire).toHaveBeenCalledTimes(2)
@@ -89,14 +89,14 @@ describe("<Login /> view", () => {
     })
   })
 
-  it("calls SIGNIN_MUTATION without error", async () => {
+  it("calls SIGNUP_MUTATION without error", async () => {
     // toggle sign in ui
-    const link = screen.getAllByText("Sign In")[0]
+    const link = screen.getAllByText("Sign Up")[0]
     fireEvent.click(link)
 
     // wait for ui change
     await waitFor(() =>
-      expect(screen.getByRole("heading", { name: "Sign In" })).toBeInTheDocument()
+      expect(screen.getByRole("heading", { name: "Sign Up" })).toBeInTheDocument()
     )
 
     //set inputs
@@ -110,22 +110,22 @@ describe("<Login /> view", () => {
 
     // click button
     const mutationFire = jest.spyOn(client, "mutate")
-    const button = await screen.findByRole("button", { name: "Sign In" })
+    const button = await screen.findByRole("button", { name: "Sign Up" })
     userEvent.click(button)
     await waitFor(() => {
       expect(mutationFire).toHaveBeenCalledTimes(3)
     })
   })
 
-  it("redirects to the gardens page after signin", async () => {
+  it("redirects to the gardens page after signup", async () => {
     // toggle sign in ui
-    const link = screen.getAllByText("Sign In")[0]
+    const link = screen.getAllByText("Sign Up")[0]
     fireEvent.click(link)
 
     // wait for ui change
     await waitFor(
       () =>
-        expect(screen.getByRole("heading", { name: "Sign In" })).toBeInTheDocument()
+        expect(screen.getByRole("heading", { name: "Sign Up" })).toBeInTheDocument()
       )
   
       //set inputs
@@ -139,7 +139,7 @@ describe("<Login /> view", () => {
   
       // click button
       const mutationFire = jest.spyOn(client, "mutate")
-      const button = await screen.findByRole("button", { name: "Sign In" })
+      const button = await screen.findByRole("button", { name: "Sign Up" })
       fireEvent.click(button)
       await waitFor(() => {
         expect(mutationFire).toHaveBeenCalledTimes(4);

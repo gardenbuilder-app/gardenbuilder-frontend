@@ -22,7 +22,7 @@ export function Login() {
   const [email, setEmail] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const [password, setPassword] = useState("")
-  const [isMember, setIsMember] = useState(false)
+  const [isMember, setIsMember] = useState(true)
   const history = useHistory()
   const [login, loginResults] = useMutation(SIGNIN_MUTATION, {
     onError(err) {
