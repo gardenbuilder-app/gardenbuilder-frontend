@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-import { Button, Form, InputSection } from "../../components"
+import { Button, Form, InputSection } from "components"
 import { useApolloClient, useMutation, gql } from "@apollo/client"
-import { colors } from "../../styles/global"
-import { setToken } from "../../libs"
+import { colors } from "styles/global"
+import { setToken } from "libs"
 import { useHistory } from "react-router-dom"
-import { SIGNIN_MUTATION, SIGNUP_MUTATION } from "../../mutations/mutations"
+import { SIGNIN_MUTATION, SIGNUP_MUTATION } from "mutations"
 
 const StyledSpan = styled.span`
   text-decoration: underline;

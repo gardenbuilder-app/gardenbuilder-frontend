@@ -1,13 +1,13 @@
 import React from "react"
 import { useHistory } from "react-router-dom"
-import { eraseToken } from "../../../libs"
+import { eraseToken } from 'libs'
 
 export function Logout() {
   const history = useHistory()
 
-  function handleLogOut() {
-    eraseToken() // expire cookie for jwt token
+  async function handleLogOut() {
     history.push("/login")
+    eraseToken()
     window.location.reload();
   }
 

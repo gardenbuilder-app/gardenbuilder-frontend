@@ -1,6 +1,6 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
-import { getToken } from "./libs"
+import { getToken } from "libs"
 
 /**
  * 

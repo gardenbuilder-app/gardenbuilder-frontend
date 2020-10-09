@@ -42,9 +42,9 @@ describe('<Component />', () => {
 });
 ```
 
-If you modify an existing query or mutation, or create a new one, please mock it in 'src/mocks/handlers' representing the most reusable use-case. 
+If you modify an existing query or mutation, or create a new one, please edit or create the respective mock in 'src/mocks/handlers'. Try to represent a highly reusable use-case, as this will be the default mock in all tests. 
 
-You can run one-off instances for edge cases by importing this server and wrapping the desired mock in 'server.use()' and appending 'res()' to 'res.once()', like so:
+You can run one-off instances for exceptions and edge cases within an individual test by importing the server and wrapping the desired mock in 'server.use()' and appending 'res()' with 'res.once()', like so:
 
 ```javascript
 import { server } from 'src/mocks/server';

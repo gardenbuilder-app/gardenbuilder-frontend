@@ -3,7 +3,7 @@ import { MobileHeader } from "./MobileHeader"
 import { DesktopHeader } from "./DesktopHeader"
 import { useWindowSize } from "../../hooks"
 import styled from "styled-components"
-import { colors } from "../../styles/global"
+import { colors } from "styles/global"
 
 const HeaderStyleProvider = styled.header`
   padding: 1rem;
