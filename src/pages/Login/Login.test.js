@@ -83,10 +83,10 @@ describe("<Login /> view", () => {
     const button = screen.getByRole("button", { name: "Sign Up" })
     await fireEvent.click(button)
     await waitFor(() => {
-      expect(mutationFire).toHaveBeenCalledTimes(2);
-      expect(mockHistoryPush).toHaveBeenCalledTimes(2);
-      expect(mockHistoryPush).toHaveBeenCalledWith('/gardens')
-    });
+      expect(mutationFire).toHaveBeenCalledTimes(2)
+      expect(mockHistoryPush).toHaveBeenCalledTimes(2)
+      expect(mockHistoryPush).toHaveBeenCalledWith("/gardens")
+    })
   })
 
   it("calls SIGNIN_MUTATION without error", async () => {
@@ -113,19 +113,8 @@ describe("<Login /> view", () => {
     const button = await screen.findByRole("button", { name: "Sign In" })
     userEvent.click(button)
     await waitFor(() => {
-<<<<<<< HEAD
-      expect(mutationFire).toHaveBeenCalledTimes(5)
+      expect(mutationFire).toHaveBeenCalledTimes(3)
     })
-    // wait for ui change
-    await waitFor(
-      () =>
-        expect(screen.getByRole("heading", { name: "Sign In" })).toBeInTheDocument()
-      // expect(screen.getByRole("heading", { name: "Gardens" })).toBeInTheDocument()
-    )
-=======
-      expect(mutationFire).toHaveBeenCalledTimes(3);
-    });
->>>>>>> c552a0f71f102a277e558b9c3734fe21bbcc67a6
   })
 
   it("redirects to the gardens page after signin", async () => {
@@ -152,33 +141,9 @@ describe("<Login /> view", () => {
     const button = await screen.findByRole("button", { name: "Sign In" })
     fireEvent.click(button)
     await waitFor(() => {
-      expect(mutationFire).toHaveBeenCalledTimes(6)
+      expect(mutationFire).toHaveBeenCalledTimes(4)
       expect(mockHistoryPush).toHaveBeenCalledTimes(4)
       expect(mockHistoryPush).toHaveBeenCalledWith("/gardens")
     })
-    // wait for ui change
-    await waitFor(
-      () =>
-        expect(screen.getByRole("heading", { name: "Sign In" })).toBeInTheDocument()
-      )
-  
-      //set inputs
-      ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
-        return screen.getAllByRole("textbox", { name: name })[0]
-      })
-  
-      // update email and password
-      userEvent.type(emailInput, "test@test.com")
-      userEvent.type(passwordInput, "testing!123")
-  
-      // click button
-      const mutationFire = jest.spyOn(client, "mutate")
-      const button = await screen.findByRole("button", { name: "Sign In" })
-      fireEvent.click(button)
-      await waitFor(() => {
-        expect(mutationFire).toHaveBeenCalledTimes(4);
-        expect(mockHistoryPush).toHaveBeenCalledTimes(4);
-        expect(mockHistoryPush).toHaveBeenCalledWith('/gardens');
-      });
   })
 })
