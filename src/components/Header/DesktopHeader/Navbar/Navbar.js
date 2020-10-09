@@ -34,6 +34,7 @@ export function Navbar() {
       <NavItem to="/beds">Beds</NavItem>
       <NavItem to="/sections">Sections</NavItem>
       <NavItem to="/plants">Plants</NavItem>
+      <NavItem to="/profile">Profile</NavItem>
       <NavItem>
         <Logout />
       </NavItem>
