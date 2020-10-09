@@ -9,8 +9,6 @@ const ProfileIconWrapper = styled.div`
   display: inline-block;
 `
 
-const ProfileIcon = () => {
+export const ProfileIcon = () => {
   return <ProfileIconWrapper>DT</ProfileIconWrapper>
 }
-
-export ProfileIcon

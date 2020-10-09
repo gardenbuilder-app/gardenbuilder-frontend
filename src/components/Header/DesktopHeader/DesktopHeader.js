@@ -4,12 +4,13 @@ import { ProfileIcon } from "./ProfileIcon"
 import useUser from "../../../hooks/useUser"
 
 export const DesktopHeader = function () {
-  const me = useUser()
+  const userLoggedIn = useUser()
+  console.log(userLoggedIn)
   return (
     <>
       <h1>GardenBuilder</h1>
-      {me && <Profile />}
-      {me && <Navbar />}
+      {userLoggedIn && <ProfileIcon />}
+      {userLoggedIn && <Navbar />}
     </>
   )
 }
