@@ -1,7 +1,7 @@
 import React from "react"
 import { Navbar } from "./Navbar"
-import Profile from "./Profile"
-import useUser from '../../../hooks/useUser';
+import { ProfileIcon } from "./ProfileIcon"
+import useUser from "../../../hooks/useUser"
 
 export const DesktopHeader = function () {
   const me = useUser()

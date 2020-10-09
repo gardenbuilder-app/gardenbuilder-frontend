@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-const ProfileStyle = styled.div`
+const ProfileIconWrapper = styled.div`
   height: 50px;
   width: 50px;
   background-color: #bbb;
@@ -9,8 +9,8 @@ const ProfileStyle = styled.div`
   display: inline-block;
 `
 
-const Profile = () => {
-  return <ProfileStyle>DT</ProfileStyle>
+const ProfileIcon = () => {
+  return <ProfileIconWrapper>DT</ProfileIconWrapper>
 }
 
-export default Profile
+export ProfileIcon
