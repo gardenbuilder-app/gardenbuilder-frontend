@@ -1,8 +1,8 @@
 import React, { useState } from "react"
-import { Link, useRouteMatch } from "react-router-dom"
-import useUser from "../../../hooks/useUser"
+import { BrowserRouter, Link, useRouteMatch } from "react-router-dom"
 import styled from "styled-components"
 import { HamburgerButton } from "./HamburgerButton"
+import useUser from 'hooks/useUser';
 import { Logout } from "../Logout"
 
 const MobileHeaderStyle = styled.div`
@@ -42,9 +42,10 @@ export const MobileHeader = function () {
     <>
       <MobileHeaderStyle>
         <Title>GardenBuilder</Title>
-        {me && <HamburgerButton toggleMenuVisibility={toggleMenuVisibility} />}
+        <HamburgerButton toggleMenuVisibility={toggleMenuVisibility} />
         {menuVisible && (
           <Menu>
+            <BrowserRouter>
             <li>
               <StyledLink to="/profile">Profile</StyledLink>
             </li>
@@ -54,6 +55,7 @@ export const MobileHeader = function () {
             <li>
               <Logout />
             </li>
+            </BrowserRouter>
           </Menu>
         )}
       </MobileHeaderStyle>

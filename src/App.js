@@ -1,9 +1,9 @@
-import React from "react"
-import "./index.css"
+import React from 'react';
+import "index.css"
 import { ApolloProvider } from "@apollo/client"
-import apolloClient from "./ApolloClient"
+import apolloClient from 'ApolloClient'
 import { BrowserRouter, Redirect } from "react-router-dom"
-import { Layout } from "./components"
+import { Layout } from "components"
 import { Switch, Route } from "react-router-dom"
 import { Beds, Garden, Gardens, Login, Profile } from "./pages"
 import { getToken } from "./libs"

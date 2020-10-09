@@ -1,10 +1,10 @@
 import React from "react"
 import { render, screen, waitForElementToBeRemoved } from "@testing-library/react"
 import { ApolloProvider } from "@apollo/client"
-import client from "../../ApolloClient"
+import client from "ApolloClient"
 import userEvent from "@testing-library/user-event"
 import MockComponent from "./MockComponent"
-import { server } from "../../mocks/server"
+import { server } from "mocks/server"
 
 beforeEach(() => server.listen())
 afterAll(() => server.close())

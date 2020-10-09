@@ -1,8 +1,8 @@
 import React from "react"
-import { render, screen, waitFor } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { ApolloProvider } from "@apollo/client"
 import { Garden } from "./Garden"
-import client from '../../ApolloClient';
+import client from 'ApolloClient';
 
 describe("<Garden /> view", () => {
   /**

@@ -3,8 +3,8 @@ import styled from "styled-components"
 import { useMutation, gql } from "@apollo/client"
 import { FaPlusCircle, FaChevronDown, FaChevronRight } from "react-icons/fa"
 import { IconContext } from "react-icons"
-import { Form, InputSection } from "../../../components"
-import { CREATE_GARDEN_MUTATION } from "../../../mutations/mutations"
+import { Form, InputSection } from "components"
+import { CREATE_GARDEN_MUTATION } from "mutations"
 import AddGardenStyles from "./AddGardenStyles"
 
 const ButtonContainer = styled.div`

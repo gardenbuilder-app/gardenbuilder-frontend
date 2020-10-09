@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { InputWithOptions } from "../components"
+import { InputWithOptions } from "components"
 
 const Form = styled.form``
 
