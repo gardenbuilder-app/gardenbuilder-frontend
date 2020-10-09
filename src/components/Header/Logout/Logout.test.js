@@ -1,8 +1,10 @@
 import React from "react"
 import { render, waitFor, screen } from "@testing-library/react"
-import { Logout } from "./Logout"
 import { MemoryRouter } from "react-router-dom"
+import { ApolloProvider } from "@apollo/client"
+import client from 'ApolloClient'
 import userEvent from "@testing-library/user-event"
+import { Logout } from "./Logout"
 
 const mockHistoryPush = jest.fn()
 
@@ -18,7 +20,9 @@ describe.only("<Logout /> component", () => {
   beforeEach(() => {
     container = render(
       <MemoryRouter>
-        <Logout />
+        <ApolloProvider client={client}>
+          <Logout />
+        </ApolloProvider>
       </MemoryRouter>
     )
   })
