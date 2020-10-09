@@ -31,7 +31,7 @@ const StyledLink = styled(Link)`
 `
 
 export const MobileHeader = function () {
-  const me = useUser()
+  const loggedInUser = useUser()
   let [menuVisible, setMenuVisible] = useState(false)
 
   function toggleMenuVisibility() {
@@ -42,7 +42,7 @@ export const MobileHeader = function () {
     <>
       <MobileHeaderStyle>
         <Title>GardenBuilder</Title>
-        {me && <HamburgerButton toggleMenuVisibility={toggleMenuVisibility} />}
+        {loggedInUser && <HamburgerButton toggleMenuVisibility={toggleMenuVisibility} />}
         {menuVisible && (
           <Menu>
             <BrowserRouter>

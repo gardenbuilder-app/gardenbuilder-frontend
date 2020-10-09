@@ -20,7 +20,6 @@ describe("The <DesktopHeader /> component", () => {
         <Navbar />
       </MemoryRouter>
     )
-    screen.debug()
     const menuItems = ["Profile", "Gardens", "Log Out"]
     for (const menuItem of menuItems) {
       const renderedItem = getByText(menuItem)
