@@ -105,7 +105,6 @@ export const handlers = [
 
   graphql.mutation("CREATE_GARDEN_MUTATION", (req, res, ctx) => {
     return res(
-      createGardenMutationCalled = true,
       ctx.data({
         createGarden: {
           id,
