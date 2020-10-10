@@ -6,7 +6,7 @@ import { BrowserRouter, Redirect } from "react-router-dom"
 import { Layout } from "components"
 import { Switch, Route } from "react-router-dom"
 import { Beds, Garden, Gardens, Login, Profile } from "./pages"
-import { getToken } from "./libs"
+import { getToken } from "libs"
 
 function App() {
   return (

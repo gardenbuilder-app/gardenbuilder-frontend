@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { BrowserRouter, Link } from "react-router-dom"
 import styled from "styled-components"
 import { HamburgerButton } from "./HamburgerButton"
-import useUser from 'hooks/useUser';
+import { useUser } from 'hooks';
 import { Logout } from "../Logout"
 
 const MobileHeaderStyle = styled.div`
