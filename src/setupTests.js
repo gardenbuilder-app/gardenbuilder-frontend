@@ -14,3 +14,9 @@ beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
 
 afterAll(() => server.close())
+
+module.exports = {
+  collectCoverage: true,
+  coverageDirectory: 'jest-coverage',
+  testEnvironment: 'node'
+}

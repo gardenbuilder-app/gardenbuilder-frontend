@@ -21,7 +21,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
-    "coverage": "react-scripts test --env=jest-environment-jsdom-sixteen --coverage",
+    "coverage": "react-scripts test --env=jest-environment-jsdom-sixteen --coverage --watchAll",
     "eject": "react-scripts eject",
     "lint": "eslint './src/**/*.{js,jsx}'",
     "lint:fix": "eslint './src/**/*.{js,jsx}' --fix"

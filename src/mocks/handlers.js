@@ -103,6 +103,17 @@ export const handlers = [
     }
   }),
 
+  graphql.mutation("CREATE_GARDEN_MUTATION", (req, res, ctx) => {
+    return res(
+      ctx.data({
+        createGarden: {
+          id,
+          name
+        }
+      })
+    )
+  }),
+
   graphql.mutation("MOCK_MUTATION", (req, res, ctx) => {
     const {id} = req.variables
     if (id === 'abc123') {

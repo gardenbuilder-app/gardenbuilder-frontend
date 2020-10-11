@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Navbar } from "./Navbar"
-import useUser from "../../../hooks/useUser"
+import { useUser } from "hooks"
 
 const Title = styled.h1``
 
