@@ -4,8 +4,7 @@ When contributing to this repository, please first discuss the change you wish t
 
 Please note we have a [code of conduct](https://github.com/capndave/gardenbuilder-frontend/blob/master/CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
 
-
-___
+---
 
 We would love some help, especially for [Hacktoberfest](https://hacktoberfest.digitalocean.com/)!
 
@@ -13,13 +12,27 @@ We would love some help, especially for [Hacktoberfest](https://hacktoberfest.di
 
 We would love help coming up with wireframes and designs for the pages in this app. If interested, please reach out to Dave at [`capndavet@gmail.com`](mailto:capndavet@gmail.com)
 
+We appreciate contributions to our code and documentation! We do ask that you observe the following guidelines:
+
+### Submitting Issues
+
+Please submit issues liberally. Since this application is under development you can feel free to add issues for any incomplete part of the application, as you imagine it would be implemented best.
+
+### Documentation Updates
+
+Minor changes to documentation can be submitted as a pull request without making an issue first.
+
 ### General Code Contributions
 
-There are a number of [issues](https://github.com/capndave/gardenbuilder-frontend/issues) that we would love your help with. Many of them are fairly easy and are tagged as `good first issue`. Most are things that I (capndave), just haven't gotten around to yet. Feel free to fork, work on, and submit a pull request for anything you see an issue for.
+There are a number of [issues](https://github.com/capndave/gardenbuilder-frontend/issues) that we would love your help with. Many of them are fairly easy and are tagged as `good first issue`. Most are things that I (capndave), just haven't gotten around to yet. Please:
 
-If the issue you want to work on is a spelling or grammar mistake, or a documentation issue, feel free to make a pull request with your changes (without submitting an issue first)
+- [x] Ensure that no one is working on the issue by checking that no one is listed in the Assignees field of a particular issue (generally on the upper-right hand corner of the issue screen)
+- [x] If no contributor is already assigned, express your interest in working on the issue by writing a comment for that issue
+- [x] Wait for a project maintainer to assign you the issue before you start working on it.
 
-For all other changes, please submit an issue before submitting a pull request! Please reference a given issue in cases where a related pull request is made.
+Generally speaking, the first person who expresses interest in working on an issue will be assigned. We may ignore pull requests from those who submit them without being assigned to work on the issue, particularly if someone else expressed interest in working on the issue before them.
+
+Once you are assigned to work on an issue, please fork, work on it, and submit a pull request that references the related issue.
 
 ### Testing Guidelines
 
@@ -42,18 +55,18 @@ describe('<Component />', () => {
 });
 ```
 
-If you modify an existing query or mutation, or create a new one, please edit or create the respective mock in 'src/mocks/handlers'. Try to represent a highly reusable use-case, as this will be the default mock in all tests. 
+If you modify an existing query or mutation, or create a new one, please edit or create the respective mock in 'src/mocks/handlers'. Try to represent a highly reusable use-case, as this will be the default mock in all tests.
 
 You can run one-off instances for exceptions and edge cases within an individual test by importing the server and wrapping the desired mock in 'server.use()' and appending 'res()' with 'res.once()', like so:
 
 ```javascript
-import { server } from 'src/mocks/server';
+import { server } from "src/mocks/server"
 
 server.use(
-  graphql.query('MOCK_QUERY', (req, res, ctx) => {
+  graphql.query("MOCK_QUERY", (req, res, ctx) => {
     return res.once(
       ctx.data({
-        ...data
+        ...data,
       })
     )
   })
