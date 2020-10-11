@@ -1,18 +1,14 @@
 # Contributing to Gardenbuilder-frontend
 
-When contributing to this repository, please first discuss the change you wish to make via [Issues](https://github.com/capndave/gardenbuilder-frontend/issues).
+We appreciate contributions to our code and documentation! We also welcome help from anyone participating in [Hacktoberfest](https://hacktoberfest.digitalocean.com/). We do ask that you observe the guidelines outlined in each section below.
 
 Please note we have a [code of conduct](https://github.com/capndave/gardenbuilder-frontend/blob/master/CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
 
 ---
 
-We would love some help, especially for [Hacktoberfest](https://hacktoberfest.digitalocean.com/)!
-
 ### Design Help
 
 We would love help coming up with wireframes and designs for the pages in this app. If interested, please reach out to Dave at [`capndavet@gmail.com`](mailto:capndavet@gmail.com)
-
-We appreciate contributions to our code and documentation! We do ask that you observe the following guidelines:
 
 ### Submitting Issues
 
@@ -24,7 +20,7 @@ Minor changes to documentation can be submitted as a pull request without making
 
 ### General Code Contributions
 
-There are a number of [issues](https://github.com/capndave/gardenbuilder-frontend/issues) that we would love your help with. Many of them are fairly easy and are tagged as `good first issue`. Most are things that I (capndave), just haven't gotten around to yet. Please:
+When contributing to this repository, please first discuss the change you wish to make in an [issue](https://github.com/capndave/gardenbuilder-frontend/issues). There are also a number of preexisting [issues](https://github.com/capndave/gardenbuilder-frontend/issues) that we would love your help with. Many of them are fairly easy and are tagged as `good first issue`. Most are things that we just haven't gotten around to yet. Before working on something, please:
 
 - [x] Ensure that no one is working on the issue by checking that no one is listed in the Assignees field of a particular issue (generally on the upper-right hand corner of the issue screen)
 - [x] If no contributor is already assigned, express your interest in working on the issue by writing a comment for that issue
