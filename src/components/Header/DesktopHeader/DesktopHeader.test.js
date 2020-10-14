@@ -26,7 +26,8 @@ describe("The <DesktopHeader /> component", () => {
     render(HeaderRender);
     expect(await screen.findByText(/GardenBuilder/i)).toBeInTheDocument()
     expect(await screen.findByRole("link", { name: /Gardens/i })).toBeInTheDocument()
-  })
+  });
+  
   it("does not render the nav with no signed in user", async () => {
     server.use(
       graphql.query("CURRENT_USER_QUERY", (req, res, ctx) => {
