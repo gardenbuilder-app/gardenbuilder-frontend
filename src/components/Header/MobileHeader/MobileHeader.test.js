@@ -7,23 +7,29 @@ import client from 'ApolloClient'
 import { MemoryRouter } from "react-router-dom"
 
 describe("<MobileHeader /> component", () => {
-  beforeEach(() => {
+  function renderMobileHeader() {
     render(
       <MemoryRouter>
-      <ApolloProvider client={client}>
-        <MobileHeader />
-      </ApolloProvider>
-      </MemoryRouter>
+        <ApolloProvider client={client}>
+          <MobileHeader />
+        </ApolloProvider>
+        </MemoryRouter>
     )
-  })
+  }
 
   it('renders properly', async () => {
+    renderMobileHeader()
     expect(await screen.findByRole('heading', {name: /GardenBuilder/i})).toBeInTheDocument();
+  })
+  
+  it('renders the hamburger button if user logged in', async () => {
+    renderMobileHeader()
     expect(await screen.findByLabelText(/hamburger menu/i)).toBeInTheDocument();
   })
   
 
   it("should show Profile, Gardens, and Log Out in the menu after clicking the hamburger button", async () => {
+    renderMobileHeader();
     const button = await screen.findByLabelText(/hamburger menu/i)
     await userEvent.click(button)
     const menuItems = ["Profile", "Gardens", "Log Out"]

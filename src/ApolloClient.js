@@ -34,23 +34,28 @@ function determineEndpoint(env) {
   if (env === "test") return "http://localhost:3000/grapql"
 }
 
+//Switches fetchPolicy based on node environment
+function determineFetchPolicy(env) {
+  if (env === "test") return "no-cache"
+  else return "cache-first"
+}
+
 const httpLink = createHttpLink({
   uri: determineEndpoint(process.env.NODE_ENV),
 })
 
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
-  fetch: (...args) => fetch(...args),
   defaultOptions: {
     mutate: {
       errorPolicy: "all",
     },
-    //Disables caching on tests to allow tests to run properly
+    //Disables caching on tests to allow mocks to run properly
     watchQuery: {
-      fetchPolicy: process.env.NODE_ENV === "test" ? "no-cache" : "cache-first",
+      fetchPolicy: determineFetchPolicy(process.env.NODE_ENV)
     },
     query: {
-      fetchPolicy: process.env.NODE_ENV === "test" ? "no-cache" : "cache-first",
+      fetchPolicy: determineFetchPolicy(process.env.NODE_ENV)
     },
   },
   link: authLink.concat(httpLink),
