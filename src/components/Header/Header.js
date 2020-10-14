@@ -1,7 +1,7 @@
 import React from "react"
 import { MobileHeader } from "./MobileHeader"
 import { DesktopHeader } from "./DesktopHeader"
-import { useWindowSize } from "../../hooks"
+import { useWindowSize } from "hooks"
 import styled from "styled-components"
 import { colors } from "styles/global"
 

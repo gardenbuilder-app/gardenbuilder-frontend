@@ -18,6 +18,7 @@ export const DesktopHeader = function () {
   return (
     <>
       <Title>GardenBuilder</Title>
+      {loggedInUser && <p>{loggedInUser.id}</p>}
       {loggedInUser && <Navbar />}
     </>
   )

@@ -43,6 +43,7 @@ describe.only("<Logout /> component", () => {
     await userEvent.click(await screen.findByText(/Log Out/i))
     await waitFor(() => {
       expect(mockHistoryPush).toHaveBeenCalled()
+      expect(mockHistoryPush).toHaveBeenCalledWith("/login")
     })
 
     /**
