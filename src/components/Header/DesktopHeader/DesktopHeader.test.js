@@ -30,7 +30,7 @@ describe("The <DesktopHeader /> component", () => {
   it("does not render the nav with no signed in user", async () => {
     server.use(
       graphql.query("CURRENT_USER_QUERY", (req, res, ctx) => {
-        return res(null)
+        return res(null) 
       })
     )
     render(HeaderRender)

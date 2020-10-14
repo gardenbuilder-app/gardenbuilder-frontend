@@ -42,6 +42,7 @@ export const MobileHeader = function () {
     <>
       <MobileHeaderStyle>
         <Title>GardenBuilder</Title>
+        {loggedInUser && <p>{loggedInUser.id}</p>}
         {loggedInUser && <HamburgerButton toggleMenuVisibility={toggleMenuVisibility} />}
         {menuVisible && (
           <Menu>

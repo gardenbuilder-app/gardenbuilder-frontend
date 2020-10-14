@@ -13,6 +13,8 @@ import client from 'ApolloClient';
 beforeAll(() => server.listen())
 
 afterEach(() =>{
+  client.stop();
+  client.clearStore();
   server.resetHandlers()
 })
 
