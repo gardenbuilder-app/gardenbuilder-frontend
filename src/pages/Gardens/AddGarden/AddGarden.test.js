@@ -1,9 +1,12 @@
 import React from "react"
 import { render, screen, waitFor } from "@testing-library/react"
 import { ApolloProvider } from "@apollo/client"
-import client from "ApolloClient"
 import userEvent from "@testing-library/user-event"
+import { spy } from 'sinon';
+
+import client from "ApolloClient"
 import { AddGarden } from "./AddGarden"
+import { CREATE_GARDEN_MUTATION } from 'mutations';
 
 describe("<AddGarden/>", () => {
   beforeEach(() => {
@@ -44,15 +47,26 @@ describe("<AddGarden/>", () => {
   })
 
   it('fires CREATE_GARDEN_MUTATION on button click', async () => {
-    //spy on client mutations
-    const createGardenMutation = jest.spyOn(client, 'mutate')
     //toggle form open
     const toggler = await screen.findByText(/Add Garden/i)
     await userEvent.click(toggler);
+    //type in input
+    const input = await screen.findByRole('textbox')
+    await userEvent.type(input, 'New Garden')
+    //assert value change
+    expect(input).toHaveValue('New Garden')
+    //spy on client mutations
+    spy(client, 'mutate')
     //click 'Add' button
     const button = await screen.findByRole('button', {name: /Add/i})
     await userEvent.click(button)
-    //assert mutation called on client
-    expect(createGardenMutation).toHaveBeenCalled();
+    //assert mutation called
+    expect(client.mutate.getCall(0).args[0].mutation).toEqual(
+      CREATE_GARDEN_MUTATION,
+    );
+    //assert variables
+    expect(client.mutate.getCall(0).args[0].variables).toEqual({
+      name: 'New Garden',
+    });
   })
 })
