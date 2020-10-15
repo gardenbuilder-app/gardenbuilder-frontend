@@ -1,6 +1,5 @@
 import React from "react"
-import { render, screen, waitFor } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
+import { render, screen, waitFor, fireEvent } from "@testing-library/react"
 import { ApolloProvider } from "@apollo/client"
 import { MemoryRouter } from "react-router-dom"
 import { graphql } from "msw"
@@ -48,7 +47,7 @@ describe("<MobileHeader /> component", () => {
   it("should show Profile, Gardens, and Log Out in the menu after clicking the hamburger button", async () => {
     render(renderMobileHeader);
     const button = await screen.findByLabelText(/hamburger menu/i)
-    await userEvent.click(button)
+    await fireEvent.click(button)
     const menuItems = ["Profile", "Gardens", "Log Out"]
     for (const menuItem of menuItems) {
       const renderedItem = await screen.getByText(menuItem)

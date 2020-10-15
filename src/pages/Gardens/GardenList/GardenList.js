@@ -38,7 +38,6 @@ export function GardenList() {
   const gardens = data ? getGardenElements(data) : null
   if (loading) return <p>Loading...</p>
   if (error) {
-    console.log(error)
     return <p>{error.message}</p>
   }
   if (!loading && !error && data) return <GardenListWrapper>{gardens}</GardenListWrapper>

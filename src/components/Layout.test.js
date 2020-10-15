@@ -17,4 +17,4 @@ describe('<Layout/>', () => {
   it('renders properly', async () => {
     expect(await screen.findByRole('heading', {name: /GardenBuilder/i})).toBeInTheDocument()
   })
-})
+});
