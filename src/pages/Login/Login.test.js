@@ -1,11 +1,16 @@
 import React from "react"
 import { render, fireEvent, screen, waitFor } from "@testing-library/react"
 import { ApolloProvider } from "@apollo/client"
-import client from "../../ApolloClient"
 import userEvent from "@testing-library/user-event"
 import { MemoryRouter } from "react-router-dom"
-import { Login } from "./Login"
+import { spy } from "sinon"
 
+import client from "../../ApolloClient"
+import { Login } from "./Login"
+import { SIGNUP_MUTATION } from "mutations"
+import { SIGNIN_MUTATION } from "mutations"
+
+//Mock useHistory.push
 const mockHistoryPush = jest.fn()
 
 jest.mock("react-router-dom", () => ({
@@ -37,9 +42,12 @@ describe("<Login /> view", () => {
   })
 
   it("should be able to update email and password input fields", async () => {
+    //select fields
     ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
       return screen.getAllByRole("textbox", { name: name })[0]
     })
+
+    //type in fields
     ;[emailInput, passwordInput].forEach((input) => {
       userEvent.type(input, "testvalue")
       expect(input.value).toBe("testvalue")
@@ -47,6 +55,7 @@ describe("<Login /> view", () => {
   })
 
   it("changes to sign up UI after clicking on sign in link", async () => {
+    //Click Sign Up link to toggle UI
     const link = screen.getByText("Sign Up")
     userEvent.click(link)
     expect(
@@ -55,6 +64,7 @@ describe("<Login /> view", () => {
   })
 
   it("calls SIGNIN_MUTATION without error", async () => {
+    //select inputs
     ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
       return screen.getAllByRole("textbox", { name: name })[0]
     })
@@ -62,28 +72,39 @@ describe("<Login /> view", () => {
     await userEvent.type(emailInput, "test@test.com")
     await userEvent.type(passwordInput, "testing!123")
 
-    // fire button click and expect mutation fire on client
-    const mutationFire = jest.spyOn(client, "mutate")
+    //spy on client mutations
+    spy(client, "mutate")
+
+    // fire button click
     const button = screen.getByRole("button", { name: "Sign In" })
     userEvent.click(button)
-    expect(mutationFire).toHaveBeenCalled()
+
+    //assert that mutation is called
+    expect(client.mutate.getCall(0).args[0].mutation).toEqual(SIGNIN_MUTATION);
+    //with proper variables
+    expect(client.mutate.getCall(0).args[0].variables).toEqual({
+      email: "test@test.com",
+      password: "testing!123"
+    })
+    //reset
+    client.mutate.restore();
   })
 
   it("reroutes to gardens page after signing in", async () => {
-    //set inputs
+    //find inputs
     ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
       return screen.getAllByRole("textbox", { name: name })[0]
     })
-    // update email and password
+    // type email and password
     await userEvent.type(emailInput, "test@test.com")
     await userEvent.type(passwordInput, "testing!123")
 
-    // fire button click and expect useHistory fire
-    const mutationFire = jest.spyOn(client, "mutate")
+    //fire button click
     const button = screen.getByRole("button", { name: "Sign In" })
     await fireEvent.click(button)
+
+    //assert redirect is called
     await waitFor(() => {
-      expect(mutationFire).toHaveBeenCalledTimes(2)
       expect(mockHistoryPush).toHaveBeenCalledTimes(2)
       expect(mockHistoryPush).toHaveBeenCalledWith("/gardens")
     })
@@ -109,12 +130,19 @@ describe("<Login /> view", () => {
     userEvent.type(passwordInput, "testing!123")
 
     // click button
-    const mutationFire = jest.spyOn(client, "mutate")
+    spy(client, "mutate");
     const button = await screen.findByRole("button", { name: "Sign Up" })
     userEvent.click(button)
-    await waitFor(() => {
-      expect(mutationFire).toHaveBeenCalledTimes(3)
+
+    //assert SIGNUP_MUTATION called, with proper variables, and reset
+    expect(client.mutate.getCall(0).args[0].mutation).toEqual(SIGNUP_MUTATION)
+    expect(client.mutate.getCall(0).args[0].variables).toEqual({
+      email: "test@test.com",
+      password: "testing!123",
     })
+
+    //reset
+    client.mutate.restore()
   })
 
   it("redirects to the gardens page after signup", async () => {
@@ -123,28 +151,27 @@ describe("<Login /> view", () => {
     fireEvent.click(link)
 
     // wait for ui change
-    await waitFor(
-      () =>
-        expect(screen.getByRole("heading", { name: "Sign Up" })).toBeInTheDocument()
-      )
-  
-      //set inputs
-      ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
-        return screen.getAllByRole("textbox", { name: name })[0]
-      })
-  
-      // update email and password
-      userEvent.type(emailInput, "test@test.com")
-      userEvent.type(passwordInput, "testing!123")
-  
-      // click button
-      const mutationFire = jest.spyOn(client, "mutate")
-      const button = await screen.findByRole("button", { name: "Sign Up" })
-      fireEvent.click(button)
-      await waitFor(() => {
-        expect(mutationFire).toHaveBeenCalledTimes(4);
-        expect(mockHistoryPush).toHaveBeenCalledTimes(4);
-        expect(mockHistoryPush).toHaveBeenCalledWith('/gardens');
-      });
+    await waitFor(() =>
+      expect(screen.getByRole("heading", { name: "Sign Up" })).toBeInTheDocument()
+    )
+
+    //set inputs
+    ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
+      return screen.getAllByRole("textbox", { name: name })[0]
+    })
+
+    // update email and password
+    userEvent.type(emailInput, "test@test.com")
+    userEvent.type(passwordInput, "testing!123")
+
+    // click button
+    const button = await screen.findByRole("button", { name: "Sign Up" })
+    fireEvent.click(button)
+
+    //assert that redirect is called
+    await waitFor(() => {
+      expect(mockHistoryPush).toHaveBeenCalledTimes(4)
+      expect(mockHistoryPush).toHaveBeenCalledWith("/gardens")
+    })
   })
 })

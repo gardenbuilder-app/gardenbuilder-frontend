@@ -1,5 +1,7 @@
 import React, { useState } from "react"
-import { render, fireEvent } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
+
 import { Input } from "./Input"
 
 function InputWrapper() {
@@ -22,9 +24,9 @@ describe("<Input /> component", () => {
     expect(input.value).toBe("")
   })
 
-  it("should change input that is passed to it", () => {
+  it("should change input that is passed to it", async () => {
     const { input } = setup()
-    fireEvent.change(input, { target: { value: "test" } })
-    expect(input.value).toBe("test")
+    await userEvent.type(input, "test")
+    expect(await screen.findByDisplayValue(/test/i)).toBeInTheDocument();
   })
 })
