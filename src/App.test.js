@@ -30,5 +30,5 @@ describe("<App />", () => {
   it("calls getToken()", () => {
     const mockGetToken = libs.getToken
     expect(mockGetToken).toHaveBeenCalled();
-  })
+  });
 })
