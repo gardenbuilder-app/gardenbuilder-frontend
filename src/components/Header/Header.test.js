@@ -5,6 +5,7 @@ import { MemoryRouter } from "react-router-dom"
 
 import client from "ApolloClient"
 import { Header } from "./Header"
+import userEvent from "@testing-library/user-event"
 
 describe("<Header />", () => {
   beforeEach(() => {
@@ -33,5 +34,17 @@ describe("<Header />", () => {
       global.dispatchEvent(new Event('resize'));
     })
     expect(await screen.findByLabelText(/hamburger menu/i)).toBeInTheDocument();
+  });
+
+  it("the hamburger button toggles the menu", async () => {
+    act(() => {
+      global.innerWidth = 500;
+      global.dispatchEvent(new Event('resize'));
+    })
+    expect(await screen.findByLabelText(/hamburger menu/i)).toBeInTheDocument();
+    expect(await screen.queryByText(/Gardens/i)).not.toBeInTheDocument();
+    await userEvent.click(await screen.findByLabelText(/hamburger menu/i))
+    expect(await screen.findByText(/Gardens/i)).toBeInTheDocument();
+    screen.debug();
   })
 })
