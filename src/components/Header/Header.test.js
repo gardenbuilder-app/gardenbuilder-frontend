@@ -45,6 +45,5 @@ describe("<Header />", () => {
     expect(await screen.queryByText(/Gardens/i)).not.toBeInTheDocument();
     await userEvent.click(await screen.findByLabelText(/hamburger menu/i))
     expect(await screen.findByText(/Gardens/i)).toBeInTheDocument();
-    screen.debug();
   })
 })
