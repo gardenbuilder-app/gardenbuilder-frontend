@@ -52,6 +52,5 @@ describe("<GardenList /> component", () => {
     render(gardenListRender);
     await waitForElementToBeRemoved(() => screen.getByText(/Loading.../i))
     expect(await screen.findByText(/Oops/i)).toBeInTheDocument();
-    screen.debug();
   })
 });

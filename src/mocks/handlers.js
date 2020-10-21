@@ -55,7 +55,8 @@ export const handlers = [
     return res(
       ctx.data({
         currentUser: {
-          id: 'abc123'
+          id: 'abc123',
+          email: 'test@test.com',
         }
       })
     )
