@@ -12,13 +12,13 @@ const Title = styled.h1``
 //   top: 30px;
 // `
 
-export const DesktopHeader = function () {
+export const DesktopHeader = function() {
   const loggedInUser = useUser()
 
   return (
     <>
       <Title>GardenBuilder</Title>
-      {loggedInUser && <Navbar />}
+      {loggedInUser ? <Navbar /> : ''}
     </>
   )
 }

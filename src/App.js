@@ -1,42 +1,47 @@
-import React from 'react';
-import "index.css"
-import { ApolloProvider } from "@apollo/client"
-import apolloClient from 'ApolloClient'
+import React from "react"
 import { BrowserRouter, Redirect } from "react-router-dom"
-import { Layout } from "components"
 import { Switch, Route } from "react-router-dom"
+import { ApolloProvider } from "@apollo/client"
+
+import "index.css"
+import { useUser } from "hooks"
+import client from "ApolloClient"
+import { Layout } from "components"
 import { Beds, Garden, Gardens, Login, Profile } from "./pages"
-import { getToken } from "libs"
 
 function App() {
+  const loggedInUser = useUser()
   return (
     <BrowserRouter>
       <React.StrictMode>
-        <ApolloProvider client={apolloClient}>
-          <Layout>
-            <Switch>
-              <Route
-                exact
-                path="/"
-                render={() => {
-                  return getToken() ? (
-                    <Redirect to="/gardens" />
-                  ) : (
-                    <Redirect to="/login" />
-                  )
-                }}
-              />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/beds" component={Beds} />
-              <Route exact path="/gardens" component={Gardens} />
-              <Route exact path="/profile" component={Profile} />
-              <Route path="/garden" component={Garden} />
-            </Switch>
-          </Layout>
-        </ApolloProvider>
+        <Layout>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => {
+                if (loggedInUser) return <Redirect to="/gardens" />
+                else return <Redirect to="/login" />
+              }}
+            />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/beds" component={Beds} />
+            <Route exact path="/gardens" component={Gardens} />
+            <Route exact path="/profile" component={Profile} />
+            <Route path="/garden" component={Garden} />
+          </Switch>
+        </Layout>
       </React.StrictMode>
     </BrowserRouter>
   )
 }
 
-export default App
+const AppWithApollo = () => {
+  return (
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  )
+}
+
+export default AppWithApollo
