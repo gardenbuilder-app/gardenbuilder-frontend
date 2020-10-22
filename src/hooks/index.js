@@ -1,4 +1,4 @@
 export * from "./useForceUpdate"
 export * from "./useWindowSize"
 export * from "./useUrlParam"
-export * from "./useUser"
+export * from "./useCurrentUser"

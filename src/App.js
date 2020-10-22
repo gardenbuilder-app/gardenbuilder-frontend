@@ -4,13 +4,13 @@ import { Switch, Route } from "react-router-dom"
 import { ApolloProvider } from "@apollo/client"
 
 import "index.css"
-import { useUser } from "hooks"
+import { useCurrentUser } from "hooks"
 import client from "ApolloClient"
 import { Layout } from "components"
 import { Beds, Garden, Gardens, Login, Profile } from "./pages"
 
 function App() {
-  const loggedInUser = useUser()
+  const loggedInUser = useCurrentUser()
   return (
     <BrowserRouter>
       <React.StrictMode>

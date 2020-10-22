@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Navbar } from "./Navbar"
-import { useUser } from "hooks"
+import { useCurrentUser } from "hooks"
 
 const Title = styled.h1``
 
@@ -13,7 +13,7 @@ const Title = styled.h1``
 // `
 
 export const DesktopHeader = function() {
-  const loggedInUser = useUser()
+  const loggedInUser = useCurrentUser()
 
   return (
     <>

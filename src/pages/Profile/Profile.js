@@ -1,14 +1,14 @@
 import React from "react"
 import styled from 'styled-components'
 
-import { useUser } from 'hooks';
+import { useCurrentUser } from 'hooks';
 
 const Center = styled.div`
   margin-left: 4rem;
 `;
 
 export function Profile() {
-  const loggedInUser = useUser();
+  const loggedInUser = useCurrentUser();
 
   if (!loggedInUser) return <p>Loading...</p>
   return (
