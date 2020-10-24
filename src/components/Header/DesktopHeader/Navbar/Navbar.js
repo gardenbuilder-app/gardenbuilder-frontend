@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { BrowserRouter, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { Logout } from "../../Logout"
 
 const Nav = styled.nav`

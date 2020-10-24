@@ -1,5 +1,5 @@
 import React from "react"
-import { render, fireEvent, screen, waitFor } from "@testing-library/react"
+import { render, screen, waitForElementToBeRemoved } from "@testing-library/react"
 import { MemoryRouter } from "react-router-dom"
 import { ApolloProvider } from "@apollo/client"
 import client from "../../ApolloClient"
@@ -16,7 +16,13 @@ describe("The <Profile /> page", () => {
     )
   })
 
-  it("displays the Profile header", () => {
+  it("displays the Profile header", async () => {
+    await waitForElementToBeRemoved(() => screen.getByText(/Loading/i))
     expect(screen.getByText(/Profile/i)).toBeInTheDocument()
+  })
+
+  it("displays the user's email", async () => {
+    await waitForElementToBeRemoved(() => screen.getByText(/Loading.../i))
+    expect(screen.getByText(/test@test.com/i)).toBeInTheDocument();
   })
 })

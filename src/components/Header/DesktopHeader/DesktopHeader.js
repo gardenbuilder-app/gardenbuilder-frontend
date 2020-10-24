@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Navbar } from "./Navbar"
-import { useUser } from "hooks"
+import { useCurrentUser } from "hooks"
 
 const Title = styled.h1``
 
@@ -12,13 +12,13 @@ const Title = styled.h1``
 //   top: 30px;
 // `
 
-export const DesktopHeader = function () {
-  const loggedInUser = useUser()
+export const DesktopHeader = function() {
+  const loggedInUser = useCurrentUser()
 
   return (
     <>
       <Title>GardenBuilder</Title>
-      {loggedInUser && <Navbar />}
+      {loggedInUser ? <Navbar /> : ''}
     </>
   )
 }
