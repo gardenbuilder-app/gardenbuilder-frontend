@@ -10,8 +10,8 @@ export const handlers = [
     return res(
       ctx.data({
         fake: {
-          id: 'abc123'
-        }
+          id: "abc123",
+        },
       })
     )
   }),
@@ -40,13 +40,10 @@ export const handlers = [
           {
             id: "2",
             name: "Garden Two",
-            beds: [
-              {id: 1},
-              {id: 2}
-            ],
+            beds: [{ id: 1 }, { id: 2 }],
             isActive: true,
-          }
-        ]
+          },
+        ],
       })
     )
   }),
@@ -55,9 +52,26 @@ export const handlers = [
     return res(
       ctx.data({
         currentUser: {
-          id: 'abc123',
-          email: 'test@test.com',
-        }
+          id: "abc123",
+          email: "test@test.com",
+        },
+      })
+    )
+  }),
+
+  graphql.query("SINGLE_GARDEN_QUERY", (req, res, ctx) => {
+    const { id } = req.variables
+    return res(
+      ctx.data({
+        bedsForUser: [
+          {
+            id: 123,
+            name: "Cool Garden",
+            width: 4,
+            length: 4,
+            isActive: true,
+          },
+        ],
       })
     )
   }),
@@ -67,38 +81,38 @@ export const handlers = [
   ***************************/
 
   graphql.mutation("SIGNUP_MUTATION", (req, res, ctx) => {
-    const { email, password } = req.variables;
+    const { email, password } = req.variables
     return res(
       ctx.data({
         createUser: {
           user: {
-            id: '1',
+            id: "1",
             email,
             password,
           },
-          token: 'sometoken123'
-        }
+          token: "sometoken123",
+        },
       })
     )
   }),
 
   graphql.mutation("SIGNIN_MUTATION", (req, res, ctx) => {
-    const { email, password } = req.variables;
+    const { email, password } = req.variables
     if (email === "test@test.com" && password === "testing!123") {
       return res(
         ctx.data({
           tokenAuth: {
-            token: 'sometoken123'
-          }
+            token: "sometoken123",
+          },
         })
       )
     } else {
       return res(
         ctx.errors([
           {
-            status:400,
-            message: 'whoops'
-          }
+            status: 400,
+            message: "whoops",
+          },
         ])
       )
     }
@@ -109,20 +123,33 @@ export const handlers = [
       ctx.data({
         createGarden: {
           id,
-          name
-        }
+          name,
+        },
+      })
+    )
+  }),
+
+  graphql.mutation("CREATE_BED_MUTATION", (req, res, ctx) => {
+    return res(
+      ctx.data({
+        createBed: {
+          id,
+          name,
+          length,
+          width,
+        },
       })
     )
   }),
 
   graphql.mutation("MOCK_MUTATION", (req, res, ctx) => {
-    const {id} = req.variables
-    if (id === 'abc123') {
+    const { id } = req.variables
+    if (id === "abc123") {
       return res(
         ctx.data({
           makeThing: {
-            id: 'abc123'
-          }
+            id: "abc123",
+          },
         })
       )
     } else {
@@ -130,21 +157,21 @@ export const handlers = [
         ctx.errors([
           {
             status: 400,
-            message: 'Not a valid id'
-          }
+            message: "Not a valid id",
+          },
         ])
       )
     }
   }),
 
-//   //Example mutation mock formatting, with result
-//   graphql.mutation("EXAMPLE_LOGIN_MUTATION", (req, res, ctx) => {
-//     return res(
-//       ctx.data({
-//         login: {
-//           username,
-//         },
-//       })
-//     )
-//   }),
+  //   //Example mutation mock formatting, with result
+  //   graphql.mutation("EXAMPLE_LOGIN_MUTATION", (req, res, ctx) => {
+  //     return res(
+  //       ctx.data({
+  //         login: {
+  //           username,
+  //         },
+  //       })
+  //     )
+  //   }),
 ]

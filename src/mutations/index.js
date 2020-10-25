@@ -40,3 +40,29 @@ export const CREATE_GARDEN_MUTATION = gql`
     }
   }
 `
+
+export const CREATE_BED_MUTATION = gql`
+  mutation CREATE_BED_MUTATION(
+    $gardenId: Int!
+    $length: Int!
+    $name: String!
+    $notes: String
+    $startDate: Date
+    $width: Int!
+  ) {
+    createBed(
+      gardenId: $gardenId
+      length: $length
+      name: $name
+      notes: $notes
+      startDate: $startDate
+      width: $width
+  ) {
+      length
+      name
+      notes
+      startDate
+      width
+    }
+  }
+`

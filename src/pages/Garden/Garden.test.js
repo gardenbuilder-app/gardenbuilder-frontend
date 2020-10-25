@@ -12,7 +12,7 @@ describe("<Garden /> view", () => {
   beforeEach(() => {
     render(
       <ApolloProvider client={client} addTypename={false}>
-        <Garden />
+        <Garden id="123"/>
       </ApolloProvider>
     )
   })

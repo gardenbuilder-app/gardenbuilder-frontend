@@ -21,3 +21,15 @@ export const CURRENT_USER_QUERY = gql`
     }
   }
 `
+
+export const SINGLE_GARDEN_QUERY = gql`
+  query SINGLE_GARDEN_QUERY($id: Int!) {
+    bedsForUser(gardenId: $id) {
+      id
+      length
+      width
+      name
+      isActive
+    }
+  }
+`
