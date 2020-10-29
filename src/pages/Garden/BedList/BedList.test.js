@@ -24,4 +24,4 @@ describe("<BedList /> component", () => {
     expect(screen.getByText(/4 feet wide/i)).toBeInTheDocument();
     expect(screen.getByText(/Active/i)).toBeInTheDocument();
   })
-})
+});
