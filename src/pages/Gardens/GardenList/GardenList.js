@@ -16,7 +16,7 @@ export function GardenList() {
   const { data, loading, error } = useQuery(GET_USER_GARDENS)
 
   function getGardenElements(data) {
-    return data.userGardens.map((garden, index) => {
+    return data.gardens.gardens.map((garden, index) => {
       const bedText =
         garden.beds.length !== 1
           ? garden.beds.length + " beds"
@@ -25,9 +25,7 @@ export function GardenList() {
 
       return (
         <React.Fragment key={index}>
-          <a href={`/garden?id=${garden.id}&name=${garden.name}`}>
-            {garden.name}
-          </a>
+          <a href={`/garden?id=${garden.id}&name=${garden.name}`}>{garden.name}</a>
           <div>{bedText}</div>
           <div>{isActive}</div>
         </React.Fragment>
@@ -40,5 +38,6 @@ export function GardenList() {
   if (error) {
     return <p>{error.message}</p>
   }
-  if (!loading && !error && data) return <GardenListWrapper>{gardens}</GardenListWrapper>
+  if (!loading && !error && data)
+    return <GardenListWrapper>{gardens}</GardenListWrapper>
 }

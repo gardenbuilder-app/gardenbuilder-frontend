@@ -33,13 +33,6 @@ export function Login() {
       saveCredentialsInCache(email, password)
       history.push("/gardens")
     },
-    // onCompleted({ tokenAuth }) {
-    //   if (tokenAuth) {
-    //     setToken(tokenAuth.token)
-    //     saveCredentialsInCache(email, password)
-    //     history.push("/gardens")
-    //   }
-    // },
   })
 
   const [signup, signupResults] = useMutation(SIGNUP_MUTATION, {

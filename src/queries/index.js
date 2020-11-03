@@ -1,14 +1,30 @@
 import { gql } from "@apollo/client"
 
+// export const GET_USER_GARDENS = gql`
+//   query GET_USER_GARDENS {
+//     userGardens {
+//       id
+//       name
+//       beds {
+//         id
+//       }
+//       isActive
+//     }
+//   }
+// `
+
+// Updated query for typescript API
 export const GET_USER_GARDENS = gql`
-  query GET_USER_GARDENS {
-    userGardens {
-      id
-      name
-      beds {
+  query GARDENS {
+    gardens {
+      gardens {
         id
+        name
+        isActive
       }
-      isActive
+      error {
+        message
+      }
     }
   }
 `
@@ -16,8 +32,13 @@ export const GET_USER_GARDENS = gql`
 export const CURRENT_USER_QUERY = gql`
   query CURRENT_USER_QUERY {
     currentUser {
-      id
-      email
+      user {
+        id
+        email
+      }
+      error {
+        message
+      }
     }
   }
 `
