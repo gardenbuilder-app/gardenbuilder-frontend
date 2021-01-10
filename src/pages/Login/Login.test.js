@@ -22,7 +22,7 @@ jest.mock("react-router-dom", () => ({
 
 describe("<Login /> view", () => {
   // setup before each test
-  let emailInput, passwordInput
+  let emailInput, passwordInput, firstNameInput, lastNameInput
 
   beforeEach(() => {
     render(
@@ -121,13 +121,15 @@ describe("<Login /> view", () => {
     )
 
     //set inputs
-    ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
+    ;[emailInput, passwordInput, firstNameInput, lastNameInput] = ["email", "password", "First Name", "Last Name"].map((name) => {
       return screen.getAllByRole("textbox", { name: name })[0]
     })
 
     // update email and password
     userEvent.type(emailInput, "test@test.com")
     userEvent.type(passwordInput, "testing!123")
+    userEvent.type(firstNameInput, "Fake")
+    userEvent.type(lastNameInput, "Name")
 
     // click button
     spy(client, "mutate");
@@ -139,6 +141,8 @@ describe("<Login /> view", () => {
     expect(client.mutate.getCall(0).args[0].variables).toEqual({
       email: "test@test.com",
       password: "testing!123",
+      firstName: "Fake",
+      lastName: "Name",
     })
 
     //reset
@@ -156,13 +160,15 @@ describe("<Login /> view", () => {
     )
 
     //set inputs
-    ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
+    ;[emailInput, passwordInput, firstNameInput, lastNameInput] = ["email", "password", "First Name", "Last Name"].map((name) => {
       return screen.getAllByRole("textbox", { name: name })[0]
     })
 
     // update email and password
     userEvent.type(emailInput, "test@test.com")
     userEvent.type(passwordInput, "testing!123")
+    userEvent.type(firstNameInput, "Fake")
+    userEvent.type(lastNameInput, "Name")
 
     // click button
     const button = await screen.findByRole("button", { name: "Sign Up" })

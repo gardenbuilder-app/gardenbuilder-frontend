@@ -22,8 +22,11 @@ export function Login() {
   const [email, setEmail] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const [password, setPassword] = useState("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
   const [isMember, setIsMember] = useState(true)
   const history = useHistory()
+
   const [login, loginResults] = useMutation(SIGNIN_MUTATION, {
     onError(err) {
       console.log(`Error logging in: ${err}`)
@@ -42,13 +45,16 @@ export function Login() {
       console.log(err)
     },
     onCompleted({ createUser }) {
-      const token = createUser?.token
+      const { token, errors } = createUser
+      const graphqlError = errors ? errors[0].message : null
       if (token) {
         setToken(token)
         saveCredentialsInCache(email, password)
         history.push("/gardens")
+      } else if (graphqlError) {
+        setErrorMessage(graphqlError)
       } else {
-        console.log("Token not returned from createUser mutation")
+        setErrorMessage("Token not returned from createUser mutation")
       }
     },
   })
@@ -58,10 +64,19 @@ export function Login() {
       setErrorMessage(loginResults.error.message)
     }
     if (signupResults.error) {
-      ;/already exists/.test(signupResults.error.message) &&
+      ; /already exists/.test(signupResults.error.message) &&
         setErrorMessage("This user already exists! Please sign in instead")
     }
   }, [loginResults.error, signupResults.error])
+
+  function submit(event) {
+    event.preventDefault()
+    if (isMember) {
+      login({ variables: { email, password } })
+    } else {
+      signup({ variables: { email, password, firstName, lastName } })
+    }
+  }
 
   /**
    * Save email and password in Apollo cache
@@ -71,11 +86,11 @@ export function Login() {
   function saveCredentialsInCache(email, password) {
     client.writeQuery({
       query: gql`
-        query GetUserCredentials {
+      query GetUserCredentials {
           email
           password
           signedIn
-        }
+      }
       `,
       data: {
         email,
@@ -83,15 +98,6 @@ export function Login() {
         signedIn: true,
       },
     })
-  }
-
-  function submit(event) {
-    event.preventDefault()
-    if (isMember) {
-      login({ variables: { email, password } })
-    } else {
-      signup({ variables: { email, password } })
-    }
   }
 
   const buttonText = isMember ? "Sign In" : "Sign Up"
@@ -107,6 +113,22 @@ export function Login() {
         setValue={setPassword}
         type="password"
       />
+      { !isMember && (
+        <>
+          <InputSection
+            name="First Name"
+            value={firstName}
+            setValue={setFirstName}
+            type="firstName"
+          />
+          <InputSection
+            name="Last Name"
+            value={lastName}
+            setValue={setLastName}
+            type="lastName"
+          />
+        </>
+      )}
       <Button name="submit" text={buttonText} type="submit" />
       {isMember ? (
         <p>
@@ -116,13 +138,13 @@ export function Login() {
           </StyledSpan>
         </p>
       ) : (
-        <p>
-          Already a member?{" "}
-          <StyledSpan role="button" onClick={() => setIsMember(!isMember)}>
-            Sign In
+          <p>
+            Already a member?{" "}
+            <StyledSpan role="button" onClick={() => setIsMember(!isMember)}>
+              Sign In
           </StyledSpan>
-        </p>
-      )}
+          </p>
+        )}
     </Form>
   )
 }
