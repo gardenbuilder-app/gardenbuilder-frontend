@@ -31,9 +31,9 @@ export function Login() {
     onError(err) {
       console.log(`Error logging in: ${err}`)
     },
-    onCompleted({ tokenAuth }) {
-      if (tokenAuth) {
-        setToken(tokenAuth.token)
+    onCompleted({ authenticateUser }) {
+      if (authenticateUser.token) {
+        setToken(authenticateUser.token)
         saveCredentialsInCache(email, password)
         history.push("/gardens")
       }
