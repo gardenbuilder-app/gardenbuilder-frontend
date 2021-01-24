@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { colors } from "styles/global"
 import { useWindowSize } from "hooks"
-import { Modal } from "components/Modal"
+import { Modal } from "components/composite"
 import PlantSelector from "./PlantSelector"
 
 const Grid = styled.div`

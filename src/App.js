@@ -6,7 +6,7 @@ import { ApolloProvider } from "@apollo/client"
 import "index.css"
 import { useCurrentUser } from "hooks"
 import client from "ApolloClient"
-import { Layout } from "components"
+import { Layout } from "./components/style"
 import { Beds, Garden, Gardens, Login, Profile, Welcome } from "./pages"
 
 function App() {
