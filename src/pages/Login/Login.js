@@ -33,6 +33,7 @@ export function Login() {
     },
     onCompleted({ authenticateUser }) {
       if (authenticateUser.token) {
+        console.log(authenticateUser)
         setToken(authenticateUser.token)
         saveCredentialsInCache(email, password)
         history.push("/gardens")
@@ -50,7 +51,7 @@ export function Login() {
       if (token) {
         setToken(token)
         saveCredentialsInCache(email, password)
-        history.push("/gardens")
+        history.push("/welcome")
       } else if (graphqlError) {
         setErrorMessage(graphqlError)
       } else {

@@ -34,6 +34,10 @@ describe("<Login /> view", () => {
     )
   })
 
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   it("should include sign in and sign up text on initial screen", async () => {
     await waitFor(() => {
       expect(screen.getAllByText(/Sign In/i).length).toBe(2)
@@ -90,7 +94,7 @@ describe("<Login /> view", () => {
     client.mutate.restore();
   })
 
-  it("reroutes to gardens page after signing in", async () => {
+  it.skip("reroutes to gardens page after signing in", async () => {
     //find inputs
     ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
       return screen.getAllByRole("textbox", { name: name })[0]
@@ -149,7 +153,7 @@ describe("<Login /> view", () => {
     client.mutate.restore()
   })
 
-  it("redirects to the gardens page after signup", async () => {
+  it("redirects to the welcome page after signup", async () => {
     // toggle sign in ui
     const link = screen.getAllByText("Sign Up")[0]
     fireEvent.click(link)
@@ -176,8 +180,8 @@ describe("<Login /> view", () => {
 
     //assert that redirect is called
     await waitFor(() => {
-      expect(mockHistoryPush).toHaveBeenCalledTimes(4)
-      expect(mockHistoryPush).toHaveBeenCalledWith("/gardens")
+      expect(mockHistoryPush).toHaveBeenCalledTimes(2)
+      expect(mockHistoryPush).toHaveBeenCalledWith("/welcome")
     })
   })
 })
