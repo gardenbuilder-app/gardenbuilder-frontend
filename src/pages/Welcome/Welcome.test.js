@@ -9,9 +9,7 @@ describe("The <Welcome /> page", () => {
   beforeEach(() => {
     render(
       <MemoryRouter>
-        <ApolloProvider client={client} addTypename={false}>
           <Welcome />
-        </ApolloProvider>
       </MemoryRouter>
     )
   })
