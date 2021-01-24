@@ -1,6 +1,5 @@
 import React from 'react';
 import { screen, render } from '@testing-library/react';
-
 import { Layout } from './Layout';
 import client from 'ApolloClient';
 import { ApolloProvider } from '@apollo/client';
