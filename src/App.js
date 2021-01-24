@@ -7,7 +7,7 @@ import "index.css"
 import { useCurrentUser } from "hooks"
 import client from "ApolloClient"
 import { Layout } from "components"
-import { Beds, Garden, Gardens, Login, Profile } from "./pages"
+import { Beds, Garden, Gardens, Login, Profile, Welcome } from "./pages"
 
 function App() {
   const loggedInUser = useCurrentUser()
@@ -26,9 +26,10 @@ function App() {
             />
             <Route exact path="/login" component={Login} />
             <Route exact path="/beds" component={Beds} />
+            <Route path="/garden" component={Garden} />
             <Route exact path="/gardens" component={Gardens} />
             <Route exact path="/profile" component={Profile} />
-            <Route path="/garden" component={Garden} />
+            <Route exact path="/welcome" component={Welcome} />
           </Switch>
         </Layout>
       </React.StrictMode>
