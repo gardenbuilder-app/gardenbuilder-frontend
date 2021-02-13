@@ -31,7 +31,7 @@ const devEndpoint =
 //Switches request endpoint from dev server to mock server
 function determineEndpoint(env) {
   if (env === "development") return devEndpoint
-  if (env === "test") return "http://localhost:3000/grapql"
+  if (env === "test") return "http://localhost:8080"
 }
 
 //Switches fetchPolicy based on node environment
