@@ -32,6 +32,12 @@ export function Login() {
       console.log(`Error logging in: ${err}`)
     },
     onCompleted({ authenticateUser }) {
+      const regex = new RegExp(/password/)
+      const errorMessage = authenticateUser?.errors[0].message
+      if (errorMessage && regex.test(errorMessage)) {
+        setErrorMessage(errorMessage)
+      }
+
       if (authenticateUser.token) {
         console.log(authenticateUser)
         setToken(authenticateUser.token)
@@ -62,7 +68,7 @@ export function Login() {
 
   useEffect(() => {
     if (loginResults.error) {
-      setErrorMessage(loginResults.error.message)
+      console.log(loginResults.error)
     }
     if (signupResults.error) {
       ; /already exists/.test(signupResults.error.message) &&
