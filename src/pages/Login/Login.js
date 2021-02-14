@@ -32,17 +32,17 @@ export function Login() {
       console.log(`Error logging in: ${err}`)
     },
     onCompleted({ authenticateUser }) {
-      const regex = new RegExp(/password/)
-      const errorMessage = authenticateUser?.errors[0].message
-      if (errorMessage && regex.test(errorMessage)) {
-        setErrorMessage(errorMessage)
-      }
-
       if (authenticateUser.token) {
         console.log(authenticateUser)
         setToken(authenticateUser.token)
         saveCredentialsInCache(email, password)
         history.push("/gardens")
+      } else {
+        const regex = new RegExp(/password/)
+        const errorMessage = authenticateUser?.token ?.errors[0]?.message
+        if (errorMessage && regex.test(errorMessage)) {
+          setErrorMessage(errorMessage)
+        }
       }
     },
   })
