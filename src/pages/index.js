@@ -1,4 +1,4 @@
-export * from "./Beds"
+export * from "./Bed"
 export * from "./Garden"
 export * from "./Gardens"
 export * from "./Login"
