@@ -4,7 +4,7 @@ import { MemoryRouter } from "react-router-dom"
 import { ApolloProvider } from "@apollo/client"
 import { graphql } from "msw"
 
-import client from "../../../ApolloClient"
+import client from "../../../../ApolloClient"
 import { DesktopHeader } from "./DesktopHeader"
 import { server } from "mocks/server"
 
