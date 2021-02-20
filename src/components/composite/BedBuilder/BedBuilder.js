@@ -7,7 +7,7 @@ const MAX_WIDTH = 5,
   DEF_WIDTH = 3,
   DEF_HEIGHT = 5
 
-const Bed = () => {
+export const BedBuilder = () => {
   const [measurements, setMeasurements] = useState({
     width: DEF_WIDTH,
     height: DEF_HEIGHT,
@@ -20,7 +20,6 @@ const Bed = () => {
 
   return (
     <div id="bed">
-      <h3>Bed Builder</h3>
       <BedMeasure
         defaultSizes={{ width: measurements.width, height: measurements.height }}
         maxSizes={{ width: MAX_WIDTH, height: MAX_HEIGHT }}
@@ -37,5 +36,3 @@ const Bed = () => {
     </div>
   )
 }
-
-export default Bed
