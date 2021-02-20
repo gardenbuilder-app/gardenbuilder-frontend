@@ -25,9 +25,4 @@ describe("<Gardens /> view", () => {
   it("renders the <AddGarden /> component", async () => {
     expect(await screen.findByText(/Add Garden/i)).toBeInTheDocument();
   })
-  
-  it("renders the <GardenList /> component", async () => {
-    await waitForElementToBeRemoved(() => screen.getByText(/Loading/i))
-    expect(await screen.findByRole('link', {name: /Garden One/i})).toBeInTheDocument();
-  })
 })
