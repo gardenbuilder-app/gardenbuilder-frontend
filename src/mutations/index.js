@@ -40,8 +40,13 @@ export const SIGNUP_MUTATION = gql`
 export const CREATE_GARDEN_MUTATION = gql`
   mutation CREATE_GARDEN_MUTATION($name: String!) {
     createGarden(name: $name) {
-      id
-      name
+      garden {
+        id
+        name
+      }
+      errors {
+        message
+      }
     }
   }
 `
