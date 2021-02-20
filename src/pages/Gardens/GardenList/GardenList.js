@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { useQuery } from "@apollo/client"
 import { GET_USER_GARDENS } from "queries"
+import { useCurrentUser } from '../../../hooks'
 
 const GardenListWrapper = styled.div`
   display: grid;
@@ -14,9 +15,12 @@ const GardenListWrapper = styled.div`
 
 export function GardenList() {
   const { data, loading, error } = useQuery(GET_USER_GARDENS)
+  const loggedInUser = useCurrentUser();
+  console.log(loggedInUser, error)
 
   function getGardenElements(data) {
-    return data.userGardens.map((garden, index) => {
+    console.log(data)
+    return data.gardens.gardens.map((garden, index) => {
       const bedText =
         garden.beds.length !== 1
           ? garden.beds.length + " beds"
@@ -35,7 +39,9 @@ export function GardenList() {
     })
   }
 
-  const gardens = data ? getGardenElements(data) : null
+  const gardens = data?.gardens.gardens ? getGardenElements(data) : null
+  console.log(data)
+
   if (loading) return <p>Loading...</p>
   if (error) {
     return <p>{error.message}</p>

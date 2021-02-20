@@ -40,7 +40,7 @@ export function AddGarden() {
       console.log(err)
     },
     onCompleted(data) {
-      console.log(data)
+      console.log('COMPLETED', data)
     },
   })
 
