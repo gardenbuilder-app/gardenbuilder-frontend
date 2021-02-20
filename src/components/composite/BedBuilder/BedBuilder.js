@@ -2,8 +2,8 @@ import React, { useCallback, useState } from "react"
 import BedMeasure from "./BedMeasure"
 import BedGrid from "./BedGrid"
 
-const MAX_WIDTH = 5,
-  MAX_HEIGHT = 10,
+const MAX_WIDTH = 20,
+  MAX_HEIGHT = 20,
   DEF_WIDTH = 3,
   DEF_HEIGHT = 5
 
