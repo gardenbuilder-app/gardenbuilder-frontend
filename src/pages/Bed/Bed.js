@@ -1,6 +1,7 @@
 import React from "react"
 import { useQuery } from '@apollo/client';
 import { useUrlParam } from '../../hooks'
+import { BedBuilder } from '../../components/composite'
 // import { GET_USER_GARDENS} from 'queries'
 
 export function Bed() {
@@ -18,6 +19,7 @@ export function Bed() {
   return (
     <div>
       <h2>{ bedName }</h2>
+      <BedBuilder />
     </div>
   )
 }
