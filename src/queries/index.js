@@ -6,6 +6,11 @@ export const GET_USER_GARDENS = gql`
       gardens {
         id
         name
+        beds {
+          id
+          name
+          isActive
+        }
         endedAt
         isActive
         createdAt
