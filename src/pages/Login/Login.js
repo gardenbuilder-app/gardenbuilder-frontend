@@ -32,6 +32,7 @@ export function Login() {
       console.log(`Error logging in: ${err}`)
     },
     onCompleted({ authenticateUser }) {
+      console.log(authenticateUser)
       if (authenticateUser.token) {
         console.log(authenticateUser)
         setToken(authenticateUser.token)
@@ -39,7 +40,7 @@ export function Login() {
         history.push("/gardens")
       } else {
         const regex = new RegExp(/password/)
-        const errorMessage = authenticateUser?.token ?.errors[0]?.message
+        const errorMessage = authenticateUser.errors[0].message || authenticateUser?.token ?.errors[0]?.message
         if (errorMessage && regex.test(errorMessage)) {
           setErrorMessage(errorMessage)
         }
