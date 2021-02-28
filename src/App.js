@@ -19,13 +19,12 @@ function App() {
             <Route
               exact
               path="/"
-              render={() => {
-                if (loggedInUser) return <Redirect to="/gardens" />
-                else return <Redirect to="/login" />
-              }}
+              render={() => (
+                loggedInUser ? <Redirect to="/gardens" /> : <Redirect to="/login" />
+              )}
             />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/bed" component={Bed} />
+            <Route path="/bed" component={Bed} />
             <Route path="/garden" component={Garden} />
             <Route exact path="/gardens" component={Gardens} />
             <Route exact path="/profile" component={Profile} />
