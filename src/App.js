@@ -1,6 +1,5 @@
 import React from "react"
-import { BrowserRouter, Redirect } from "react-router-dom"
-import { Switch, Route } from "react-router-dom"
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom"
 import { ApolloProvider } from "@apollo/client"
 
 import "index.css"
