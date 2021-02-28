@@ -1,7 +1,6 @@
 import React from "react"
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom"
 import { ApolloProvider } from "@apollo/client"
-
 import "index.css"
 import { useCurrentUser } from "hooks"
 import client from "ApolloClient"
