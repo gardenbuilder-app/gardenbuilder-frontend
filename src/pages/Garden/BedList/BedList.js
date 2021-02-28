@@ -1,4 +1,6 @@
 import React, { useState } from "react"
+import {useLocation, useParams} from 'react-router-dom'
+import {useQuery} from '@apollo/client'
 import styled from "styled-components"
 import { useUrlParam } from '../../../hooks'
 
@@ -12,18 +14,7 @@ const BedListWrapper = styled.ul`
   margin: 0 auto;
 `
 
-export function BedList() {
-  const gardenName = useUrlParam('name')
-  const [beds, updateBeds] = useState([
-    {id: 1, name: 'Square Herb Bed'},
-    {id: 2, name: 'Eastern Vegetable Bed 1'},
-    {id: 3, name: 'Eastern Vegetable Bed 2'},
-    {id: 4, name: 'Eastern Vegetable Bed 3'},
-    {id: 5, name: 'Eastern Vegetable Bed 4'},
-    {id: 5, name: 'Long Vegetable Bed'},
-  ])
-  
-  // TODO: Graphql call to get list of beds
+export function BedList({beds}) {
   return (
     <BedListWrapper>
       {beds.map(bed => 
@@ -32,6 +23,5 @@ export function BedList() {
         </a>
       )}
     </BedListWrapper>
-    
   )
 }
