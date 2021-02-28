@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { useQuery } from "@apollo/client"
 import { GET_USER_GARDENS } from "queries"
 import { useCurrentUser } from '../../../hooks'
+import { Link } from "react-router-dom"
 
 const GardenListWrapper = styled.div`
   display: grid;
@@ -16,7 +17,7 @@ const GardenListWrapper = styled.div`
 export function GardenList() {
   const { data, loading, error } = useQuery(GET_USER_GARDENS)
   const loggedInUser = useCurrentUser();
-  console.log(loggedInUser, error)
+  // console.log(loggedInUser, error)
 
   function getGardenElements(data) {
     console.log(data)
@@ -29,9 +30,15 @@ export function GardenList() {
 
       return (
         <React.Fragment key={index}>
-          <a href={`/garden?id=${garden.id}&name=${garden.name}`}>
-            {garden.name}
-          </a>
+          <Link
+            to={{
+              pathname: "/garden",
+              hash: garden.id,
+              state: { beds: garden.beds, gardenName: garden.name }
+            }}
+          >
+          { garden.name }
+          </Link>
           <div>{bedText}</div>
           <div>{isActive}</div>
         </React.Fragment>
@@ -40,7 +47,6 @@ export function GardenList() {
   }
 
   const gardens = data?.gardens.gardens ? getGardenElements(data) : null
-  console.log(data)
 
   if (loading) return <p>Loading...</p>
   if (error) {
