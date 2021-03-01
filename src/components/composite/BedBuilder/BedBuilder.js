@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react"
 import BedMeasure from "./BedMeasure"
 import BedGrid from "./BedGrid"
+import './BedBuilder.css'
 
 const MAX_WIDTH = 20,
   MAX_HEIGHT = 20,
