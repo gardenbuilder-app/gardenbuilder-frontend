@@ -36,12 +36,14 @@ export const SIGNUP_MUTATION = gql`
     }
   }
 `
+
 export const CREATE_BED_MUTATION = gql`
-  mutation CREATE_BED_MUTATION($gardenId: Number!, $name: String!) {
-    createBed(gardenName: $gardenName, name: $name) {
+  mutation CREATE_BED_MUTATION($name: String!, $gardenId: Int!) {
+    createBed(name: $name, gardenId: $gardenId) {
       bed {
         id
         name
+        gardenId
       }
       errors {
         message
