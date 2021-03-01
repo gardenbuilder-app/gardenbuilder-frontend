@@ -3,16 +3,15 @@ import { render, screen, waitFor } from "@testing-library/react"
 import { ApolloProvider } from "@apollo/client"
 import userEvent from "@testing-library/user-event"
 import { spy } from 'sinon';
-
 import client from "ApolloClient"
-import { AddGarden } from "./AddGarden"
+import { AddThing } from "./AddThing"
 import { CREATE_GARDEN_MUTATION } from 'mutations';
 
 describe("<AddGarden/>", () => {
   beforeEach(() => {
     render(
       <ApolloProvider client={client}>
-        <AddGarden />
+        <AddThing />
       </ApolloProvider>
     )
   })
