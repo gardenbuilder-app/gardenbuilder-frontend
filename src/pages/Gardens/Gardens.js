@@ -43,7 +43,7 @@ export function Gardens() {
 
   function executeGraphQL() {
     createGarden({
-      variables: { name: gardenName },
+      variables: { name: gardenName }
     })
   }
 

@@ -34,7 +34,7 @@ export function GardenList() {
             to={{
               pathname: "/garden",
               hash: garden.id,
-              state: { beds: garden.beds, gardenName: garden.name }
+              state: { beds: garden.beds, gardenId: garden.id, gardenName: garden.name }
             }}
           >
           { garden.name }
