@@ -1,4 +1,6 @@
-import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client"
+import { ApolloClient, createHttpLink, fromPromise, InMemoryCache } from "@apollo/client"
+import { onError } from 'apollo-link-error'
+import { ApolloLink } from 'apollo-link'
 import { setContext } from "@apollo/client/link/context"
 import { getToken } from "libs"
 
@@ -44,6 +46,18 @@ const httpLink = createHttpLink({
   uri: determineEndpoint(process.env.NODE_ENV),
 })
 
+// Set up error handler
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    console.log('graphQLErrors', graphQLErrors);
+  }
+  if (networkError) {
+    console.log('networkError', networkError);
+  }
+})
+
+const link = ApolloLink.from([authLink, errorLink, httpLink])
+
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
   defaultOptions: {
@@ -58,7 +72,7 @@ const apolloClient = new ApolloClient({
       fetchPolicy: determineFetchPolicy(process.env.NODE_ENV)
     },
   },
-  link: authLink.concat(httpLink),
+  link
 })
 
 export default apolloClient
