@@ -18,7 +18,9 @@ export function BedList({beds}) {
   return (
     <BedListWrapper>
       {beds.map(bed => 
-        <a href={`/bed?id=${bed.id}&name=${bed.name}`}>
+        <a
+          key={bed.id}
+          href={`/bed?id=${bed.id}&name=${bed.name}`}>
           {bed.name}
         </a>
       )}

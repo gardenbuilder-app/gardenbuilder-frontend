@@ -1,35 +1,35 @@
 import React, { useState } from "react"
-import { useQuery } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import { useLocation } from 'react-router-dom'
 import { GET_USER_GARDENS} from 'queries'
+import { CREATE_BED_MUTATION } from '../../mutations'
 import { BedList } from "./BedList"
 import { AddThing } from "../../components/composite"
 
 export function Garden(props) {
-  const [bed, updateBed] = useState('')
   const location = useLocation()
   const { data, loading, error } = useQuery(GET_USER_GARDENS);
   const [bedName, setBedName] = useState('')
 
   const [createBed] = useMutation(CREATE_BED_MUTATION, {
-    // update(cache, { data: { createBed } }) {
-    //   cache.modify({
-    //     fields: {
-    //       userBeds(existingBeds = []) {
-    //         const newGardenRef = cache.writeFragment({
-    //           data: createGarden,
-    //           fragment: gql`
-    //             fragment NewGarden on GardenType {
-    //               id
-    //               gardenName
-    //             }
-    //           `,
-    //         })
-    //         return [...existingGardens, newGardenRef]
-    //       },
-    //     },
-    //   })
-    // },
+    update(cache, { data: { createBed } }) {
+      cache.modify({
+        fields: {
+          userBeds(existingBeds = []) {
+            const newBedRef = cache.writeFragment({
+              data: createBed,
+              fragment: gql`
+                fragment NewBed on BedType {
+                  id
+                  name
+                }
+              `,
+            })
+            return [...existingBeds, newBedRef]
+          },
+        },
+      })
+    },
     onError(err) {
       console.log(err)
     },
@@ -40,7 +40,7 @@ export function Garden(props) {
   
   function executeGraphQL() {
     createBed({
-      variables: { name: bedName },
+      variables: { name: bedName, gardenId: parseInt(location.state.gardenId) }
     })
   }
 
