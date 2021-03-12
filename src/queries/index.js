@@ -26,8 +26,13 @@ export const GET_USER_GARDENS = gql`
 export const CURRENT_USER_QUERY = gql`
   query CURRENT_USER_QUERY {
     currentUser {
-      id
-      email
+      user {
+        id
+        email
+      }
+      errors {
+        message
+      }
     }
   }
 `
