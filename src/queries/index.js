@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client"
 
 export const GET_USER_GARDENS = gql`
-  query {
+  query GET_USER_GARDENS {
     gardens {
       gardens {
         id
@@ -11,10 +11,7 @@ export const GET_USER_GARDENS = gql`
           name
           isActive
         }
-        endedAt
         isActive
-        createdAt
-        updatedAt
       }
       errors {
         message
