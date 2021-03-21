@@ -1,8 +1,7 @@
 import React, { useState } from "react"
-import {useLocation, useParams} from 'react-router-dom'
-import {useQuery} from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import styled from "styled-components"
-import { useUrlParam } from '../../../hooks'
+import { GET_USER_BEDS } from '../../../queries'
 
 const BedListWrapper = styled.ul`
   background-color: pink;
@@ -14,10 +13,20 @@ const BedListWrapper = styled.ul`
   margin: 0 auto;
 `
 
-export function BedList({beds}) {
+export function BedList({ gardenId }) {
+  const { data, loading, error } = useQuery(GET_USER_BEDS, {
+    variables: { id: parseInt(gardenId) }
+  });
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <div className="error">{error.message}</div>
+
+  const beds = data?.beds
+  console.log(beds)
+
   return (
     <BedListWrapper>
-      {beds.map(bed => 
+      {beds.map(bed =>
         <a
           key={bed.id}
           href={`/bed?id=${bed.id}&name=${bed.name}`}>

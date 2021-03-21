@@ -1,4 +1,4 @@
-import { ApolloClient, createHttpLink, fromPromise, InMemoryCache } from "@apollo/client"
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client"
 import { onError } from 'apollo-link-error'
 import { ApolloLink } from 'apollo-link'
 import { setContext } from "@apollo/client/link/context"

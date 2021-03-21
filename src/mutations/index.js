@@ -40,28 +40,31 @@ export const SIGNUP_MUTATION = gql`
 export const CREATE_BED_MUTATION = gql`
   mutation CREATE_BED_MUTATION($name: String!, $gardenId: Int!) {
     createBed(name: $name, gardenId: $gardenId) {
-      bed {
-        id
-        name
-        gardenId
-      }
-      errors {
-        message
-      }
+      id
+      name
+      gardenId
     }
   }
 `
 
+// export const CREATE_GARDEN_MUTATION = gql`
+//   mutation CREATE_GARDEN_MUTATION($name: String!) {
+//     createGarden(name: $name) {
+//       garden {
+//         id
+//         name
+//       }
+//       errors {
+//         message
+//       }
+//     }
+//   }
+// `
 export const CREATE_GARDEN_MUTATION = gql`
   mutation CREATE_GARDEN_MUTATION($name: String!) {
     createGarden(name: $name) {
-      garden {
-        id
-        name
-      }
-      errors {
-        message
-      }
+      id
+      name
     }
   }
 `

@@ -3,19 +3,24 @@ import { gql } from "@apollo/client"
 export const GET_USER_GARDENS = gql`
   query GET_USER_GARDENS {
     gardens {
-      gardens {
+      id
+      name
+      beds {
         id
         name
-        beds {
-          id
-          name
-          isActive
-        }
         isActive
       }
-      errors {
-        message
-      }
+      isActive
+    }
+  }
+`
+
+export const GET_USER_BEDS = gql`
+  query GET_USER_BEDS($id: Int!) {
+    beds(gardenId: $id) {
+      id
+      name
+      isActive
     }
   }
 `
