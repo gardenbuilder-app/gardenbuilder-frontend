@@ -13,7 +13,15 @@ const GardenListWrapper = styled.div`
   margin: 0 auto;
 `
 
-export function GardenList({gardens}) {
+export function GardenList() {
+  const { data, loading, error } = useQuery(GET_USER_GARDENS)
+  if (loading) return <p>Loading...</p>
+  if (error) {
+    return <p>{error.message}</p>
+  }
+
+  const gardens = data?.gardens
+
   function getGardenElements(gardens) {
     return gardens.map((garden, index) => {
       const bedText =
