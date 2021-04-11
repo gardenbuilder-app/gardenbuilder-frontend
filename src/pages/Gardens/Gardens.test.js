@@ -5,11 +5,7 @@ import { ApolloProvider } from "@apollo/client"
 import client from 'ApolloClient';
 import { Gardens } from "./Gardens"
 
-describe("<Gardens /> view", () => {
-  /**
-   *  Set up conditions for each test.
-   *  We must rerender before each new assertion
-   */
+describe("<Gardens /> Page", () => {
   beforeEach(() => {
     render(
       <ApolloProvider client={client} addTypename={false}>
@@ -22,7 +18,7 @@ describe("<Gardens /> view", () => {
     expect(await screen.findByText("Gardens")).toBeInTheDocument()
   })
 
-  it("renders the <AddGarden /> component", async () => {
+  it("renders the AddGarden component", async () => {
     expect(await screen.findByText(/Add Garden/i)).toBeInTheDocument();
   })
 })
