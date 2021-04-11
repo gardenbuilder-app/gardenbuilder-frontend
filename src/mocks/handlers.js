@@ -30,33 +30,30 @@ export const handlers = [
   graphql.query("GET_USER_GARDENS", (req, res, ctx) => {
     return res(
       ctx.data({
-        gardens: {
-          gardens: [
-            {
-              id: "1",
-              name: "Garden One",
-              beds: [
-                {id: 1, name: "Bed One", isActive: true}
-              ],
-              endedAt: "2021-02-13T18:58:58.125Z",
-              isActive: true,
-              createdAt: "2021-02-13T18:58:58.125Z",
-              updatedAt: "2021-02-13T18:58:58.125Z"
-            },
-            {
-              id: "2",
-              name: "Garden Two",
-              beds: [
-                {id: 1, name: "Bed Two", isActive: true}
-              ],
-              endedAt: "2021-02-13T18:58:58.125Z",
-              isActive: true,
-              createdAt: "2021-02-13T18:58:58.125Z",
-              updatedAt: "2021-02-13T18:58:58.125Z"
-            },
-          ],
-          errors: null
-      }
+        gardens: [
+          {
+            id: "1",
+            name: "Garden One",
+            beds: [],
+            endedAt: "2021-02-13T18:58:58.125Z",
+            isActive: true,
+            createdAt: "2021-02-13T18:58:58.125Z",
+            updatedAt: "2021-02-13T18:58:58.125Z"
+          },
+          {
+            id: "2",
+            name: "Garden Two",
+            beds: [
+              {id: 1, name: "Bed One", isActive: true},
+              {id: 2, name: "Bed Two", isActive: true}
+            ],
+            endedAt: "2021-02-13T18:58:58.125Z",
+            isActive: false,
+            createdAt: "2021-02-13T18:58:58.125Z",
+            updatedAt: "2021-02-13T18:58:58.125Z"
+          },
+        ],
+        errors: null
       })
     )
   }),

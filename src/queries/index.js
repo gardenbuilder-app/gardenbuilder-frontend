@@ -10,7 +10,10 @@ export const GET_USER_GARDENS = gql`
         name
         isActive
       }
+      endedAt
       isActive
+      createdAt
+      updatedAt
     }
   }
 `

@@ -19,6 +19,6 @@ describe("<Garden /> view", () => {
 
   it("renders its title", async () => {
     expect(await screen.findByText(/Garden/i)).toBeInTheDocument();
+    expect(true).toBeTruthy()
   })
-  // it("returns data after graphql query", async () => {})
 })
