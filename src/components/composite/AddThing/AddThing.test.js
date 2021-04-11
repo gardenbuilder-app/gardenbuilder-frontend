@@ -7,65 +7,78 @@ import client from "ApolloClient"
 import { AddThing } from "./AddThing"
 import { CREATE_GARDEN_MUTATION } from 'mutations';
 
-describe("<AddGarden/>", () => {
+describe("<AddThing/>", () => {
+  const mockSetThing = jest.fn(word => word)
+  const mockExecuteGraphQL = jest.fn(word => word)
+
   beforeEach(() => {
     render(
       <ApolloProvider client={client}>
-        <AddThing />
+        <AddThing
+          setThing={mockSetThing}
+          thing='A thing'
+          typeOfThing='Generic Thing'
+          executeGraphQL={mockExecuteGraphQL}
+        />
       </ApolloProvider>
     )
   })
 
-  it("renders correctly", async () => {
-    expect(await screen.findByText("Add Garden")).toBeInTheDocument()
+  it("renders title correctly", async () => {
+    expect(await screen.findByText("Add Generic Thing")).toBeInTheDocument()
   })
 
   it('toggles the Add Garden form on click', async () => {
-    //toggle form open
-    const toggler = await screen.findByText(/Add Garden/i)
+    //toggle form visibility
+    const toggler = await screen.findByText(/Add Generic Thing/i)
     await userEvent.click(toggler);
-    //assert open
-    expect(await screen.findByText(/Garden Name/i)).toBeInTheDocument();
+
+    //assert form visible/open
+    expect(await screen.findByText(/Generic Thing Name/i)).toBeInTheDocument();
+
     //toggle closed
     await userEvent.click(toggler);
+
     //assert closed
     await waitFor(() => {
-      expect(screen.queryByText(/Garden Name/i)).toBeNull()
+      expect(screen.queryByText(/Generic Thing Name/i)).toBeNull()
     })
   });
 
   it('changes the value of the input upon typing', async () => {
     //toggle form open
-    const toggler = await screen.findByText(/Add Garden/i)
+    const toggler = await screen.findByText(/Add Generic Thing/i)
     await userEvent.click(toggler);
+
     //type in input
     const input = await screen.findByRole('textbox')
-    await userEvent.type(input, 'New Garden')
-    //assert value change
-    expect(input).toHaveValue('New Garden')
+    const inputValue = 'some inputvalue'
+    await userEvent.type(input, inputValue)
+
+    //assert setThing called
+    expect(mockSetThing.mock.calls.length).toBe(inputValue.length)
+    expect(mockSetThing.mock.calls[0][0]).toContain(inputValue[0])
   })
 
-  it('fires CREATE_GARDEN_MUTATION on button click', async () => {
+  it('fires mockExecuteGraphQL on button click', async () => {
     //toggle form open
-    const toggler = await screen.findByText(/Add Garden/i)
+    const toggler = await screen.findByText(/Add Generic Thing/i)
     await userEvent.click(toggler);
+
     //type in input
     const input = await screen.findByRole('textbox')
-    await userEvent.type(input, 'New Garden')
-    //assert value change
-    expect(input).toHaveValue('New Garden')
-    //spy on client mutations
-    spy(client, 'mutate')
+    const inputValue = 'some inputvalue'
+    await userEvent.type(input, inputValue)
+
+    // //assert value change
+    // //spy on client mutations
+    // spy(client, 'mutate')
+
     //click 'Add' button
-    const button = await screen.findByRole('button', {name: /Add/i})
+    const button = await screen.findByRole('button', { name: /Add/i })
     await userEvent.click(button)
-    //assert mutation called
-    expect(client.mutate.getCall(0).args[0].mutation).toEqual(
-      CREATE_GARDEN_MUTATION,
-    );
-    //assert variables
-    expect(client.mutate.getCall(0).args[0].variables).toEqual({
-      name: 'New Garden',
-    });
+
+    //assert executeGraphql called
+    expect(mockExecuteGraphQL.mock.calls.length).toBe(1)
   })
 })
