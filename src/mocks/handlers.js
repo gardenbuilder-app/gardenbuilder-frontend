@@ -58,6 +58,33 @@ export const handlers = [
     )
   }),
 
+  graphql.query("GET_USER_BEDS", (req, res, ctx) => {
+    return res(
+      ctx.data({
+        beds: [
+          {
+            id: "1",
+            name: "Bed One",
+            endedAt: "2021-02-13T18:58:58.125Z",
+            isActive: true,
+            createdAt: "2021-02-13T18:58:58.125Z",
+            updatedAt: "2021-02-13T18:58:58.125Z"
+          },
+          {
+            id: "2",
+            name: "Bed Two",
+            endedAt: "2021-02-13T18:58:58.125Z",
+            isActive: false,
+            createdAt: "2021-02-13T18:58:58.125Z",
+            updatedAt: "2021-02-13T18:58:58.125Z"
+          }
+        ],
+        errors: null
+      })
+    )
+  }),
+
+
   graphql.query("CURRENT_USER_QUERY", (req, res, ctx) => {
     return res(
       ctx.data({

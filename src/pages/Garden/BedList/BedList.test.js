@@ -1,14 +1,20 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
+import { ApolloProvider } from "@apollo/client"
 import { BedList } from "./BedList"
+import client from 'ApolloClient'
 
 describe("<BedList /> component", () => {
   beforeEach(() => {
-  render(<BedList />)
-  })
+    render(
+    <ApolloProvider client={client} addTypename={false}>
+      <BedList gardenId={1} />
+    </ApolloProvider>
+  )})
 
   it("renders mock beds", async () => {
-    expect(await screen.findByText(/Mock Bed 0/i)).toBeInTheDocument();
-    expect(await screen.findByText(/Mock Bed 1/i)).toBeInTheDocument();
+    ['Bed One', 'Bed Two'].forEach(async string => {
+      expect(await screen.findByText(string)).toBeInTheDocument();
+    })
   })
 })
