@@ -28,8 +28,8 @@ export const GET_USER_BEDS = gql`
   }
 `
 
-export const CURRENT_USER_QUERY = gql`
-  query CURRENT_USER_QUERY {
+export const GET_CURRENT_USER = gql`
+  query GET_CURRENT_USER {
     currentUser {
       user {
         id

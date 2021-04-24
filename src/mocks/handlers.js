@@ -85,12 +85,14 @@ export const handlers = [
   }),
 
 
-  graphql.query("CURRENT_USER_QUERY", (req, res, ctx) => {
+  graphql.query("GET_CURRENT_USER", (req, res, ctx) => {
     return res(
       ctx.data({
         currentUser: {
-          id: 'abc123',
-          email: 'test@test.com',
+          user: {
+            id: 'abc123',
+            email: 'test@test.com',
+          }
         }
       })
     )

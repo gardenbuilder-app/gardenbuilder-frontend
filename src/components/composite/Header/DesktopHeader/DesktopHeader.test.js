@@ -1,5 +1,5 @@
 import React from "react"
-import { render, fireEvent, screen, waitFor } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import { MemoryRouter } from "react-router-dom"
 import { ApolloProvider } from "@apollo/client"
 import { graphql } from "msw"
@@ -22,20 +22,21 @@ describe("The <DesktopHeader /> component", () => {
     expect(screen.getByText(/GardenBuilder/i)).toBeInTheDocument()
   })
 
-  it("renders the nav with user signed in", async () => {
+  it("renders the navbar with user signed in", async () => {
     render(HeaderRender);
     expect(await screen.findByText(/GardenBuilder/i)).toBeInTheDocument()
+    expect(await screen.findByText(/Gardens/i)).toBeInTheDocument()
     expect(await screen.findByRole("link", { name: /Gardens/i })).toBeInTheDocument()
+    expect(await screen.findByRole("link", { name: /Beds/i })).toBeInTheDocument()
   });
   
-  it("does not render the nav with no signed in user", async () => {
+  it("does not render the navbar with no signed in user", async () => {
     server.use(
-      graphql.query("CURRENT_USER_QUERY", (req, res, ctx) => {
+      graphql.query("GET_CURRENT_USER", (req, res, ctx) => {
         return res(null) 
       })
     )
     render(HeaderRender)
-    expect(await screen.findByText(/GardenBuilder/i)).toBeInTheDocument()
     await waitFor(() => {
       screen.queryByText(/Gardens/)
     })
