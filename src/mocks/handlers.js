@@ -122,7 +122,7 @@ export const handlers = [
     if (email === "test@test.com" && password === "testing!123") {
       return res(
         ctx.data({
-          tokenAuth: {
+          authenticateUser: {
             token: "sometoken123",
           },
         })

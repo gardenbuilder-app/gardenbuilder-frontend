@@ -12,7 +12,6 @@ import { SIGNIN_MUTATION } from "mutations"
 
 //Mock useHistory.push
 const mockHistoryPush = jest.fn()
-
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useHistory: () => ({
@@ -94,7 +93,7 @@ describe("<Login /> view", () => {
     client.mutate.restore()
   })
 
-  it.skip("reroutes to gardens page after signing in", async () => {
+  it("reroutes to gardens page after signing in", async () => {
     //find inputs
     ;[emailInput, passwordInput] = ["email", "password"].map((name) => {
       return screen.getAllByRole("textbox", { name: name })[0]
