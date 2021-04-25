@@ -37,9 +37,10 @@ describe("The <DesktopHeader /> component", () => {
       })
     )
     render(HeaderRender)
+    expect(await screen.findByText(/GardenBuilder/i)).toBeInTheDocument()
     await waitFor(() => {
       screen.queryByText(/Gardens/)
     })
-    expect(screen.queryByRole("link", { name: /Gardens/i })).not.toBeInTheDocument()
+    expect(await screen.queryByRole("link", { name: /Gardens/i })).not.toBeInTheDocument()
   })
 })
