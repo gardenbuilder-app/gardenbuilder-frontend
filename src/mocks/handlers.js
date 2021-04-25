@@ -84,7 +84,6 @@ export const handlers = [
     )
   }),
 
-
   graphql.query("GET_CURRENT_USER", (req, res, ctx) => {
     return res(
       ctx.data({
