@@ -1,7 +1,6 @@
 import React, { useState } from "react"
-import { useLocation } from 'react-router-dom'
+import { useLocation } from "react-router-dom"
 import { AddBed, BedList } from "."
-
 
 export function Garden(props) {
   const location = useLocation()

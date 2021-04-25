@@ -17,22 +17,22 @@ const HeaderRender = (
 )
 
 it("displays the App title", () => {
-  render(HeaderRender);
+  render(HeaderRender)
   expect(screen.getByText(/GardenBuilder/i)).toBeInTheDocument()
 })
 
 it("renders the navbar with user signed in", async () => {
-  render(HeaderRender);
+  render(HeaderRender)
   expect(await screen.findByText(/GardenBuilder/i)).toBeInTheDocument()
   expect(await screen.findByText(/Gardens/i)).toBeInTheDocument()
   expect(await screen.findByRole("link", { name: /Gardens/i })).toBeInTheDocument()
   expect(await screen.findByRole("link", { name: /Beds/i })).toBeInTheDocument()
-});
+})
 
 it("does not render the navbar with no signed in user", async () => {
   server.use(
     graphql.query("GET_CURRENT_USER", (req, res, ctx) => {
-      return res(null) 
+      return res(null)
     })
   )
   render(HeaderRender)
@@ -40,5 +40,7 @@ it("does not render the navbar with no signed in user", async () => {
   await waitFor(() => {
     screen.queryByText(/Gardens/)
   })
-  expect(await screen.queryByRole("link", { name: /Gardens/i })).not.toBeInTheDocument()
+  expect(
+    await screen.queryByRole("link", { name: /Gardens/i })
+  ).not.toBeInTheDocument()
 })

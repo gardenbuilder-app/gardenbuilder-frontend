@@ -1,6 +1,6 @@
 import React from "react"
 import { useHistory } from "react-router-dom"
-import { eraseToken } from 'libs'
+import { eraseToken } from "libs"
 
 export function Logout() {
   const history = useHistory()
@@ -8,7 +8,7 @@ export function Logout() {
   async function handleLogOut() {
     history.push("/login")
     eraseToken()
-    window.location.reload();
+    window.location.reload()
   }
 
   return <div onClick={handleLogOut}>Log Out</div>

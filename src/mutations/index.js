@@ -23,8 +23,18 @@ export const SIGNOUT_MUTATION = gql`
 `
 
 export const SIGNUP_MUTATION = gql`
-  mutation SIGNUP_MUTATION($email: String!, $password: String!, $firstName: String!, $lastName: String!) {
-    createUser(email: $email, password: $password, firstName: $firstName, lastName: $lastName) {
+  mutation SIGNUP_MUTATION(
+    $email: String!
+    $password: String!
+    $firstName: String!
+    $lastName: String!
+  ) {
+    createUser(
+      email: $email
+      password: $password
+      firstName: $firstName
+      lastName: $lastName
+    ) {
       user {
         id
         email

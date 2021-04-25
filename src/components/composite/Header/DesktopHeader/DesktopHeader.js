@@ -5,13 +5,13 @@ import { useCurrentUser } from "hooks"
 
 const Title = styled.h1``
 
-export const DesktopHeader = function() {
+export const DesktopHeader = function () {
   const loggedInUser = useCurrentUser()
 
   return (
     <>
       <Title>GardenBuilder</Title>
-      {loggedInUser ? <Navbar /> : ''}
+      {loggedInUser ? <Navbar /> : ""}
     </>
   )
 }

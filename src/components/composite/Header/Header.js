@@ -12,7 +12,6 @@ const HeaderStyleProvider = styled.header`
 `
 
 export const Header = function () {
-
   const windowSize = useWindowSize()
   const header = windowSize.width < 600 ? <MobileHeader /> : <DesktopHeader />
   return <HeaderStyleProvider>{header}</HeaderStyleProvider>

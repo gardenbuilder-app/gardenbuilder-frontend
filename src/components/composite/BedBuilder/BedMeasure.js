@@ -1,6 +1,12 @@
 import React, { useRef, useCallback, memo } from "react"
 
-const BedMeasure = ({ defaultSizes, maxSizes, units = [], defaultUnit, onChange }) => {
+const BedMeasure = ({
+  defaultSizes,
+  maxSizes,
+  units = [],
+  defaultUnit,
+  onChange,
+}) => {
   const width = useRef(0)
   const height = useRef(0)
   const unit = useRef(0)
@@ -29,19 +35,34 @@ const BedMeasure = ({ defaultSizes, maxSizes, units = [], defaultUnit, onChange 
     <div id="bed-measure">
       <div>
         <label htmlFor="width">Width: </label>
-        <select ref={width} name="width" onChange={handleDataChanges} value={defaultSizes.width}>
+        <select
+          ref={width}
+          name="width"
+          onChange={handleDataChanges}
+          value={defaultSizes.width}
+        >
           {buildSizes(maxSizes.width, "w")}
         </select>
       </div>
       <div>
-      <label htmlFor="height">Height: </label>
-        <select ref={height} name="height" onChange={handleDataChanges} value={defaultSizes.height}>
+        <label htmlFor="height">Height: </label>
+        <select
+          ref={height}
+          name="height"
+          onChange={handleDataChanges}
+          value={defaultSizes.height}
+        >
           {buildSizes(maxSizes.height, "h")}
         </select>
       </div>
       <div>
-      <label htmlFor="unit">Unit: </label>
-        <select ref={unit} name="unit" onChange={handleDataChanges} value={defaultUnit}>
+        <label htmlFor="unit">Unit: </label>
+        <select
+          ref={unit}
+          name="unit"
+          onChange={handleDataChanges}
+          value={defaultUnit}
+        >
           {units.map((unit, index) => (
             <option key={"u-" + index} value={unit}>
               {unit}

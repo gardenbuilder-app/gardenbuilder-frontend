@@ -1,6 +1,5 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 import { colors } from "styles/global"
-
 
 const AddGardenStyles = styled.div`
   #visible-toggler {
@@ -11,7 +10,7 @@ const AddGardenStyles = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    @media(max-width: 700px) {
+    @media (max-width: 700px) {
       padding: 0 0 0 1rem;
     }
   }
@@ -23,7 +22,7 @@ const AddGardenStyles = styled.div`
     background: ${colors.accent};
     margin: 21px 1rem 1rem 2rem;
     padding: 1rem;
-    @media(max-width: 700px) {
+    @media (max-width: 700px) {
       display: none;
     }
   }
@@ -34,10 +33,10 @@ const AddGardenStyles = styled.div`
     height: 50px;
     margin: 21px 0 1rem 1rem;
     display: none;
-    @media(max-width: 700px) {
+    @media (max-width: 700px) {
       display: block;
     }
   }
-`;
+`
 
-export default AddGardenStyles;
+export default AddGardenStyles

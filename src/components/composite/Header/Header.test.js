@@ -8,12 +8,10 @@ import { Header } from "./Header"
 import userEvent from "@testing-library/user-event"
 
 export function resizeWindow() {
-  return (
-    act(() => {
-      global.innerWidth = 500;
-      global.dispatchEvent(new Event('resize'));
-    })
-  )
+  return act(() => {
+    global.innerWidth = 500
+    global.dispatchEvent(new Event("resize"))
+  })
 }
 
 describe("<Header />", () => {
@@ -34,19 +32,19 @@ describe("<Header />", () => {
   it("renders the Desktop Header with user logged in", async () => {
     expect(await screen.findByRole("link", { name: /Gardens/i })).toBeInTheDocument()
     expect(await screen.findByRole("link", { name: /Profile/i })).toBeInTheDocument()
-    expect(screen.queryByLabelText(/hamburger menu/i)).not.toBeInTheDocument();
+    expect(screen.queryByLabelText(/hamburger menu/i)).not.toBeInTheDocument()
   })
 
   it("renders the Mobile Header an < 600px", async () => {
-    resizeWindow();
-    expect(await screen.findByLabelText(/hamburger menu/i)).toBeInTheDocument();
-  });
+    resizeWindow()
+    expect(await screen.findByLabelText(/hamburger menu/i)).toBeInTheDocument()
+  })
 
   it("the hamburger button toggles the menu", async () => {
-    resizeWindow();
-    expect(await screen.findByLabelText(/hamburger menu/i)).toBeInTheDocument();
-    expect(await screen.queryByText(/Gardens/i)).not.toBeInTheDocument();
+    resizeWindow()
+    expect(await screen.findByLabelText(/hamburger menu/i)).toBeInTheDocument()
+    expect(await screen.queryByText(/Gardens/i)).not.toBeInTheDocument()
     await userEvent.click(await screen.findByLabelText(/hamburger menu/i))
-    expect(await screen.findByText(/Gardens/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Gardens/i)).toBeInTheDocument()
   })
 })
