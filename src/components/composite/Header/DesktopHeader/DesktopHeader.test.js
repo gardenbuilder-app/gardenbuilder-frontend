@@ -18,20 +18,20 @@ describe("The <DesktopHeader /> component", () => {
   )
 
   it("displays the App title", () => {
-    render(HeaderRender);
+    render(HeaderRender)
     expect(screen.getByText(/GardenBuilder/i)).toBeInTheDocument()
   })
 
   it("renders the nav with user signed in", async () => {
-    render(HeaderRender);
+    render(HeaderRender)
     expect(await screen.findByText(/GardenBuilder/i)).toBeInTheDocument()
     expect(await screen.findByRole("link", { name: /Gardens/i })).toBeInTheDocument()
-  });
-  
+  })
+
   it("does not render the nav with no signed in user", async () => {
     server.use(
       graphql.query("CURRENT_USER_QUERY", (req, res, ctx) => {
-        return res(null) 
+        return res(null)
       })
     )
     render(HeaderRender)

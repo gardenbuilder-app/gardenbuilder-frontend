@@ -1,15 +1,15 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client"
-import { onError } from 'apollo-link-error'
-import { ApolloLink } from 'apollo-link'
+import { onError } from "apollo-link-error"
+import { ApolloLink } from "apollo-link"
 import { setContext } from "@apollo/client/link/context"
 import { getToken } from "libs"
 
 /**
- * 
- * This is the only instance of the client. It switches from development server to the mock 
+ *
+ * This is the only instance of the client. It switches from development server to the mock
  * server when running tests. Its default export should be passed to the client prop of the
  * <ApolloProvider /> instance in the render function for tests.
- * 
+ *
  */
 
 /**
@@ -26,9 +26,7 @@ const authLink = setContext((_, { headers }) => {
 })
 
 //Points to dev server
-const devEndpoint =
-  process.env.REACT_APP_GRAPHQL_SERVER ||
-  "https://gardenbuilder-backend.uc.r.appspot.com/graphql/"
+const devEndpoint = process.env.REACT_APP_GRAPHQL_SERVER || "http://localhost:8080/"
 
 //Switches request endpoint from dev server to mock server
 function determineEndpoint(env) {
@@ -49,10 +47,10 @@ const httpLink = createHttpLink({
 // Set up error handler
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    console.log('graphQLErrors', graphQLErrors);
+    console.log("graphQLErrors", graphQLErrors)
   }
   if (networkError) {
-    console.log('networkError', networkError);
+    console.log("networkError", networkError)
   }
 })
 
@@ -66,13 +64,13 @@ const apolloClient = new ApolloClient({
     },
     //Disables caching on tests to allow mocks to run properly
     watchQuery: {
-      fetchPolicy: determineFetchPolicy(process.env.NODE_ENV)
+      fetchPolicy: determineFetchPolicy(process.env.NODE_ENV),
     },
     query: {
-      fetchPolicy: determineFetchPolicy(process.env.NODE_ENV)
+      fetchPolicy: determineFetchPolicy(process.env.NODE_ENV),
     },
   },
-  link
+  link,
 })
 
 export default apolloClient

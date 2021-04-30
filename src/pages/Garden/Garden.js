@@ -1,10 +1,12 @@
-import React, { useState } from "react"
-import { useLocation } from 'react-router-dom'
-import { AddBed, BedList } from "."
-
+import React from "react"
+import { useLocation } from "react-router-dom"
+import { BedList } from "./BedList"
+import { AddBed } from "."
 
 export function Garden(props) {
   const location = useLocation()
+
+  console.log(location.state.gardenId)
 
   return (
     <div>

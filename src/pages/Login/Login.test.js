@@ -84,14 +84,14 @@ describe("<Login /> view", () => {
     userEvent.click(button)
 
     //assert that mutation is called
-    expect(client.mutate.getCall(0).args[0].mutation).toEqual(SIGNIN_MUTATION);
+    expect(client.mutate.getCall(0).args[0].mutation).toEqual(SIGNIN_MUTATION)
     //with proper variables
     expect(client.mutate.getCall(0).args[0].variables).toEqual({
       email: "test@test.com",
-      password: "testing!123"
+      password: "testing!123",
     })
     //reset
-    client.mutate.restore();
+    client.mutate.restore()
   })
 
   it.skip("reroutes to gardens page after signing in", async () => {
@@ -125,7 +125,12 @@ describe("<Login /> view", () => {
     )
 
     //set inputs
-    ;[emailInput, passwordInput, firstNameInput, lastNameInput] = ["email", "password", "First Name", "Last Name"].map((name) => {
+    ;[emailInput, passwordInput, firstNameInput, lastNameInput] = [
+      "email",
+      "password",
+      "First Name",
+      "Last Name",
+    ].map((name) => {
       return screen.getAllByRole("textbox", { name: name })[0]
     })
 
@@ -136,7 +141,7 @@ describe("<Login /> view", () => {
     userEvent.type(lastNameInput, "Name")
 
     // click button
-    spy(client, "mutate");
+    spy(client, "mutate")
     const button = await screen.findByRole("button", { name: "Sign Up" })
     userEvent.click(button)
 
@@ -164,7 +169,12 @@ describe("<Login /> view", () => {
     )
 
     //set inputs
-    ;[emailInput, passwordInput, firstNameInput, lastNameInput] = ["email", "password", "First Name", "Last Name"].map((name) => {
+    ;[emailInput, passwordInput, firstNameInput, lastNameInput] = [
+      "email",
+      "password",
+      "First Name",
+      "Last Name",
+    ].map((name) => {
       return screen.getAllByRole("textbox", { name: name })[0]
     })
 
