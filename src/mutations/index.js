@@ -57,19 +57,6 @@ export const CREATE_BED_MUTATION = gql`
   }
 `
 
-// export const CREATE_GARDEN_MUTATION = gql`
-//   mutation CREATE_GARDEN_MUTATION($name: String!) {
-//     createGarden(name: $name) {
-//       garden {
-//         id
-//         name
-//       }
-//       errors {
-//         message
-//       }
-//     }
-//   }
-// `
 export const CREATE_GARDEN_MUTATION = gql`
   mutation CREATE_GARDEN_MUTATION($name: String!) {
     createGarden(name: $name) {

@@ -48,7 +48,7 @@ const httpLink = createHttpLink({
 
 // Set up error handler
 const errorLink = onError(({ graphQLErrors, networkError }) => {
-  const isTestEnvironment = process.env.NODE_ENV == "test"
+  const isTestEnvironment = process.env.NODE_ENV === "test"
 
   if (graphQLErrors && !isTestEnvironment) {
     console.log("graphQLErrors", graphQLErrors)
