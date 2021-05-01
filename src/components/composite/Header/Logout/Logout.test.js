@@ -20,47 +20,45 @@ jest.mock("libs", () => ({
   eraseToken: jest.fn(),
 }))
 
-describe.only("<Logout /> component", () => {
-  let container
-  beforeEach(() => {
-    container = render(
-      <MemoryRouter>
-        <ApolloProvider client={client}>
-          <Logout />
-        </ApolloProvider>
-      </MemoryRouter>
-    )
+let container
+beforeEach(() => {
+  container = render(
+    <MemoryRouter>
+      <ApolloProvider client={client}>
+        <Logout />
+      </ApolloProvider>
+    </MemoryRouter>
+  )
+})
+
+it("should render properly", () => {
+  const logoutText = container.getByText("Log Out")
+  expect(logoutText).toBeInTheDocument()
+})
+
+it("navigates to login page", async () => {
+  suppressJSDomNavigateWarning()
+  await userEvent.click(await screen.findByText(/Log Out/i))
+  await waitFor(() => {
+    expect(mockHistoryPush).toHaveBeenCalled()
+    expect(mockHistoryPush).toHaveBeenCalledWith("/login")
   })
 
-  it("should render properly", () => {
-    const logoutText = container.getByText("Log Out")
-    expect(logoutText).toBeInTheDocument()
-  })
+  /**
+   * Suppresses error warning that JSDom doesn't
+   * include the react-router navigate method
+   */
+  function suppressJSDomNavigateWarning() {
+    delete window.location
+    window.location = { reload: mockHistoryPush }
+  }
+})
 
-  it("navigates to login page", async () => {
-    suppressJSDomNavigateWarning()
-    await userEvent.click(await screen.findByText(/Log Out/i))
-    await waitFor(() => {
-      expect(mockHistoryPush).toHaveBeenCalled()
-      expect(mockHistoryPush).toHaveBeenCalledWith("/login")
-    })
-
-    /**
-     * Suppresses error warning that JSDom doesn't
-     * include the react-router navigate method
-     */
-    function suppressJSDomNavigateWarning() {
-      delete window.location
-      window.location = { reload: mockHistoryPush }
-    }
-  })
-
-  it("clears user session", async () => {
-    const mockEraseToken = libs.eraseToken
-    const logout = await screen.findByText(/Log Out/i)
-    await fireEvent.click(logout)
-    await waitFor(() => {
-      expect(mockEraseToken).toHaveBeenCalled()
-    })
+it("clears user session", async () => {
+  const mockEraseToken = libs.eraseToken
+  const logout = await screen.findByText(/Log Out/i)
+  await fireEvent.click(logout)
+  await waitFor(() => {
+    expect(mockEraseToken).toHaveBeenCalled()
   })
 })
