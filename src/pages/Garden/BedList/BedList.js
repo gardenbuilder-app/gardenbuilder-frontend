@@ -22,7 +22,6 @@ export function BedList({ gardenId }) {
   if (error) return <div className="error">{error.message}</div>
 
   const beds = data?.beds
-  console.log(beds)
 
   return (
     <BedListWrapper>
