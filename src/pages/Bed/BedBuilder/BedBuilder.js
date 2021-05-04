@@ -5,8 +5,8 @@ import "./BedBuilder.css"
 
 const MAX_WIDTH = 20,
   MAX_HEIGHT = 20,
-  DEF_WIDTH = 3,
-  DEF_HEIGHT = 5
+  DEF_WIDTH = 0,
+  DEF_HEIGHT = 0
 
 export const BedBuilder = () => {
   const [measurements, setMeasurements] = useState({

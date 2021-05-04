@@ -32,9 +32,7 @@ export function Login() {
       console.log(`Error logging in: ${err}`)
     },
     onCompleted({ authenticateUser }) {
-      console.log(authenticateUser)
       if (authenticateUser.token) {
-        console.log(authenticateUser)
         setToken(authenticateUser.token)
         saveCredentialsInCache(email, password)
         history.push("/gardens")

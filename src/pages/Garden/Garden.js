@@ -1,7 +1,6 @@
 import React from "react"
 import { useLocation } from "react-router-dom"
-import { BedList } from "./BedList"
-import { AddBed } from "."
+import { AddBed, BedList } from "."
 
 export function Garden(props) {
   const location = useLocation()

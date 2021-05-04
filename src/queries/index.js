@@ -8,6 +8,9 @@ export const GET_USER_GARDENS = gql`
       beds {
         id
         name
+        height,
+        width,
+        unitOfMeasurement
         isActive
       }
       endedAt
@@ -23,13 +26,16 @@ export const GET_USER_BEDS = gql`
     beds(gardenId: $id) {
       id
       name
+      height,
+      width,
+      unitOfMeasurement,
       isActive
     }
   }
 `
 
-export const CURRENT_USER_QUERY = gql`
-  query CURRENT_USER_QUERY {
+export const GET_CURRENT_USER = gql`
+  query GET_CURRENT_USER {
     currentUser {
       user {
         id

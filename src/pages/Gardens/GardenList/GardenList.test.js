@@ -5,11 +5,10 @@ import {
   screen,
   waitForElementToBeRemoved,
 } from "@testing-library/react"
-import { ApolloProvider, MockedProvider } from "@apollo/client"
+import { ApolloProvider } from "@apollo/client"
 import { Router } from "react-router-dom"
 import { createMemoryHistory } from "history"
 import { graphql } from "msw"
-
 import { server } from "mocks/server"
 import { GardenList } from "./GardenList"
 import client from "ApolloClient"
@@ -27,13 +26,7 @@ describe("<GardenList /> component", () => {
       </Router>
     </ApolloProvider>
   )
-  // const gardenListRender = (
-  //   <MockedProvider client={client} addTypename={false}>
-  //     <Router history={history}>
-  //       <GardenList />
-  //     </Router>
-  //   </MockedProvider>
-  // )
+
   it("renders a loader while loading", () => {
     render(gardenListRender)
     expect(screen.getByText("Loading...")).toBeInTheDocument()

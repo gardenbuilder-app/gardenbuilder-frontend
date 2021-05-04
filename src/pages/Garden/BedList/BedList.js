@@ -23,16 +23,13 @@ function BedList({ gardenId }) {
   if (error) return <div className="error">{error.message}</div>
 
   const beds = data?.beds
-  console.log(gardenId)
-  console.log(beds)
 
   return (
     <BedListWrapper>
       {beds.map((bed) => (
-        <React.Fragment key={bed.id}>
-          <a href={`/bed?id=${bed.id}&name=${bed.name}`}>{bed.name}</a>
-          <p>{bed.name}</p>
-        </React.Fragment>
+        <a key={bed.id} href={`/bed?id=${bed.id}&name=${bed.name}`}>
+          {bed.name}
+        </a>
       ))}
     </BedListWrapper>
   )

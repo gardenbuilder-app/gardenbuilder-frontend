@@ -1,16 +1,16 @@
 import React from "react"
-import { useUrlParam } from "hooks"
-import { BedBuilder } from "components/composite"
-
-// import { GET_USER_GARDENS} from 'queries'
+import { client, gql } from "@apollo/client"
+import { useUrlParam } from "/hooks"
+import { BedBuilder } from "./BedBuilder"
 
 export function Bed() {
   const bedName = useUrlParam("name")
+  const id = useUrlParam("id")
 
   return (
-    <div>
+    <>
       <h2>{bedName}</h2>
       <BedBuilder />
-    </div>
+    </>
   )
 }

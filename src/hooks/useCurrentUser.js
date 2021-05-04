@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client"
-import { CURRENT_USER_QUERY } from "queries"
+import { GET_CURRENT_USER } from "queries"
 
 function useCurrentUser() {
-  const { data, loading, error } = useQuery(CURRENT_USER_QUERY)
+  const { data, loading, error } = useQuery(GET_CURRENT_USER)
 
   if (!loading && !error) {
     const { currentUser } = data

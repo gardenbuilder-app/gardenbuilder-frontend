@@ -14,7 +14,7 @@ export function Profile() {
   return (
     <Center>
       <h2>Profile</h2>
-      <p>User: {loggedInUser.email}</p>
+      <p>User: {loggedInUser.user.email}</p>
       <p>User Since: userSinceHere</p>
       <p>
         Update Password:
