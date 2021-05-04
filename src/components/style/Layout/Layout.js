@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import PropTypes from "prop-types"
 import { Header, Footer } from "components/composite"
 
 const Container = styled.div`
@@ -11,7 +12,7 @@ const Main = styled.main`
   flex-grow: 1;
 `
 
-export const Layout = function ({ children }) {
+const Layout = function ({ children }) {
   return (
     <Container>
       <Header />
@@ -20,3 +21,8 @@ export const Layout = function ({ children }) {
     </Container>
   )
 }
+
+Layout.propTypes = {
+  children: PropTypes.element,
+}
+export { Layout }
