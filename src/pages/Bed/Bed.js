@@ -1,6 +1,6 @@
 import React from "react"
 import { client, gql } from "@apollo/client"
-import { useUrlParam } from "/hooks"
+import { useUrlParam } from "hooks"
 import { BedBuilder } from "./BedBuilder"
 
 export function Bed() {
