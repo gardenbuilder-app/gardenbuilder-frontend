@@ -48,11 +48,20 @@ export const SIGNUP_MUTATION = gql`
 `
 
 export const CREATE_BED_MUTATION = gql`
-  mutation CREATE_BED_MUTATION($name: String!, $gardenId: Int!) {
+  mutation CREATE_BED_MUTATION(
+    $name: String!
+    $gardenId: Int!
+    $height: Int! = 4
+    $width: Int! = 4
+    $unitOfMeasurement: String! = "ft"
+  ) {
     createBed(name: $name, gardenId: $gardenId) {
       id
       name
       gardenId
+      height
+      width
+      unitOfMeasurement
     }
   }
 `
