@@ -76,8 +76,8 @@ const BedMeasure = ({
 }
 
 BedMeasure.propTypes = {
-  defaultSizes: PropTypes.number,
-  maxSizes: PropTypes.number,
+  defaultSizes: PropTypes.object,
+  maxSizes: PropTypes.object,
   units: PropTypes.array,
   defaultUnit: PropTypes.string,
   onChange: PropTypes.func,
