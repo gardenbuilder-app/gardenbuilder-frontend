@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import { Logout } from "../../Logout"
+import { Logout } from "components/composite/Header/Logout"
 
 const Nav = styled.nav`
   display: flex;

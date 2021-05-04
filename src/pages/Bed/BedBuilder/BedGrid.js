@@ -1,4 +1,5 @@
 import React, { useRef, useLayoutEffect } from "react"
+import PropTypes from "prop-types"
 
 const BedGrid = ({ cols, rows, maxGridWidth, maxGridHeight }) => {
   const grid = useRef(0)
@@ -19,7 +20,7 @@ const BedGrid = ({ cols, rows, maxGridWidth, maxGridHeight }) => {
       grid.current.style.height = cellSize * rows + "px"
       cell.style.height = cellSize - 2 + "px"
     })
-  }, [cols, rows])
+  }, [cols, rows, maxGridHeight, maxGridWidth])
 
   const buildCells = () => {
     const cells = []
@@ -35,6 +36,13 @@ const BedGrid = ({ cols, rows, maxGridWidth, maxGridHeight }) => {
       {buildCells()}
     </div>
   )
+}
+
+BedGrid.propTypes = {
+  cols: PropTypes.number,
+  rows: PropTypes.number,
+  maxGridWidth: PropTypes.number,
+  maxGridHeight: PropTypes.number,
 }
 
 export default BedGrid

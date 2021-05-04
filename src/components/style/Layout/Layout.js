@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { Header, Footer } from "../../composite"
+import { Header, Footer } from "components/composite"
 
 const Container = styled.div`
   display: flex;

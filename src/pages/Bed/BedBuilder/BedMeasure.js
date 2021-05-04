@@ -1,4 +1,5 @@
 import React, { useRef, useCallback, memo } from "react"
+import PropTypes from "prop-types"
 
 const BedMeasure = ({
   defaultSizes,
@@ -72,6 +73,14 @@ const BedMeasure = ({
       </div>
     </div>
   )
+}
+
+BedMeasure.propTypes = {
+  defaultSizes: PropTypes.number,
+  maxSizes: PropTypes.number,
+  units: PropTypes.array,
+  defaultUnit: PropTypes.string,
+  onChange: PropTypes.func,
 }
 
 export default memo(BedMeasure)

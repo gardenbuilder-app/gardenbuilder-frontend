@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { useQuery } from "@apollo/client"
 import styled from "styled-components"
 import { GET_USER_BEDS } from "queries"

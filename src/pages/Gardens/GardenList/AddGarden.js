@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useMutation } from "@apollo/client"
 import { CREATE_GARDEN_MUTATION } from "mutations"
 import { GET_USER_GARDENS } from "queries"
-import { AddThing } from "../../../components/composite"
+import { AddThing } from "components/composite"
 
 export function AddGarden() {
   const [gardenName, setGardenName] = useState("")

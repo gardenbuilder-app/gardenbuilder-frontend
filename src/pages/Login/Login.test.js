@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event"
 import { MemoryRouter } from "react-router-dom"
 import { spy } from "sinon"
 
-import client from "../../ApolloClient"
+import client from "ApolloClient"
 import { Login } from "./Login"
 import { SIGNUP_MUTATION } from "mutations"
 import { SIGNIN_MUTATION } from "mutations"

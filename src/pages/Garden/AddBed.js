@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { gql, useMutation } from "@apollo/client"
-import { AddThing } from "../../components/composite"
-import { CREATE_BED_MUTATION } from "../../mutations"
+import { AddThing } from "components/composite"
+import { CREATE_BED_MUTATION } from "mutations"
 import PropTypes from "prop-types"
 
 function AddBed({ gardenId }) {
