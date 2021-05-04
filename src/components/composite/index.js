@@ -1,5 +1,5 @@
-export * from './AddThing'
-export * from './BedBuilder'
+export * from "./AddThing"
+export * from "./BedBuilder"
 export * from "./Button"
 export * from "./Footer"
 export * from "./Form"

@@ -23,6 +23,6 @@ describe("The <Profile /> page", () => {
 
   it("displays the user's email", async () => {
     await waitForElementToBeRemoved(() => screen.getByText(/Loading.../i))
-    expect(screen.getByText(/test@test.com/i)).toBeInTheDocument();
+    expect(screen.getByText(/test@test.com/i)).toBeInTheDocument()
   })
 })

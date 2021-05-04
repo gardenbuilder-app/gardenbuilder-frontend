@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react"
 
-export function Footer () {
+export function Footer() {
   return (
     <footer>
-      <p>
-          Footer here
-      </p>
+      <p>Footer here</p>
     </footer>
   )
 }

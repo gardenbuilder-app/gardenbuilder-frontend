@@ -11,7 +11,7 @@ const ButtonContainer = styled.div`
   justify-content: center;
 `
 
-export function AddThing({thing, setThing, typeOfThing, executeGraphQL}) {
+export function AddThing({ thing, setThing, typeOfThing, executeGraphQL }) {
   const textInput = useRef(null)
   const [formVisible, setFormVisible] = useState(false)
 
@@ -30,9 +30,24 @@ export function AddThing({thing, setThing, typeOfThing, executeGraphQL}) {
   return (
     <IconContext.Provider value={{ size: "1.5rem" }}>
       <AddGardenStyles>
-        <ButtonContainer id="visible-toggler" onClick={() => setFormVisible(!formVisible)}>
-          {!formVisible && <FaChevronDown alt={`Add ${typeOfThing}`} aria-label={`Add ${typeOfThing}`} role="img" />}
-          {formVisible && <FaChevronRight alt={`Add ${typeOfThing}`} aria-label={`Add ${typeOfThing}`} role="img" />}
+        <ButtonContainer
+          id="visible-toggler"
+          onClick={() => setFormVisible(!formVisible)}
+        >
+          {!formVisible && (
+            <FaChevronDown
+              alt={`Add ${typeOfThing}`}
+              aria-label={`Add ${typeOfThing}`}
+              role="img"
+            />
+          )}
+          {formVisible && (
+            <FaChevronRight
+              alt={`Add ${typeOfThing}`}
+              aria-label={`Add ${typeOfThing}`}
+              role="img"
+            />
+          )}
           &nbsp;Add {typeOfThing}
         </ButtonContainer>
         {formVisible && (
@@ -48,7 +63,11 @@ export function AddThing({thing, setThing, typeOfThing, executeGraphQL}) {
               Add
             </button>
             <button id="mobile-submit" name="submit" type="submit">
-              <FaPlusCircle alt={`Add ${typeOfThing}`} aria-label={`Add ${typeOfThing}`} role="img" />
+              <FaPlusCircle
+                alt={`Add ${typeOfThing}`}
+                aria-label={`Add ${typeOfThing}`}
+                role="img"
+              />
             </button>
           </Form>
         )}

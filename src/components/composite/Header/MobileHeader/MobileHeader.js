@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { BrowserRouter, Link } from "react-router-dom"
 import styled from "styled-components"
 import { HamburgerButton } from "./HamburgerButton"
-import { useCurrentUser } from 'hooks';
+import { useCurrentUser } from "hooks"
 import { Logout } from "../Logout"
 
 const MobileHeaderStyle = styled.div`
@@ -42,19 +42,21 @@ export const MobileHeader = function () {
     <>
       <MobileHeaderStyle>
         <Title>GardenBuilder</Title>
-        {loggedInUser && <HamburgerButton toggleMenuVisibility={toggleMenuVisibility} />}
+        {loggedInUser && (
+          <HamburgerButton toggleMenuVisibility={toggleMenuVisibility} />
+        )}
         {menuVisible && (
           <Menu>
             <BrowserRouter>
-            <li>
-              <StyledLink to="/profile">Profile</StyledLink>
-            </li>
-            <li>
-              <StyledLink to="/gardens">Gardens</StyledLink>
-            </li>
-            <li>
-              <Logout />
-            </li>
+              <li>
+                <StyledLink to="/profile">Profile</StyledLink>
+              </li>
+              <li>
+                <StyledLink to="/gardens">Gardens</StyledLink>
+              </li>
+              <li>
+                <Logout />
+              </li>
             </BrowserRouter>
           </Menu>
         )}

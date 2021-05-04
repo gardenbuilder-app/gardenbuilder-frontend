@@ -18,20 +18,20 @@ describe("<MobileHeader /> component", () => {
   )
 
   it("renders properly", async () => {
-    render(renderMobileHeader);
+    render(renderMobileHeader)
     expect(
       await screen.findByRole("heading", { name: /GardenBuilder/i })
     ).toBeInTheDocument()
   })
 
   it("does not render the hamburger button if not logged in", async () => {
-    client.clearStore();
+    client.clearStore()
     server.use(
       graphql.query("CURRENT_USER_QUERY", (req, res, ctx) => {
         return res.once(null)
       })
     )
-    render(renderMobileHeader);
+    render(renderMobileHeader)
     expect(await screen.findByText(/GardenBuilder/i)).toBeInTheDocument()
     await waitFor(() => {
       screen.queryByLabelText(/hamburger menu/i)
@@ -40,12 +40,12 @@ describe("<MobileHeader /> component", () => {
   })
 
   it("renders the hamburger button if user logged in", async () => {
-    render(renderMobileHeader);
+    render(renderMobileHeader)
     expect(await screen.findByLabelText(/hamburger menu/i)).toBeInTheDocument()
   })
 
   it("should show Profile, Gardens, and Log Out in the menu after clicking the hamburger button", async () => {
-    render(renderMobileHeader);
+    render(renderMobileHeader)
     const button = await screen.findByLabelText(/hamburger menu/i)
     await fireEvent.click(button)
     const menuItems = ["Profile", "Gardens", "Log Out"]

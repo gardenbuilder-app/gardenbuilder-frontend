@@ -1,14 +1,14 @@
 import React from "react"
-import styled from 'styled-components'
+import styled from "styled-components"
 
-import { useCurrentUser } from 'hooks';
+import { useCurrentUser } from "hooks"
 
 const Center = styled.div`
   margin-left: 4rem;
-`;
+`
 
 export function Profile() {
-  const loggedInUser = useCurrentUser();
+  const loggedInUser = useCurrentUser()
 
   if (!loggedInUser) return <p>Loading...</p>
   return (
@@ -17,7 +17,7 @@ export function Profile() {
       <p>User: {loggedInUser.email}</p>
       <p>User Since: userSinceHere</p>
       <p>
-        Update Password: 
+        Update Password:
         <span> inputElementHereToUpdatePassword</span>
       </p>
     </Center>

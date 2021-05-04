@@ -1,20 +1,19 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
 import { ApolloProvider } from "@apollo/client"
-import routeData from 'react-router'
+import routeData from "react-router"
 import { Garden } from "./Garden"
-import client from 'ApolloClient';
-
+import client from "ApolloClient"
 
 describe("<Garden /> view", () => {
   const mockLocation = {
-    pathname: '/garden#1',
+    pathname: "/garden#1",
     hash: 1,
     state: {
       gardenId: 1,
-      gardenName: 'Garden One'
+      gardenName: "Garden One",
     },
-    search: ''
+    search: "",
   }
   /**
    *  Set up conditions for each test.
@@ -22,7 +21,7 @@ describe("<Garden /> view", () => {
    */
   beforeEach(() => {
     // use fake location data
-    jest.spyOn(routeData, 'useLocation').mockReturnValue(mockLocation)
+    jest.spyOn(routeData, "useLocation").mockReturnValue(mockLocation)
 
     render(
       <ApolloProvider client={client} addTypename={false}>
@@ -32,10 +31,10 @@ describe("<Garden /> view", () => {
   })
 
   it("renders title from location data", async () => {
-    expect(await screen.findByText('Garden One')).toBeInTheDocument()
+    expect(await screen.findByText("Garden One")).toBeInTheDocument()
   })
 
   it("renders the AddBed component", async () => {
-    expect(await screen.findByText(/Add Bed/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Add Bed/i)).toBeInTheDocument()
   })
 })

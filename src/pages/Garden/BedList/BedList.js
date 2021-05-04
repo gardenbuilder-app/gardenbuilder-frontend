@@ -29,16 +29,17 @@ function BedList({ gardenId }) {
   return (
     <BedListWrapper>
       {beds.map((bed) => (
-        <a key={bed.id} href={`/bed?id=${bed.id}&name=${bed.name}`}>
-          {bed.name}
-        </a>
+        <React.Fragment key={bed.id}>
+          <a href={`/bed?id=${bed.id}&name=${bed.name}`}>{bed.name}</a>
+          <p>{bed.name}</p>
+        </React.Fragment>
       ))}
     </BedListWrapper>
   )
 }
 
 BedList.propTypes = {
-  gardenId: PropTypes.number,
+  gardenId: PropTypes.string,
 }
 
 export { BedList }

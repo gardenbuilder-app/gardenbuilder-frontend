@@ -13,7 +13,7 @@ const StyledButton = styled.button`
   font-size: 100%;
   height: 3rem;
   min-width: 100px;
-  max-width: 264px
+  max-width: 264px;
 `
 
 /**

@@ -17,9 +17,9 @@ function App() {
             <Route
               exact
               path="/"
-              render={() => (
+              render={() =>
                 loggedInUser ? <Redirect to="/gardens" /> : <Redirect to="/login" />
-              )}
+              }
             />
             <Route exact path="/login" component={Login} />
             <Route path="/bed" component={Bed} />

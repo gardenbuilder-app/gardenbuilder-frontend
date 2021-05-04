@@ -40,7 +40,9 @@ export function Login() {
         history.push("/gardens")
       } else {
         const regex = new RegExp(/password/)
-        const errorMessage = authenticateUser.errors[0].message || authenticateUser?.token ?.errors[0]?.message
+        const errorMessage =
+          authenticateUser.errors[0].message ||
+          authenticateUser?.token?.errors[0]?.message
         if (errorMessage && regex.test(errorMessage)) {
           setErrorMessage(errorMessage)
         }
@@ -72,7 +74,7 @@ export function Login() {
       console.log(loginResults.error)
     }
     if (signupResults.error) {
-      ; /already exists/.test(signupResults.error.message) &&
+      ;/already exists/.test(signupResults.error.message) &&
         setErrorMessage("This user already exists! Please sign in instead")
     }
   }, [loginResults.error, signupResults.error])
@@ -94,11 +96,11 @@ export function Login() {
   function saveCredentialsInCache(email, password) {
     client.writeQuery({
       query: gql`
-      query GetUserCredentials {
+        query GetUserCredentials {
           email
           password
           signedIn
-      }
+        }
       `,
       data: {
         email,
@@ -121,7 +123,7 @@ export function Login() {
         setValue={setPassword}
         type="password"
       />
-      { !isMember && (
+      {!isMember && (
         <>
           <InputSection
             name="First Name"
@@ -146,13 +148,13 @@ export function Login() {
           </StyledSpan>
         </p>
       ) : (
-          <p>
-            Already a member?{" "}
-            <StyledSpan role="button" onClick={() => setIsMember(!isMember)}>
-              Sign In
+        <p>
+          Already a member?{" "}
+          <StyledSpan role="button" onClick={() => setIsMember(!isMember)}>
+            Sign In
           </StyledSpan>
-          </p>
-        )}
+        </p>
+      )}
     </Form>
   )
 }

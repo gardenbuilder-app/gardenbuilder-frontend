@@ -6,16 +6,15 @@ import client from "../../ApolloClient"
 import { Welcome } from "./Welcome"
 
 describe("The <Welcome /> page", () => {
-    beforeEach(() => {
-        render(
-            <MemoryRouter>
-                <Welcome />
-            </MemoryRouter>
-        )
-    })
+  beforeEach(() => {
+    render(
+      <MemoryRouter>
+        <Welcome />
+      </MemoryRouter>
+    )
+  })
 
-    it("displays the Welcome header", async () => {
-        expect(screen.getByText(/Welcome/i)).toBeInTheDocument()
-    })
-
+  it("displays the Welcome header", async () => {
+    expect(screen.getByText(/Welcome/i)).toBeInTheDocument()
+  })
 })

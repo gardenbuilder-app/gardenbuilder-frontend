@@ -27,6 +27,6 @@ describe("<Input /> component", () => {
   it("should change input that is passed to it", async () => {
     const { input } = setup()
     await userEvent.type(input, "test")
-    expect(await screen.findByDisplayValue(/test/i)).toBeInTheDocument();
+    expect(await screen.findByDisplayValue(/test/i)).toBeInTheDocument()
   })
 })

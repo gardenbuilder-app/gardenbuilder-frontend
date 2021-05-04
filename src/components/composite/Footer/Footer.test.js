@@ -1,14 +1,14 @@
-import React from 'react'
-import { render, screen } from "@testing-library/react";
+import React from "react"
+import { render, screen } from "@testing-library/react"
 
-import { Footer } from './Footer';
+import { Footer } from "./Footer"
 
-describe('<Footer />', () => {
+describe("<Footer />", () => {
   beforeEach(() => {
-    render(<Footer/>)
+    render(<Footer />)
   })
 
-  it('renders correctly', async () => {
-    expect(await screen.findByText(/Footer here/i)).toBeInTheDocument();
+  it("renders correctly", async () => {
+    expect(await screen.findByText(/Footer here/i)).toBeInTheDocument()
   })
 })

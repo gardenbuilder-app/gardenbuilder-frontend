@@ -36,10 +36,10 @@ export function GardenList() {
             to={{
               pathname: "/garden",
               hash: garden.id,
-              state: { gardenId: garden.id, gardenName: garden.name }
+              state: { gardenId: garden.id, gardenName: garden.name },
             }}
           >
-          { garden.name }
+            {garden.name}
           </Link>
           <div>{bedText}</div>
           <div>{isActive}</div>
