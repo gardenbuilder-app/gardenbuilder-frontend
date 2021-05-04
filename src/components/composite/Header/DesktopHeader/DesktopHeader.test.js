@@ -16,29 +16,6 @@ const HeaderRender = (
   </MemoryRouter>
 )
 
-<<<<<<< HEAD
-  it("displays the App title", () => {
-    render(HeaderRender)
-    expect(screen.getByText(/GardenBuilder/i)).toBeInTheDocument()
-  })
-
-  it("renders the nav with user signed in", async () => {
-    render(HeaderRender)
-    expect(await screen.findByText(/GardenBuilder/i)).toBeInTheDocument()
-    expect(await screen.findByRole("link", { name: /Gardens/i })).toBeInTheDocument()
-  })
-
-  it("does not render the nav with no signed in user", async () => {
-    server.use(
-      graphql.query("CURRENT_USER_QUERY", (req, res, ctx) => {
-        return res(null)
-      })
-    )
-    render(HeaderRender)
-    expect(await screen.findByText(/GardenBuilder/i)).toBeInTheDocument()
-    await waitFor(() => {
-      screen.queryByText(/Gardens/)
-=======
 it("displays the App title", () => {
   render(HeaderRender)
   expect(screen.getByText(/GardenBuilder/i)).toBeInTheDocument()
@@ -56,7 +33,6 @@ it("does not render the navbar with no signed in user", async () => {
   server.use(
     graphql.query("GET_CURRENT_USER", (req, res, ctx) => {
       return res(null)
->>>>>>> 1fb4c7234da75f1bddbbe525a58a0affe91baf7d
     })
   )
   render(HeaderRender)
