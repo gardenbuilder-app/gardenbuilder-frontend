@@ -5,8 +5,6 @@ import { AddBed, BedList } from "."
 export function Garden(props) {
   const location = useLocation()
 
-  console.log(location.state.gardenId)
-
   return (
     <div>
       <h2>{location.state.gardenName}</h2>
