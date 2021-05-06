@@ -19,6 +19,7 @@ jest.mock("react-router-dom", () => ({
 jest.mock("libs", () => ({
   eraseToken: jest.fn(),
 }))
+
 describe("<Logout />", () => {
   let container
   beforeEach(() => {

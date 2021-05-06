@@ -4,7 +4,7 @@ import { render, screen, waitFor } from "@testing-library/react"
 import { MemoryRouter } from "react-router-dom"
 import { graphql } from "msw"
 
-import client from "../../../../ApolloClient"
+import client from "ApolloClient"
 import { DesktopHeader } from "./DesktopHeader"
 import { server } from "mocks/server"
 
