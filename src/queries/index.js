@@ -8,7 +8,7 @@ export const GET_USER_GARDENS = gql`
       beds {
         id
         name
-        height
+        length
         width
         unitOfMeasurement
         isActive
@@ -26,7 +26,7 @@ export const SINGLE_BED_QUERY = gql`
     bed(id: $id) {
       id
       name
-      height
+      length
       width
       unitOfMeasurement
       isActive
@@ -39,7 +39,7 @@ export const GET_USER_BEDS = gql`
     beds(gardenId: $id) {
       id
       name
-      height
+      length
       width
       unitOfMeasurement
       isActive

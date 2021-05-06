@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, memo } from "react"
+import React, { useRef, memo } from "react"
 import PropTypes from "prop-types"
 
 const BedMeasure = ({
@@ -9,16 +9,16 @@ const BedMeasure = ({
   onChange,
 }) => {
   const width = useRef(0)
-  const height = useRef(0)
+  const length = useRef(0)
   const unit = useRef(0)
 
-  const handleDataChanges = useCallback(() => {
+  const handleDataChanges = () => {
     onChange({
       width: width.current.value,
-      height: height.current.value,
+      length: length.current.value,
       unit: unit.current.value,
     })
-  })
+  }
 
   const buildSizes = (max, prefix) => {
     const els = []
@@ -46,14 +46,14 @@ const BedMeasure = ({
         </select>
       </div>
       <div>
-        <label htmlFor="height">Height: </label>
+        <label htmlFor="length">Length: </label>
         <select
-          ref={height}
-          name="height"
+          ref={length}
+          name="length"
           onChange={handleDataChanges}
-          value={defaultSizes.height}
+          value={defaultSizes.length}
         >
-          {buildSizes(maxSizes.height, "h")}
+          {buildSizes(maxSizes.length, "h")}
         </select>
       </div>
       <div>

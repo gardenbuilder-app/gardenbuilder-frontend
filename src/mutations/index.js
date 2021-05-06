@@ -51,15 +51,21 @@ export const CREATE_BED_MUTATION = gql`
   mutation CREATE_BED_MUTATION(
     $name: String!
     $gardenId: Int!
-    $height: Int! = 4
+    $length: Int! = 4
     $width: Int! = 4
     $unitOfMeasurement: String! = "ft"
   ) {
-    createBed(name: $name, gardenId: $gardenId) {
+    createBed(
+      name: $name
+      gardenId: $gardenId
+      length: $length
+      width: $width
+      unitOfMeasurement: $unitOfMeasurement
+    ) {
       id
       name
       gardenId
-      height
+      length
       width
       unitOfMeasurement
     }

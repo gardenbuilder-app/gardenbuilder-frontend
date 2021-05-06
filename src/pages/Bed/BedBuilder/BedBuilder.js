@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 
 import BedMeasure from "./BedMeasure"
@@ -6,33 +6,31 @@ import BedGrid from "./BedGrid"
 import "./BedBuilder.css"
 
 const MAX_WIDTH = 20,
-  MAX_HEIGHT = 20
+  MAX_LENGTH = 20
 
-const BedBuilder = ({ height, width, unit }) => {
+const BedBuilder = ({ length, width, unit }) => {
   const [measurements, setMeasurements] = useState({
     width,
-    height,
+    length,
     unit,
   })
 
-  const handleBedSettings = useCallback((measurement) => {
+  const handleBedSettings = (measurement) => {
     setMeasurements(measurement)
-  })
-
-  console.log(measurements.unit)
+  }
 
   return (
     <div id="bed">
       <BedMeasure
-        defaultSizes={{ width: measurements.width, height: measurements.height }}
-        maxSizes={{ width: MAX_WIDTH, height: MAX_HEIGHT }}
+        defaultSizes={{ width: measurements.width, length: measurements.length }}
+        maxSizes={{ width: MAX_WIDTH, length: MAX_LENGTH }}
         units={["cm", "ft"]}
         defaultUnit={measurements.unit}
         onChange={handleBedSettings}
       />
       <BedGrid
         cols={measurements.width}
-        rows={measurements.height}
+        rows={measurements.length}
         maxGridWidth={640}
         maxGridHeight={640}
       />
@@ -41,7 +39,7 @@ const BedBuilder = ({ height, width, unit }) => {
 }
 
 BedBuilder.propTypes = {
-  height: PropTypes.number,
+  length: PropTypes.number,
   width: PropTypes.number,
   unit: PropTypes.string,
 }

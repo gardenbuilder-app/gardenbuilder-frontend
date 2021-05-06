@@ -18,6 +18,9 @@ function AddBed({ gardenId }) {
                 fragment NewBed on BedType {
                   id
                   name
+                  length
+                  width
+                  unitOfMeasurement
                 }
               `,
             })

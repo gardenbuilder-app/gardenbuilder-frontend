@@ -19,7 +19,7 @@ export function Bed() {
     <>
       <h2>{data.bedName}</h2>
       <BedBuilder
-        height={bed.height}
+        length={bed.length}
         width={bed.width}
         unit={bed.unitOfMeasurement}
       />
