@@ -5,22 +5,24 @@ import { ApolloProvider } from "@apollo/client"
 import client from "../../ApolloClient"
 import { Profile } from "./Profile"
 
-beforeEach(() => {
-  render(
-    <MemoryRouter>
-      <ApolloProvider client={client} addTypename={false}>
-        <Profile />
-      </ApolloProvider>
-    </MemoryRouter>
-  )
-})
+describe("<Profile />", () => {
+  beforeEach(() => {
+    render(
+      <MemoryRouter>
+        <ApolloProvider client={client} addTypename={false}>
+          <Profile />
+        </ApolloProvider>
+      </MemoryRouter>
+    )
+  })
 
-it("displays the Profile header", async () => {
-  await waitForElementToBeRemoved(() => screen.getByText(/Loading/i))
-  expect(screen.getByText(/Profile/i)).toBeInTheDocument()
-})
+  it("displays the Profile header", async () => {
+    await waitForElementToBeRemoved(() => screen.getByText(/Loading/i))
+    expect(screen.getByText(/Profile/i)).toBeInTheDocument()
+  })
 
-it("displays the user's email", async () => {
-  await waitForElementToBeRemoved(() => screen.getByText(/Loading.../i))
-  expect(screen.getByText(/test@test.com/i)).toBeInTheDocument()
+  it("displays the user's email", async () => {
+    await waitForElementToBeRemoved(() => screen.getByText(/Loading.../i))
+    expect(screen.getByText(/test@test.com/i)).toBeInTheDocument()
+  })
 })

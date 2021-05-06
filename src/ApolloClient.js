@@ -26,9 +26,7 @@ const authLink = setContext((_, { headers }) => {
 })
 
 //Points to dev server
-const devEndpoint =
-  process.env.REACT_APP_GRAPHQL_SERVER ||
-  "https://gardenbuilder-backend.uc.r.appspot.com/graphql/"
+const devEndpoint = process.env.REACT_APP_GRAPHQL_SERVER || "http://localhost:8080/"
 
 //Switches request endpoint from dev server to mock server
 function determineEndpoint(env) {
