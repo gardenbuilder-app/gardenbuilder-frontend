@@ -19,6 +19,7 @@ const BedGrid = ({ cols, rows, maxGridWidth, maxGridHeight }) => {
       grid.current.style.width = cellSize * cols + "px"
       grid.current.style.height = cellSize * rows + "px"
       cell.style.height = cellSize - 2 + "px"
+      return ""
     })
   }, [cols, rows, maxGridHeight, maxGridWidth])
 
