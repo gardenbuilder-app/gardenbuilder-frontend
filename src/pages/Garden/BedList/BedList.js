@@ -1,8 +1,8 @@
 import React from "react"
 import { useQuery } from "@apollo/client"
 import styled from "styled-components"
-import { Link } from "react-router-dom"
-import { GET_USER_BEDS } from "../../../queries"
+import { GET_USER_BEDS } from "queries"
+import PropTypes from "prop-types"
 
 const BedListWrapper = styled.ul`
   background-color: pink;
@@ -14,7 +14,7 @@ const BedListWrapper = styled.ul`
   margin: 0 auto;
 `
 
-export function BedList({ gardenId }) {
+function BedList({ gardenId }) {
   const { data, loading, error } = useQuery(GET_USER_BEDS, {
     variables: { id: parseInt(gardenId) },
   })
@@ -41,3 +41,9 @@ export function BedList({ gardenId }) {
     </BedListWrapper>
   )
 }
+
+BedList.propTypes = {
+  gardenId: PropTypes.string,
+}
+
+export { BedList }

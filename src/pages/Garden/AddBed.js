@@ -1,9 +1,10 @@
 import React, { useState } from "react"
 import { gql, useMutation } from "@apollo/client"
-import { AddThing } from "../../components/composite"
-import { CREATE_BED_MUTATION } from "../../mutations"
+import { AddThing } from "components/composite"
+import { CREATE_BED_MUTATION } from "mutations"
+import PropTypes from "prop-types"
 
-export function AddBed({ gardenId }) {
+function AddBed({ gardenId }) {
   const [bedName, setBedName] = useState("")
 
   const [createBed] = useMutation(CREATE_BED_MUTATION, {
@@ -17,6 +18,9 @@ export function AddBed({ gardenId }) {
                 fragment NewBed on BedType {
                   id
                   name
+                  length
+                  width
+                  unitOfMeasurement
                 }
               `,
             })
@@ -48,3 +52,9 @@ export function AddBed({ gardenId }) {
     />
   )
 }
+
+AddBed.propTypes = {
+  gardenId: PropTypes.string,
+}
+
+export { AddBed }
