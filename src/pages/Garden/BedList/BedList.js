@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client"
 import styled from "styled-components"
 import { GET_USER_BEDS } from "queries"
 import PropTypes from "prop-types"
+import { Link } from 'react-router-dom'
 
 const BedListWrapper = styled.ul`
   background-color: pink;
