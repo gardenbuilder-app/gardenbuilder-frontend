@@ -4,19 +4,18 @@ import BedGrid from "./BedGrid"
 import "./BedBuilder.css"
 
 const MAX_WIDTH = 20,
-  MAX_HEIGHT = 20,
-  DEF_WIDTH = 0,
-  DEF_HEIGHT = 0
+  MAX_HEIGHT = 20
 
-export const BedBuilder = () => {
+export const BedBuilder = ({bed}) => {
   const [measurements, setMeasurements] = useState({
-    width: DEF_WIDTH,
-    height: DEF_HEIGHT,
-    unit: "cm",
+    width: bed.width || 0,
+    height: bed.height || 0,
+    unit: bed.unitOfMeasurement || "cm",
   })
 
   const handleBedSettings = useCallback((measurement) => {
     setMeasurements(measurement)
+    // TODO: update bed in apollo
   })
 
   return (
@@ -37,3 +36,4 @@ export const BedBuilder = () => {
     </div>
   )
 }
+

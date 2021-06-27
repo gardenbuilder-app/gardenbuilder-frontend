@@ -1,17 +1,30 @@
 import React from "react"
-import { client, gql } from '@apollo/client'
-import { useUrlParam } from "../../hooks"
+import { useLocation } from "react-router-dom"
+import { gql } from '@apollo/client'
+import apolloClient from "../../ApolloClient"
 import { BedBuilder } from "./BedBuilder"
 
-export function Bed() {
-  const bedName = useUrlParam("name")
-  const id = useUrlParam("id") 
 
+export function Bed() {
+  const { state } = useLocation()
+  const { bedName, bedId } = state
+  const bed = getBedFromCache(bedId)
 
   return (
     <>
       <h2>{bedName}</h2>
-      <BedBuilder />
+      <BedBuilder bed/>
     </>
   )
+}
+
+function getBedFromCache(bedId) {
+  return apolloClient.readFragment({
+    id: `Bed:${bedId}`,
+    fragment: gql`
+      fragment MyBed on Bed {
+        id
+      }
+    `,
+  })
 }

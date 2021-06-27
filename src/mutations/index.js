@@ -57,6 +57,16 @@ export const CREATE_BED_MUTATION = gql`
   }
 `
 
+export const UPDATE_BED_DIMENSIONS_MUTATION = gql`
+  mutation UPDATE_BED_DIMENSIONS_MUTATION($id: Int!, $height: Int, $width: Int, $unitOfMeasurement: String) {
+    updateBedDimensions(id: $id, height: $height, width: $width, unitOfMeasurement: $unitOfMeasurement) {
+      id
+      name
+      gardenId
+    }
+  }
+`
+
 export const CREATE_GARDEN_MUTATION = gql`
   mutation CREATE_GARDEN_MUTATION($name: String!) {
     createGarden(name: $name) {

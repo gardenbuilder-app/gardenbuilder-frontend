@@ -1,6 +1,7 @@
 import React from "react"
 import { useQuery } from "@apollo/client"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 import { GET_USER_BEDS } from "../../../queries"
 
 const BedListWrapper = styled.ul`
@@ -26,9 +27,16 @@ export function BedList({ gardenId }) {
   return (
     <BedListWrapper>
       {beds.map((bed) => (
-        <a key={bed.id} href={`/bed?id=${bed.id}&name=${bed.name}`}>
+        <Link
+          key={bed.id}
+          to={{
+            pathname: "/bed",
+            hash: bed.id,
+            state: { bedName: bed.name, bedId: bed.id }
+          }}
+        >
           {bed.name}
-        </a>
+        </Link>
       ))}
     </BedListWrapper>
   )
