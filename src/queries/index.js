@@ -8,7 +8,7 @@ export const GET_USER_GARDENS = gql`
       beds {
         id
         name
-        height,
+        length,
         width,
         unitOfMeasurement
         isActive
