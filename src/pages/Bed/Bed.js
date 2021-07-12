@@ -2,11 +2,11 @@ import React from "react"
 import { gql, useQuery } from "@apollo/client"
 import apolloClient from '../../ApolloClient'
 import { SINGLE_BED_QUERY } from "queries"
-import { useUrlParam } from "hooks"
+import { useUrlHash } from "hooks"
 import { BedBuilder } from "./BedBuilder"
 
 export function Bed() {
-  const id = useUrlParam("id")
+  const id = Object.keys(useUrlHash())[0]
   console.log(id)
 
   const { data, loading, error } = useQuery(SINGLE_BED_QUERY, {
