@@ -7,6 +7,7 @@ import { BedBuilder } from "./BedBuilder"
 
 export function Bed() {
   const id = useUrlParam("id")
+  console.log(id)
 
   const { data, loading, error } = useQuery(SINGLE_BED_QUERY, {
     variables: { id: parseInt(id) },
@@ -15,6 +16,7 @@ export function Bed() {
   if (loading) return <p>Loading...</p>
   if (error) return <p>{error.message}</p>
   const { bed } = data
+
   return (
     <>
       <h2>{data.bedName}</h2>
