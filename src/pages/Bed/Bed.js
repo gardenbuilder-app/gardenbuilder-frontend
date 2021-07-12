@@ -1,6 +1,6 @@
 import React from "react"
-import { useQuery } from "@apollo/client"
-
+import { gql, useQuery } from "@apollo/client"
+import apolloClient from '../../ApolloClient'
 import { SINGLE_BED_QUERY } from "queries"
 import { useUrlParam } from "hooks"
 import { BedBuilder } from "./BedBuilder"
