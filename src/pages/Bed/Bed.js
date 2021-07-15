@@ -1,6 +1,7 @@
 import React from "react"
 import { gql, useQuery } from "@apollo/client"
 import apolloClient from '../../ApolloClient'
+import { Button } from 'components'
 import { SINGLE_BED_QUERY } from "queries"
 import { useUrlHash } from "hooks"
 import { BedBuilder } from "./BedBuilder"
@@ -19,12 +20,17 @@ export function Bed() {
 
   return (
     <>
-      <h2>{data.bedName}</h2>
+      <h2>Bed {`${id}`}</h2>
       <BedBuilder
         length={bed.length}
         width={bed.width}
         unit={bed.unitOfMeasurement}
       />
+      <Button
+        name="submit"
+        text="Submit"
+      />
+
     </>
   )
 }

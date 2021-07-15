@@ -19,6 +19,8 @@ const BedBuilder = ({ length, width, unit }) => {
     setMeasurements(measurement)
   }
 
+  //TODO: Add save capability
+
   return (
     <div id="bed">
       <BedMeasure
