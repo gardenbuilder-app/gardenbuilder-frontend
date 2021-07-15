@@ -22,7 +22,7 @@ const MockComponent = () => {
   const [makeThing] = useMutation(MOCK_MUTATION, { variables: { id: "abc123" } })
   const handleClick = async (e) => {
     e.preventDefault()
-    const res = await makeThing()
+    await makeThing()
   }
   if (loading) return <p>Loading...</p>
   if (error) return <div className="error">{error.message}</div>
