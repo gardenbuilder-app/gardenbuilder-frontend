@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-import { Button, Form, InputSection } from "components/composite"
+import { Button } from "components"
+import { Form, InputSection } from "components/composite"
 import { useApolloClient, useMutation, gql } from "@apollo/client"
 import { colors } from "styles/global"
 import { setToken } from "libs"

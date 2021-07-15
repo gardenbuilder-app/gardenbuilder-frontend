@@ -1,5 +1,4 @@
 export * from "./AddThing"
-export * from "./Button"
 export * from "./Footer"
 export * from "./Form"
 export * from "./Header"
