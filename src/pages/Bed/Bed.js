@@ -5,9 +5,8 @@ import { UPDATE_BED_DIMENSIONS_MUTATION } from 'mutations'
 import { useUrlHash } from "hooks"
 import { BedBuilder } from "./BedBuilder"
 
-export function Bed() {
+export function Bed(props) {
   const id = Object.keys(useUrlHash())[0]
-  console.log(id)
 
   const { data, loading, error } = useQuery(SINGLE_BED_QUERY, {
     variables: { id: parseInt(id) },
