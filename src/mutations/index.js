@@ -72,12 +72,28 @@ export const CREATE_BED_MUTATION = gql`
   }
 `
 
+// export const UPDATE_BED_DIMENSIONS_MUTATION = gql`
+//   mutation UPDATE_BED_DIMENSIONS_MUTATION(
+//     $id: Int!,
+//     $length: Int,
+//     $width: Int,
+//     $unitOfMeasurement: String
+//     ) {
+//     updateBedDimensions(id: $id, length: $length, width: $width, unitOfMeasurement: $unitOfMeasurement) {
+//       id
+//       name
+//     }
+//   }
+// `
 export const UPDATE_BED_DIMENSIONS_MUTATION = gql`
-  mutation UPDATE_BED_DIMENSIONS_MUTATION($id: Int!, $height: Int, $width: Int, $unitOfMeasurement: String) {
-    updateBedDimensions(id: $id, height: $height, width: $width, unitOfMeasurement: $unitOfMeasurement) {
+  mutation UPDATE_BED_DIMENSIONS_MUTATION($input: UpdateBedDimensionsInput!) {
+    updateBedDimensions(input: $input) {
       id
       name
       gardenId
+      length
+      width
+      unitOfMeasurement
     }
   }
 `

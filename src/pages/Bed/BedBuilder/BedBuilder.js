@@ -8,31 +8,43 @@ import "./BedBuilder.css"
 const MAX_WIDTH = 20,
   MAX_LENGTH = 20
 
-const BedBuilder = ({ length, width, unit }) => {
-  const [measurements, setMeasurements] = useState({
+const BedBuilder = ({ id, length, width, unit, updateDimensions }) => {
+  const [measurement, setMeasurement] = useState({
     width,
     length,
     unit,
   })
 
   const handleBedSettings = (measurement) => {
-    setMeasurements(measurement)
-  }
+    setMeasurement(measurement)
+    // mutate bed
+    console.log('id is', id)
+    console.log('width is', measurement.width)
+    updateDimensions({
+      variables: {
+        input: {
+          id: parseInt(id),
+          width: parseInt(measurement.width),
+          length: parseInt(measurement.length),
+          unitOfMeasurement: measurement.unit
+        }
+      }
+    })
 
-  //TODO: Add save capability
+  }
 
   return (
     <div id="bed">
       <BedMeasure
-        defaultSizes={{ width: measurements.width, length: measurements.length }}
+        defaultSizes={{ width: measurement.width, length: measurement.length }}
         maxSizes={{ width: MAX_WIDTH, length: MAX_LENGTH }}
         units={["cm", "ft"]}
-        defaultUnit={measurements.unit}
+        defaultUnit={measurement.unit}
         onChange={handleBedSettings}
       />
       <BedGrid
-        cols={measurements.width}
-        rows={measurements.length}
+        cols={parseInt(measurement.width)}
+        rows={parseInt(measurement.length)}
         maxGridWidth={640}
         maxGridHeight={640}
       />
@@ -41,9 +53,11 @@ const BedBuilder = ({ length, width, unit }) => {
 }
 
 BedBuilder.propTypes = {
+  id: PropTypes.number,
   length: PropTypes.number,
   width: PropTypes.number,
   unit: PropTypes.string,
+  updateDimensions: PropTypes.func
 }
 
 export { BedBuilder }
