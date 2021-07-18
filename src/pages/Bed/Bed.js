@@ -1,6 +1,5 @@
 import React from "react"
-import { gql, useMutation, useQuery } from "@apollo/client"
-import apolloClient from '../../ApolloClient'
+import { useMutation, useQuery } from "@apollo/client"
 import { SINGLE_BED_QUERY } from "queries"
 import { UPDATE_BED_DIMENSIONS_MUTATION } from 'mutations'
 import { useUrlHash } from "hooks"
@@ -15,19 +14,6 @@ export function Bed() {
   })
 
   const [updateBedDimensions] = useMutation(UPDATE_BED_DIMENSIONS_MUTATION, {
-    update: (cache, { data: { updateBedDimensions } }) => {
-    //   console.log('dimensions updated')
-    //   // const data = cache.readQuery({ query: GET_USER_GARDENS })
-    //   // createGarden.beds = Array(0)
-    //   // createGarden.isActive = true
-    //   // cache.writeQuery({
-    //   //   query: GET_USER_GARDENS,
-    //   //   data: {
-    //   //     ...data,
-    //   //     gardens: [...data.gardens, createGarden],
-    //   //   },
-    //   // })
-    },
     onError(err) {
       console.log(err)
     },
@@ -39,6 +25,7 @@ export function Bed() {
   if (loading) return <p>Loading...</p>
   if (error) return <p>{error.message}</p>
   const { bed } = data
+
   return (
     <>
       <h2>Bed {`${id}`}</h2>
@@ -51,15 +38,4 @@ export function Bed() {
       />
     </>
   )
-}
-
-function getBedFromCache(bedId) {
-  return apolloClient.readFragment({
-    id: `Bed:${bedId}`,
-    fragment: gql`
-      fragment MyBed on Bed {
-        id
-      }
-    `,
-  })
 }
