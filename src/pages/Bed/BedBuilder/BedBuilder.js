@@ -8,7 +8,7 @@ import "./BedBuilder.css"
 const MAX_WIDTH = 20,
   MAX_LENGTH = 20
 
-const BedBuilder = ({ id, length, width, unit, updateDimensions }) => {
+const BedBuilder = ({ id, length, openModal, width, unit, updateDimensions }) => {
   const [measurement, setMeasurement] = useState({
     width,
     length,
@@ -47,6 +47,7 @@ const BedBuilder = ({ id, length, width, unit, updateDimensions }) => {
         rows={parseInt(measurement.length)}
         maxGridWidth={640}
         maxGridHeight={640}
+        openModal={openModal}
       />
     </div>
   )
@@ -55,6 +56,7 @@ const BedBuilder = ({ id, length, width, unit, updateDimensions }) => {
 BedBuilder.propTypes = {
   id: PropTypes.number,
   length: PropTypes.number,
+  openModal: PropTypes.func,
   width: PropTypes.number,
   unit: PropTypes.string,
   updateDimensions: PropTypes.func

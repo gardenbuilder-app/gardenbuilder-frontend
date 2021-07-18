@@ -1,7 +1,7 @@
 import React, { useRef, useLayoutEffect } from "react"
 import PropTypes from "prop-types"
 
-const BedGrid = ({ cols, rows, maxGridWidth, maxGridHeight }) => {
+const BedGrid = ({ cols, rows, maxGridWidth, maxGridHeight, openModal }) => {
   const grid = useRef(0)
 
   useLayoutEffect(() => {
@@ -28,7 +28,7 @@ const BedGrid = ({ cols, rows, maxGridWidth, maxGridHeight }) => {
     const cellCount = cols * rows
 
     for (let i = 1; i <= cellCount; i++) {
-      cells.push(<div key={i} className="grid-cell"></div>)
+      cells.push(<div key={i} className="grid-cell" onClick={() => openModal(i)}></div>)
     }
     return cells
   }
@@ -44,6 +44,7 @@ BedGrid.propTypes = {
   rows: PropTypes.number,
   maxGridWidth: PropTypes.number,
   maxGridHeight: PropTypes.number,
+  openModal: PropTypes.func
 }
 
 export default BedGrid
