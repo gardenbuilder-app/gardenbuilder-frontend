@@ -97,6 +97,19 @@ export const handlers = [
     )
   }),
 
+  graphql.query("SINGLE_BED_QUERY", (req, res, ctx) => {
+    return res(
+      ctx.data({
+        bed: {
+          id: 1,
+          length: 3,
+          width: 3,
+          unitOfMeasurement: "ft"
+        },
+      })
+    )
+  }),
+
   /*************************
       MUTATION MOCKS
   ***************************/
