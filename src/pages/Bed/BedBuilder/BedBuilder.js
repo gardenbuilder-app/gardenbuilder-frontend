@@ -34,7 +34,7 @@ const BedBuilder = ({ id, length, width, unit, updateDimensions }) => {
   }
 
   return (
-    <div id="bed">
+    <div id="bed" data-testid="bedbuilder">
       <BedMeasure
         defaultSizes={{ width: measurement.width, length: measurement.length }}
         maxSizes={{ width: MAX_WIDTH, length: MAX_LENGTH }}
